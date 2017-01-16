@@ -11,4 +11,23 @@ package cssd.task.pkg3;
  */
 public class SetOfUsers {
     
+    private User login(String username, String password)
+    {
+        return null;
+    }
+    
+    private void addUser(User user)
+    {
+        
+    }
+    
+    private void removerUser(User user)
+    {
+        
+    }
+    
+    private SetOfUsers getSuitableFarmers()
+    {
+        return null;
+    }
 }
