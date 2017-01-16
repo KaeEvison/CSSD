@@ -1,1 +1,2 @@
-Used getUserByName rather than getUserByIndex in the setOfUsers class.
+Used getUserByName rather than getUserByIndex in the setOfUsers class. - Done as there is no visualised index assigned to the User in the 
+class e.g. no userNumber.
