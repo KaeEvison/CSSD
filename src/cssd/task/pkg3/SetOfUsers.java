@@ -9,13 +9,6 @@ package cssd.task.pkg3;
  *
  * @author b3014277
  */
-public class CSSDTask3 {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class SetOfUsers {
     
 }
