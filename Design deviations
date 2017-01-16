@@ -1,0 +1,1 @@
+Used getUserByName rather than getUserByIndex in the setOfUsers class.
