@@ -9,14 +9,14 @@ package cssd.task.pkg3;
  *
  * @author b3014277
  */
-public class SetOfUsers {
+public class SetOfUsers extends ArrayList<User>{
     
     private User login(String username, String password)
     {
         return null;
     }
     
-    private void addUser(User user)
+    void addUser(User user)
     {
         
     }
