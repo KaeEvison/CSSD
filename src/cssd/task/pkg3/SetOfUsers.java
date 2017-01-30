@@ -4,30 +4,32 @@
  * and open the template in the editor.
  */
 package cssd.task.pkg3;
+import java.util.ArrayList;
 
 /**
  *
  * @author b3014277
  */
-public class SetOfUsers {
+public class SetOfUsers extends ArrayList<User>{
     
     private User login(String username, String password)
     {
         return null;
     }
     
-    private void addUser(User user)
+    void addUser(User user)
     {
-        
+        super.add(user);
     }
     
     private void removerUser(User user)
     {
-        
+        super.remove(user);
     }
     
-    private SetOfUsers getSuitableFarmers()
+    SetOfUsers getSuitableFarmers(Planting suitable)
     {
         return null;
     }
+    
 }
