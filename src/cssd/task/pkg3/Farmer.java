@@ -9,18 +9,9 @@ package cssd.task.pkg3;
  *
  * @author b3014277
  */
-public class SetOfOrders 
-{
-    void addOrder(Order newOrder)
-    {
-        
-    }
-    void removeOrder(int index)
-    {
-        
-    }
-    void getOrderByIndex(int index)
-    {
-        
-    }
+public class Farmer {
+    Boolean hasAutomatedMachinery;
+    String[] crops;
+    SetOfFields fields;
+    
 }
