@@ -29,9 +29,9 @@ public User (String username, String firstName, String surname, String location,
     
 }
     
-public void changePassword()
+public void changePassword(String newPass)
 {
-
+    this.password = newPass;
 }
 
 public void addOrder()

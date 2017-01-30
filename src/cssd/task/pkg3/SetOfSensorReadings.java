@@ -4,23 +4,18 @@
  * and open the template in the editor.
  */
 package cssd.task.pkg3;
+import java.util.ArrayList;
 
 /**
  *
- * @author b3014277
+ * @author b4027708
  */
-public class SetOfOrders 
+public class SetOfSensorReadings extends ArrayList<SensorReading>
 {
-    void addOrder(Order newOrder)
+    public SetOfSensorReadings()
     {
-        
+        super();
     }
-    void removeOrder(int index)
-    {
-        
-    }
-    void getOrderByIndex(int index)
-    {
-        
-    }
+    
+    
 }

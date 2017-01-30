@@ -7,19 +7,18 @@ package cssd.task.pkg3;
 
 /**
  *
- * @author b3014277
+ * @author b4027708
  */
-public class SetOfOrders 
+public class Server
 {
-    void addOrder(Order newOrder)
+    private SetOfSensorReadings sensorReadings;
+    
+    public Server()
     {
         
     }
-    void removeOrder(int index)
-    {
-        
-    }
-    void getOrderByIndex(int index)
+    
+    public void addReadings(SetOfSensorReadings newReadings)
     {
         
     }
