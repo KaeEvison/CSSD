@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cssd.task.pkg3;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,16 +19,17 @@ public class SetOfUsers extends ArrayList<User>{
     
     void addUser(User user)
     {
-        
+        super.add(user);
     }
     
     private void removerUser(User user)
     {
-        
+        super.remove(user);
     }
     
-    private SetOfUsers getSuitableFarmers()
+    SetOfUsers getSuitableFarmers(Planting suitable)
     {
         return null;
     }
+    
 }
