@@ -5,6 +5,12 @@
  */
 package cssd.task.pkg3;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  *
@@ -17,5 +23,8 @@ public class SetOfSensorReadings extends ArrayList<SensorReading>
         super();
     }
     
-    
+    public void addSensorReading(SensorReading newReading)
+    {
+        super.add(newReading);
+    }
 }
