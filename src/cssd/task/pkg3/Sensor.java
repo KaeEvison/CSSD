@@ -10,7 +10,10 @@ package cssd.task.pkg3;
  * @author thoma
  */
 public class Sensor {
-
+    
+    private String dataUnit = "";
+    private Location location;
+    
     public String getDataUnit() {
         return dataUnit;
     }
@@ -26,10 +29,9 @@ public class Sensor {
     public void setLocation(Location location) {
         this.location = location;
     }
-    private String dataUnit = "";
-    private Location location;
     
-    SensorReading takeReading(double pValue, String pUnit, String pType, String pLocation)
+    
+    public SensorReading takeReading(double pValue, String pUnit, String pType, String pLocation)
     {
         return new SensorReading(pValue, pUnit, pType, pLocation);
     }
