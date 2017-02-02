@@ -11,8 +11,8 @@ package cssd.task.pkg3;
  */
 public class Sensor {
     
-    private String dataUnit = "";
-    private Location location;
+    protected String dataUnit = "";
+    protected Location location;
     
     public String getDataUnit() {
         return dataUnit;
