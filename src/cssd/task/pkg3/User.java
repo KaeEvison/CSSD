@@ -29,14 +29,22 @@ public User (String username, String firstName, String surname, String location,
     
 }
     
-public void changePassword(String newPass)
+public void changePassword(String newPass, String oldPass)
 {
-    this.password = newPass;
+    if (oldPass == this.password)
+    {
+        this.password = newPass;
+    }
+    else
+    {
+        System.out.println("Password Incorrect");
+    }
+    
 }
 
-public void addOrder()
+public void addOrder(Order newOrder)
 {
-    
+    orders.addOrder(newOrder);
 }
     
     

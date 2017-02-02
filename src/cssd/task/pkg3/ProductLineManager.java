@@ -5,21 +5,16 @@
  */
 package cssd.task.pkg3;
 
-import java.time.LocalDateTime;
-
-
 /**
  *
  * @author b3014277
  */
-public class Order {
+public class ProductLineManager
+{
+    String company;
     
-    String crop;
-    Double cost;
-    Farmer supplier;
-    ProductLineManager buyer;
-    LocalDateTime estimatedDeliveryDate;
-    LocalDateTime dateCreated;
-    String status;
-   
+    public ProductLineManager(String companyName)
+    {
+        company = companyName;
+    }
 }
