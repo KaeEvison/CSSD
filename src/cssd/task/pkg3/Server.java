@@ -54,6 +54,12 @@ public class Server
         return log;
     }
     
+    public SetOfSensorReadings getReadingsForFieldArea(FieldArea fieldArea)
+    {
+        // Need to sort out fieldarea first
+        return null;
+    }
+    
     private static void Serialize(Object obj, String filename) throws IOException
     {
         FileOutputStream out = new FileOutputStream(filename);
