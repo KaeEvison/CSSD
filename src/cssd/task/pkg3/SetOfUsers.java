@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public class SetOfUsers extends ArrayList<User>{
     
-    private int noOfUsers;
+    private int noOfUsers = 0;
     
     public SetOfUsers()
     {
-        noOfUsers = 0;
+        super();
     }
     
     
