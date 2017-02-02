@@ -16,7 +16,7 @@ public class Field {
     Planting currentPlanting;
     FieldArea fieldArea;
     ArrayList<Harvest> harvestHistory;
-    //ArrayList<AutomatedMachineryMonitor> automatedMachineryMonitor;
+    ArrayList<AutomatedMachineryMonitor> automatedMachineryMonitor;
     
     public Field(Planting a, FieldArea b, ArrayList<Harvest> c) {
         currentPlanting = a;
