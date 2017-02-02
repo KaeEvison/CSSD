@@ -5,13 +5,36 @@
  */
 package cssd.task.pkg3;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  *
- * @author b3014277
+ * @author b3014277, trkirk
  */
 public class Farmer {
-    Boolean hasAutomatedMachinery;
-    String[] crops;
-    SetOfFields fields;
+
+    private ArrayList<Planting> crops;
+    //private SetOfFields fields;
+    
+    private Boolean hasAutomatedMachinery = false;
+
+    public Boolean hasAutomatedMachinery() {
+        return hasAutomatedMachinery;
+    }
+    
+    public ArrayList<Planting> getCrops() {
+        return crops;
+    }
+
+    public void setCrops(ArrayList<Planting> crops) {
+        this.crops = crops;
+    }
+    
+    // Expects a Date?
+    // Calls getGrowthTime but this returns an int?
+    int getTimeForCrop(Planting planting){
+        return planting.getGrowthTime();
+    }
     
 }
