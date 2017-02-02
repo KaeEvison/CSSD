@@ -3,3 +3,5 @@ class e.g. no userNumber.
 
 changePassword method in User not taking a string parameter to change the existing password to the new password. public void changePassword()
 changed to changePassword(String newPass).
+
+Added 'Serialize' method in Server class to simulate database storage by saving to file.
