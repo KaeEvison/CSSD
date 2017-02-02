@@ -5,3 +5,5 @@ changePassword method in User not taking a string parameter to change the existi
 changed to changePassword(String newPass).
 
 Added 'Serialize' method in Server class to simulate database storage by saving to file.
+
+Added 'Deserialize' and 'readLog' methods so that the file can be accessed and its contents returned as a SetOfSensorReadings.
