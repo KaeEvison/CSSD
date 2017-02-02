@@ -5,6 +5,7 @@
  */
 package cssd.task.pkg3;
 
+import java.time.LocalDateTime;
 /**
  *
  * @author b3014277
@@ -15,7 +16,7 @@ public class Order {
     Double cost;
     Farmer supplier;
     ProductLineManager buyer;
-    LocaleDateTime estimatedDeliveryDate;
+    LocalDateTime estimatedDeliveryDate;
     LocalDateTime dateCreated;
     String status;
     

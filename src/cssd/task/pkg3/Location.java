@@ -13,6 +13,11 @@ public class Location {
     private int x = 0;
     private int y = 0;
     
+    public Location(int setX, int setY){
+        x = setX;
+        y = setY;
+    }
+    
     public int getX(){
         return x;
     }
