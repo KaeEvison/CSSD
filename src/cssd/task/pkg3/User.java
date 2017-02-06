@@ -15,6 +15,14 @@ public class User {
     private String surname;
     private String location;
     private String phoneNumber;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
     private String password;
     private SetOfOrders orders;
     
