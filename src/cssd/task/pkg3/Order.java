@@ -19,6 +19,5 @@ public class Order {
     LocalDateTime estimatedDeliveryDate;
     LocalDateTime dateCreated;
     String status;
-    
-    
+   
 }

@@ -7,8 +7,14 @@ package cssd.task.pkg3;
 
 /**
  *
- * @author b4027708
+ * @author b3014277
  */
-class ProductLineManager {
+public class ProductLineManager
+{
+    String company;
     
+    public ProductLineManager(String companyName)
+    {
+        company = companyName;
+    }
 }
