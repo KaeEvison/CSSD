@@ -16,6 +16,7 @@ public class FieldArea
     
     public FieldArea(Location... pointsList)
     {
+        this.points = new ArrayList();
         for (int i = 0; i < pointsList.length; i++)
         {
             points.add(pointsList[i]);

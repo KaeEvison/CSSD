@@ -25,11 +25,11 @@ public class FieldAreaTest
     {
         boolean result;
         result = testArea.isLocationInArea(testPoint);
-        assertEquals(result, 1);
+        assertEquals(result, true);
         
         testPoint.setX(0);
         testPoint.setY(0);
         result = testArea.isLocationInArea(testPoint);
-        assertEquals(result, 0);
+        assertEquals(result, false);
     }
 }

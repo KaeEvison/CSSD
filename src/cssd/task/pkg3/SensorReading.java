@@ -17,9 +17,9 @@ public class SensorReading
     private LocalDateTime timeTaken;
     private String readingUnit;
     private String readingType;
-    private String location;
+    private Location location;
     
-    public SensorReading(double pValue, String pUnit, String pType, String pLocation)
+    public SensorReading(double pValue, String pUnit, String pType, Location pLocation)
     {
         value = pValue;
         timeTaken = LocalDateTime.now();

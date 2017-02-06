@@ -18,17 +18,24 @@ import java.io.ObjectOutputStream;
  */
 public class Server
 {
+    Location testData = new Location(2,3);
     private SetOfSensorReadings sensorReadings;
     private static final String FILENAME = "readingsLog.ser";
     File outputFile = new File(FILENAME);
+    private SetOfSensorMonitors allSensors = new SetOfSensorMonitors();
     
     public Server(){}
+    
+    public Server(SetOfSensorMonitors initialSensors)
+    {
+        allSensors = initialSensors;
+    }
     
     public void addReadings(SetOfSensorReadings newReadings)
     {
         try
         {
-            Serialize(sensorReadings, FILENAME);
+            Serialize(newReadings, FILENAME);
         }
         catch (IOException e)
         {
@@ -56,8 +63,15 @@ public class Server
     
     public SetOfSensorReadings getReadingsForFieldArea(FieldArea fieldArea)
     {
-        // Need to sort out fieldarea first
-        return null;
+        SetOfSensorReadings readingsForArea = new SetOfSensorReadings();
+        for (int i = 0; i < allSensors.size(); i++)
+        {
+            if (fieldArea.isLocationInArea(allSensors.get(i).getLocation()))
+            {
+                readingsForArea.add(allSensors.get(i).getNewReading(21.0, "Celcius", "Soil temperature", testData));
+            }
+        }
+        return readingsForArea;
     }
     
     private static void Serialize(Object obj, String filename) throws IOException

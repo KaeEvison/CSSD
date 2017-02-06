@@ -44,7 +44,12 @@ public class SensorMonitor {
         this.lastReadingTime = lastReadingTime;
     }
     
-    public void getNewReading(double pValue, String pUnit, String pType, String pLocation){
-        sensor.takeReading(pValue, pUnit, pType, pLocation);
+    public SensorReading getNewReading(double pValue, String pUnit, String pType, Location pLocation){
+        return sensor.takeReading(pValue, pUnit, pType, pLocation);
+    }
+    
+    public Location getLocation()
+    {
+        return sensor.getLocation();
     }
 }

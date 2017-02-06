@@ -31,7 +31,7 @@ public class Sensor {
     }
     
     
-    public SensorReading takeReading(double pValue, String pUnit, String pType, String pLocation)
+    public SensorReading takeReading(double pValue, String pUnit, String pType, Location pLocation)
     {
         return new SensorReading(pValue, pUnit, pType, pLocation);
     }
