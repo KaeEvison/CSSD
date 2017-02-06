@@ -18,6 +18,14 @@ public class SetOfSensorReadings extends ArrayList<SensorReading> implements Ser
         super();
     }
     
+    public SetOfSensorReadings(SensorReading... readingList)
+    {
+        for (int i = 0; i < readingList.length; i++)
+        {
+            super.add(readingList[i]);
+        }
+    }
+    
     public void addSensorReading(SensorReading newReading)
     {
         super.add(newReading);
