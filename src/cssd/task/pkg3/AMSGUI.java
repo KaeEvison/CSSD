@@ -29,6 +29,9 @@ public class AMSGUI extends JFrame
     private AMSGUI_MenuPanel menu;
     private AMSGUI_FieldsPanel1_Selection fp1;
     private AMSGUI_FieldsPanel2_Options fp2;
+    private AMSGUI_FieldsPanel3_CheckCrops fp3;
+    private AMSGUI_OrdersPanel op1;
+    
     private CardLayout layout;
     
     /**
@@ -43,6 +46,8 @@ public class AMSGUI extends JFrame
         menu = new AMSGUI_MenuPanel();
         fp1 = new AMSGUI_FieldsPanel1_Selection();
         fp2 = new AMSGUI_FieldsPanel2_Options();
+        fp3 = new AMSGUI_FieldsPanel3_CheckCrops();
+        op1 = new AMSGUI_OrdersPanel();
         
         currentUser = currentUser;
         jbl_username.setText( currentUser.getUsername() );
@@ -53,41 +58,14 @@ public class AMSGUI extends JFrame
         contentPane.add(menu, "menu");
         contentPane.add(fp1, "fp1");
         contentPane.add(fp2, "fp2");
+        contentPane.add(fp3, "fp3");
+        contentPane.add(op1, "op1");
         
         pack();
         setLocationByPlatform(true);
         layout.show(contentPane, "menu");
         
-        addWindowListener(new WindowAdapter(){
-            public void windowClosing( WindowEvent e){
-                JOptionPane.showMessageDialog(getContentPane(), "Logging Off");
-            }
-        });
-        
-        menu.jbtn_viewFields.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp1");
-            }
-        });
-        
-        fp1.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "menu");
-            }
-        });
-        
-        fp1.jbtn_options.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp2");
-            }
-        });
-        
-        fp2.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp1");
-            }
-        });
-        
+        addListeners();
     }
 
     /**
@@ -175,7 +153,62 @@ public class AMSGUI extends JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void addListeners(){
+        addWindowListener(new WindowAdapter(){
+            public void windowClosing( WindowEvent e){
+                JOptionPane.showMessageDialog(getContentPane(), "Logging Off");
+            }
+        });
+        
+        menu.jbtn_viewFields.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp1");
+            }
+        });
+        
+        menu.jbtn_viewOrders.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "op1");
+            }
+        });
+        
+        fp1.jbtn_back.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "menu");
+            }
+        });
+        
+        fp1.jbtn_options.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp2");
+            }
+        });
+        
+        fp2.jbtn_back.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp1");
+            }
+        });
+        
+        fp2.jbtn_checkCrops.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp3");
+            }
+        });
+        
+        fp3.jbtn_back.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp2");
+            }
+        });
+        
+        op1.jbtn_back.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "menu");
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel container;

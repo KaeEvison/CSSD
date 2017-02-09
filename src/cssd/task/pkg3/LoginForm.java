@@ -29,6 +29,18 @@ public class LoginForm extends javax.swing.JFrame {
         users = new SetOfUsers();
         
         //String username, String firstName, String surname, String location, String phoneNumber, String password
+        
+        users.addUser( 
+                new User(
+                        "admin",
+                        "firstname",
+                        "surname",
+                        "location",
+                        "phoneno",
+                        "password"
+                )
+        );
+        
         users.addUser(
                 new User(
                         "trkirk",
@@ -80,6 +92,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jtf_username.setText("admin");
         jtf_username.setName("jtf_username"); // NOI18N
         jtf_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +104,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel2.setText("Password:");
 
+        jtf_password.setText("password");
         jtf_password.setName("jPasswordField_password"); // NOI18N
 
         jButton1.setText("Submit");

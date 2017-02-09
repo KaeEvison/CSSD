@@ -88,9 +88,9 @@ public class AMSGUI_MenuPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
+    protected javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JButton jbtn_viewFields;
-    private javax.swing.JButton jbtn_viewOrders;
+    public javax.swing.JButton jbtn_viewOrders;
     // End of variables declaration//GEN-END:variables
 }
