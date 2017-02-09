@@ -9,12 +9,12 @@ package cssd.task.pkg3;
  *
  * @author thoma
  */
-public class AMSGUI_FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
+public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
 
     /**
      * Creates new form AMSGUI_FieldsPanel5_RecordPlanting
      */
-    public AMSGUI_FieldsPanel5_RecordPlanting() {
+    public FieldsPanel5_RecordPlanting() {
         initComponents();
     }
 

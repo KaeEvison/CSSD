@@ -9,12 +9,12 @@ package cssd.task.pkg3;
  *
  * @author thoma
  */
-public class AMSGUI_FieldsPanel2_Options extends javax.swing.JPanel {
+public class FieldsPanel2_Options extends javax.swing.JPanel {
 
     /**
      * Creates new form AMSGUI_FieldsOptionsPanel
      */
-    public AMSGUI_FieldsPanel2_Options() {
+    public FieldsPanel2_Options() {
         initComponents();
     }
 

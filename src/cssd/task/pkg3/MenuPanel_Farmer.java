@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author thoma
  */
-public class AMSGUI_MenuPanel extends javax.swing.JPanel {
+public class MenuPanel_Farmer extends javax.swing.JPanel {
 
     /**
      * Creates new form AMSGUI_Menu
      */
-    public AMSGUI_MenuPanel() {
+    public MenuPanel_Farmer() {
         initComponents();
     }
 

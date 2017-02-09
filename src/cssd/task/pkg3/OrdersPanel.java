@@ -9,12 +9,12 @@ package cssd.task.pkg3;
  *
  * @author thoma
  */
-public class AMSGUI_OrdersPanel extends javax.swing.JPanel {
+public class OrdersPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form AMSGUI_OrdersPanel
      */
-    public AMSGUI_OrdersPanel() {
+    public OrdersPanel() {
         initComponents();
     }
 

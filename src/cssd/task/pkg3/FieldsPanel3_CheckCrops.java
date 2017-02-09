@@ -9,12 +9,12 @@ package cssd.task.pkg3;
  *
  * @author thoma
  */
-public class AMSGUI_FieldsPanel3_CheckCrops extends javax.swing.JPanel {
+public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
 
     /**
      * Creates new form AMSGUI_FieldsPanel3_CheckCrops
      */
-    public AMSGUI_FieldsPanel3_CheckCrops() {
+    public FieldsPanel3_CheckCrops() {
         initComponents();
     }
 

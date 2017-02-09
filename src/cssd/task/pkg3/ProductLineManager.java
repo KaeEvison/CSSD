@@ -9,12 +9,14 @@ package cssd.task.pkg3;
  *
  * @author b3014277
  */
-public class ProductLineManager
+public class ProductLineManager extends User
 {
-    String company;
+    String company = "";
     
-    public ProductLineManager(String companyName)
+    public ProductLineManager( String username, String firstName, String surname, 
+            String location, String phoneNumber, String password, String companyName)
     {
+        super(username, firstName, surname, location, phoneNumber, password);
         company = companyName;
     }
 }

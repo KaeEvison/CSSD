@@ -15,6 +15,8 @@ public class User {
     private String surname;
     private String location;
     private String phoneNumber;
+    private String password;
+    private SetOfOrders orders;
 
     public String getUsername() {
         return username;
@@ -23,8 +25,6 @@ public class User {
     public String getPassword() {
         return password;
     }
-    private String password;
-    private SetOfOrders orders;
     
 public User (String username, String firstName, String surname, String location, String phoneNumber, String password)
 {

@@ -6,32 +6,34 @@
 package cssd.task.pkg3;
 
 import java.awt.Color;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author trkirk
+ * @author thoma
  */
-public class LoginForm extends javax.swing.JFrame {
-
-    private SetOfUsers users;
+public class AMS extends javax.swing.JFrame {
     
+    private SetOfUsers users;
+    private SetOfFarmers farmers;
     
     /**
-     * Creates new form LoginForm
+     * Creates new form AMS2
      */
-    public LoginForm() {
+    public AMS() {
         initComponents();
         getContentPane().setBackground(new Color(102,153,0));
         setTitle("AMS Login");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         users = new SetOfUsers();
+        farmers = new SetOfFarmers();
         
         //String username, String firstName, String surname, String location, String phoneNumber, String password
         
-        users.addUser( 
-                new User(
+        farmers.addFarmer(
+                new Farmer(
                         "admin",
                         "firstname",
                         "surname",
@@ -74,7 +76,7 @@ public class LoginForm extends javax.swing.JFrame {
                 )
         );
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,13 +86,23 @@ public class LoginForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jtf_password = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
         jtf_username = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jtf_password = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jtf_password.setText("password");
+        jtf_password.setName("jPasswordField_password"); // NOI18N
+
+        jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jtf_username.setText("admin");
         jtf_username.setName("jtf_username"); // NOI18N
@@ -104,22 +116,12 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel2.setText("Password:");
 
-        jtf_password.setText("password");
-        jtf_password.setName("jPasswordField_password"); // NOI18N
-
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -144,7 +146,7 @@ public class LoginForm extends javax.swing.JFrame {
                     .addComponent(jtf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,21 +158,36 @@ public class LoginForm extends javax.swing.JFrame {
             jtf_username.getText(),
             new String( jtf_password.getPassword() )
         );
-        
+
         if( currentUser != null){
             this.jtf_username.setText("");
             this.jtf_password.setText("");
-            
-            new AMSGUI(currentUser).setVisible(true);
+
+            new AMSGUI_User(currentUser).setVisible(true);
         }
         else
-            JOptionPane.showMessageDialog(this, "Invalid username or password!");
+        {
+            Farmer currentFarmer = farmers.login(
+                jtf_username.getText(),
+                new String( jtf_password.getPassword())
+            );
+
+            if( currentFarmer != null)
+            {
+                this.jtf_username.setText("");
+                this.jtf_password.setText("");
+
+                new AMSGUI_Farmer(currentFarmer).setVisible(true);
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Invalid username or password!");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jtf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_usernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_usernameActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
@@ -188,24 +205,24 @@ public class LoginForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AMSGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AMS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AMSGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AMS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AMSGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AMS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AMSGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AMS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginForm().setVisible(true);
+                new AMS().setVisible(true);
             }
         });
     }
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

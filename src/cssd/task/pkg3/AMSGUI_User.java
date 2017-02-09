@@ -5,73 +5,46 @@
  */
 package cssd.task.pkg3;
 
-import java.awt.*;
-import javax.swing.*;
-import java.awt.event.*;
-
+import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author b3014277, trkirk
+ * @author thoma
  */
-public class AMSGUI extends JFrame
-{
-    private User currentUser;
-    //private Field currentField;
-    private SetOfSensorReadings currentSensorReadings;
-    private Order currentOrder;
-    private Server currentServer;
-    //private SetOfFields fields;
-    private ArrayList<Planting> availableCrops;
-
-    private AMSGUI_MenuPanel menu;
-    private AMSGUI_FieldsPanel1_Selection fp1;
-    private AMSGUI_FieldsPanel2_Options fp2;
-    private AMSGUI_FieldsPanel3_CheckCrops fp3;
-    private AMSGUI_FieldsPanel4_RecordHarvest fp4;
-    private AMSGUI_FieldsPanel5_RecordPlanting fp5;
-    private AMSGUI_OrdersPanel op1;
+public class AMSGUI_User extends javax.swing.JFrame {
     
+    private User currentUser = null;
+    protected Order currentOrder;
+    protected Server currentServer;
+   
+    private MenuPanel_User menu;
+    protected OrdersPanel op1;
     private CardLayout layout;
     
     /**
-     * Creates new form AMSGUI
+     * Creates new form AMSGUI_User
      */
-    public AMSGUI(User currentUser) {
+    public AMSGUI_User(User currentUser) {
         initComponents();
+        initManualComponents();
+        
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("AMS");
-        setSize(680, 480);
+        setSize(660, 550);
         
-        menu = new AMSGUI_MenuPanel();
-        fp1 = new AMSGUI_FieldsPanel1_Selection();
-        fp2 = new AMSGUI_FieldsPanel2_Options();
-        fp3 = new AMSGUI_FieldsPanel3_CheckCrops();
-        fp4 = new AMSGUI_FieldsPanel4_RecordHarvest();
-        fp5 = new AMSGUI_FieldsPanel5_RecordPlanting();
-        op1 = new AMSGUI_OrdersPanel();
-        
-        currentUser = currentUser;
+        this.currentUser = currentUser;
         jbl_username.setText( currentUser.getUsername() );
-        
-        layout = new CardLayout();
-        
-        contentPane.setLayout(layout);
-        contentPane.add(menu, "menu");
-        contentPane.add(fp1, "fp1");
-        contentPane.add(fp2, "fp2");
-        contentPane.add(fp3, "fp3");
-        contentPane.add(fp4, "fp4");
-        contentPane.add(fp5, "fp5");
-        contentPane.add(op1, "op1");
-        
-        pack();
-        setLocationByPlatform(true);
-        layout.show(contentPane, "menu");
-        
+ 
         addListeners();
+    }
+    
+    public AMSGUI_User() {
     }
 
     /**
@@ -159,17 +132,27 @@ public class AMSGUI extends JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    protected void initManualComponents(){
+        menu = new MenuPanel_User();
+        op1 = new OrdersPanel();
+        
+        layout = new CardLayout();
+        
+        contentPane.setLayout(layout);
+        contentPane.add(menu, "menu");
+        contentPane.add(op1, "op1");
+        
+        pack();
+        setLocationByPlatform(true);
+        
+        layout.show(contentPane, "menu");
+    }
     
     private void addListeners(){
         addWindowListener(new WindowAdapter(){
             public void windowClosing( WindowEvent e){
                 JOptionPane.showMessageDialog(getContentPane(), "Logging Off");
-            }
-        });
-        
-        menu.jbtn_viewFields.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp1");
             }
         });
         
@@ -179,68 +162,13 @@ public class AMSGUI extends JFrame
             }
         });
         
-        fp1.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "menu");
-            }
-        });
-        
-        fp1.jbtn_options.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp2");
-            }
-        });
-        
-        fp2.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp1");
-            }
-        });
-        
-        fp2.jbtn_checkCrops.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp3");
-            }
-        });
-        
-        fp2.jbtn_recordHarvest.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp4");
-            }
-        });
-        
-        fp2.jbtn_recordPlanting.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp5");
-            }
-        });
-        
-        fp3.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp2");
-            }
-        });
-        
-        fp4.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp2");
-            }
-        });
-        
-        fp5.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp2");
-            }
-        });
-        
         op1.jbtn_back.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 layout.show(contentPane, "menu");
             }
         });
-        
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel container;
     private javax.swing.JPanel contentPane;

@@ -12,10 +12,16 @@ import java.util.Date;
  *
  * @author b3014277, trkirk
  */
-public class Farmer {
+public class Farmer extends User{
 
     private ArrayList<Planting> crops;
     //private SetOfFields fields;
+    
+    public Farmer(String username, String firstName, String surname, 
+            String location, String phoneNumber, String password)
+    {
+        super(username, firstName, surname, location, phoneNumber, password);
+    }
     
     private Boolean hasAutomatedMachinery = false;
 

@@ -9,7 +9,7 @@ package cssd.task.pkg3;
  *
  * @author thoma
  */
-public class AMSGUI_FieldsPanel4_RecordHarvest extends javax.swing.JPanel {
+public class FieldsPanel4_RecordHarvest extends javax.swing.JPanel {
 
     //private UtilDateModel model;
     //private Properties p;
@@ -20,7 +20,7 @@ public class AMSGUI_FieldsPanel4_RecordHarvest extends javax.swing.JPanel {
     /**
      * Creates new form AMSGUI_FieldsPanel4_RecordHarvest
      */
-    public AMSGUI_FieldsPanel4_RecordHarvest() {
+    public FieldsPanel4_RecordHarvest() {
         initComponents();
     }
 
