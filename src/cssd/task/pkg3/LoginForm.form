@@ -64,7 +64,6 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jtf_username">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Username"/>
         <Property name="name" type="java.lang.String" value="jtf_username" noResource="true"/>
       </Properties>
       <Events>
@@ -83,7 +82,6 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="jtf_password">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Password"/>
         <Property name="name" type="java.lang.String" value="jPasswordField_password" noResource="true"/>
       </Properties>
     </Component>

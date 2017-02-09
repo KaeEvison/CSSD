@@ -22,7 +22,7 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
-        getContentPane().setBackground(new Color(0, 102, 0));
+        getContentPane().setBackground(new Color(102,153,0));
         setTitle("AMS Login");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
@@ -80,7 +80,6 @@ public class LoginForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jtf_username.setText("Username");
         jtf_username.setName("jtf_username"); // NOI18N
         jtf_username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +91,6 @@ public class LoginForm extends javax.swing.JFrame {
 
         jLabel2.setText("Password:");
 
-        jtf_password.setText("Password");
         jtf_password.setName("jPasswordField_password"); // NOI18N
 
         jButton1.setText("Submit");
