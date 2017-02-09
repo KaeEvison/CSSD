@@ -27,7 +27,8 @@ public class AMSGUI extends JFrame
     private ArrayList<Planting> availableCrops;
 
     private AMSGUI_MenuPanel menu;
-    private AMSGUI_FieldsPanel fields_panel;
+    private AMSGUI_FieldsPanel1_Selection fp1;
+    private AMSGUI_FieldsPanel2_Options fp2;
     private CardLayout layout;
     
     /**
@@ -40,7 +41,8 @@ public class AMSGUI extends JFrame
         setSize(680, 480);
         
         menu = new AMSGUI_MenuPanel();
-        fields_panel = new AMSGUI_FieldsPanel();
+        fp1 = new AMSGUI_FieldsPanel1_Selection();
+        fp2 = new AMSGUI_FieldsPanel2_Options();
         
         currentUser = currentUser;
         jbl_username.setText( currentUser.getUsername() );
@@ -49,7 +51,8 @@ public class AMSGUI extends JFrame
         
         contentPane.setLayout(layout);
         contentPane.add(menu, "menu");
-        contentPane.add(fields_panel, "fields");
+        contentPane.add(fp1, "fp1");
+        contentPane.add(fp2, "fp2");
         
         pack();
         setLocationByPlatform(true);
@@ -63,15 +66,28 @@ public class AMSGUI extends JFrame
         
         menu.jbtn_viewFields.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fields");
+                layout.show(contentPane, "fp1");
             }
         });
         
-        fields_panel.jbtn_back.addActionListener(new ActionListener(){
+        fp1.jbtn_back.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 layout.show(contentPane, "menu");
             }
         });
+        
+        fp1.jbtn_options.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp2");
+            }
+        });
+        
+        fp2.jbtn_back.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp1");
+            }
+        });
+        
     }
 
     /**

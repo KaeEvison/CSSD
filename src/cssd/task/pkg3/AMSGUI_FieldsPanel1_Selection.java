@@ -9,12 +9,12 @@ package cssd.task.pkg3;
  *
  * @author thoma
  */
-public class AMSGUI_FieldsPanel extends javax.swing.JPanel {
+public class AMSGUI_FieldsPanel1_Selection extends javax.swing.JPanel {
 
     /**
      * Creates new form AMSGUI_ViewFields
      */
-    public AMSGUI_FieldsPanel() {
+    public AMSGUI_FieldsPanel1_Selection() {
         initComponents();
     }
 
@@ -30,6 +30,7 @@ public class AMSGUI_FieldsPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jbtn_back = new javax.swing.JButton();
+        jbtn_options = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new java.awt.GridBagLayout());
@@ -39,7 +40,7 @@ public class AMSGUI_FieldsPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(84, 68, 0, 55);
@@ -48,17 +49,29 @@ public class AMSGUI_FieldsPanel extends javax.swing.JPanel {
         jbtn_back.setText("Back");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 87;
-        gridBagConstraints.ipady = 39;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 12;
+        gridBagConstraints.ipady = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(33, 124, 87, 0);
+        gridBagConstraints.insets = new java.awt.Insets(47, 57, 34, 0);
         add(jbtn_back, gridBagConstraints);
+
+        jbtn_options.setText("Options");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 22;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(21, 127, 0, 0);
+        add(jbtn_options, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     public javax.swing.JButton jbtn_back;
+    public javax.swing.JButton jbtn_options;
     // End of variables declaration//GEN-END:variables
 }
