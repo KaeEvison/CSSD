@@ -99,7 +99,7 @@ public class AMSGUI_FieldsPanel2_Options extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     public javax.swing.JButton jbtn_back;
     public javax.swing.JButton jbtn_checkCrops;
-    private javax.swing.JButton jbtn_recordHarvest;
-    private javax.swing.JButton jbtn_recordPlanting;
+    public javax.swing.JButton jbtn_recordHarvest;
+    public javax.swing.JButton jbtn_recordPlanting;
     // End of variables declaration//GEN-END:variables
 }

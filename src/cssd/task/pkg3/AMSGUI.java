@@ -30,6 +30,8 @@ public class AMSGUI extends JFrame
     private AMSGUI_FieldsPanel1_Selection fp1;
     private AMSGUI_FieldsPanel2_Options fp2;
     private AMSGUI_FieldsPanel3_CheckCrops fp3;
+    private AMSGUI_FieldsPanel4_RecordHarvest fp4;
+    private AMSGUI_FieldsPanel5_RecordPlanting fp5;
     private AMSGUI_OrdersPanel op1;
     
     private CardLayout layout;
@@ -47,6 +49,8 @@ public class AMSGUI extends JFrame
         fp1 = new AMSGUI_FieldsPanel1_Selection();
         fp2 = new AMSGUI_FieldsPanel2_Options();
         fp3 = new AMSGUI_FieldsPanel3_CheckCrops();
+        fp4 = new AMSGUI_FieldsPanel4_RecordHarvest();
+        fp5 = new AMSGUI_FieldsPanel5_RecordPlanting();
         op1 = new AMSGUI_OrdersPanel();
         
         currentUser = currentUser;
@@ -59,6 +63,8 @@ public class AMSGUI extends JFrame
         contentPane.add(fp1, "fp1");
         contentPane.add(fp2, "fp2");
         contentPane.add(fp3, "fp3");
+        contentPane.add(fp4, "fp4");
+        contentPane.add(fp5, "fp5");
         contentPane.add(op1, "op1");
         
         pack();
@@ -197,7 +203,31 @@ public class AMSGUI extends JFrame
             }
         });
         
+        fp2.jbtn_recordHarvest.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp4");
+            }
+        });
+        
+        fp2.jbtn_recordPlanting.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp5");
+            }
+        });
+        
         fp3.jbtn_back.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp2");
+            }
+        });
+        
+        fp4.jbtn_back.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "fp2");
+            }
+        });
+        
+        fp5.jbtn_back.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 layout.show(contentPane, "fp2");
             }
@@ -208,6 +238,7 @@ public class AMSGUI extends JFrame
                 layout.show(contentPane, "menu");
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

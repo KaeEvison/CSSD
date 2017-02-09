@@ -40,10 +40,10 @@ public class AMSGUI_FieldsPanel1_Selection extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(84, 68, 0, 55);
+        gridBagConstraints.insets = new java.awt.Insets(84, 50, 0, 0);
         add(jLabel1, gridBagConstraints);
 
         jbtn_back.setText("Back");
@@ -53,18 +53,19 @@ public class AMSGUI_FieldsPanel1_Selection extends javax.swing.JPanel {
         gridBagConstraints.ipadx = 12;
         gridBagConstraints.ipady = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(47, 57, 34, 0);
+        gridBagConstraints.insets = new java.awt.Insets(37, 39, 34, 0);
         add(jbtn_back, gridBagConstraints);
 
-        jbtn_options.setText("Options");
+        jbtn_options.setText("Pick Field / Display Options");
+        jbtn_options.setActionCommand("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.ipadx = 22;
         gridBagConstraints.ipady = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 127, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(31, 39, 0, 70);
         add(jbtn_options, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
