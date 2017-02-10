@@ -43,50 +43,8 @@ public class Server extends javax.swing.JFrame {
         
         users = new SetOfUsers();
         farmers = new SetOfFarmers();
+        testData_initialiseUsers();
         
-        farmers.addFarmer(
-                new Farmer(
-                        "admin",
-                        "firstname",
-                        "surname",
-                        "location",
-                        "phoneno",
-                        "password"
-                )
-        );
-        
-        users.addUser(
-                new User(
-                        "trkirk",
-                        "thomas",
-                        "kirk",
-                        "sheffield",
-                        "0114 2483710",
-                        "Pa55w0rd"
-                )
-        );
-        
-        users.addUser(
-                new User(
-                        "kevison",
-                        "kae",
-                        "evison",
-                        "sheffield",
-                        "0114 2456712",
-                        "Pa55w0rd2"
-                )
-        );
-        
-        users.addUser(
-                new User(
-                        "sgeorge",
-                        "sam",
-                        "george",
-                        "manchester",
-                        "07734737348",
-                        "password3"
-                )
-        );
     }
     
     public void addReadings(SetOfSensorReadings newReadings)
@@ -160,7 +118,7 @@ public class Server extends javax.swing.JFrame {
     private void initComponents() {
 
         jtf_password = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        jbtn_submit = new javax.swing.JButton();
         jtf_username = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -170,10 +128,10 @@ public class Server extends javax.swing.JFrame {
         jtf_password.setText("password");
         jtf_password.setName("jPasswordField_password"); // NOI18N
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtn_submit.setText("Submit");
+        jbtn_submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtn_submitActionPerformed(evt);
             }
         });
 
@@ -200,7 +158,7 @@ public class Server extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(jbtn_submit)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jtf_username)
                         .addComponent(jtf_password, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)))
@@ -218,14 +176,14 @@ public class Server extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jtf_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jbtn_submit)
                 .addContainerGap(71, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbtn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_submitActionPerformed
 
         User currentUser = users.login(
             jtf_username.getText(),
@@ -255,8 +213,55 @@ public class Server extends javax.swing.JFrame {
             else
                 JOptionPane.showMessageDialog(this, "Invalid username or password!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbtn_submitActionPerformed
 
+    private void testData_initialiseUsers()
+    {
+        farmers.addFarmer(
+                new Farmer(
+                        "admin",
+                        "firstname",
+                        "surname",
+                        "location",
+                        "phoneno",
+                        "password"
+                )
+        );
+        
+        users.addUser(
+                new User(
+                        "trkirk",
+                        "thomas",
+                        "kirk",
+                        "sheffield",
+                        "0114 2483710",
+                        "Pa55w0rd"
+                )
+        );
+        
+        users.addUser(
+                new User(
+                        "kevison",
+                        "kae",
+                        "evison",
+                        "sheffield",
+                        "0114 2456712",
+                        "Pa55w0rd2"
+                )
+        );
+        
+        users.addUser(
+                new User(
+                        "sgeorge",
+                        "sam",
+                        "george",
+                        "manchester",
+                        "07734737348",
+                        "password3"
+                )
+        );
+    }
+    
     private void jtf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_usernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtf_usernameActionPerformed
@@ -300,9 +305,9 @@ public class Server extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jbtn_submit;
     private javax.swing.JPasswordField jtf_password;
     private javax.swing.JTextField jtf_username;
     // End of variables declaration//GEN-END:variables

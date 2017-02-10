@@ -27,7 +27,6 @@ public class AMSGUI_Farmer extends AMSGUI_User
     private ArrayList<Planting> availableCrops;
     
     private MenuPanel_Farmer menu;
-    
     private FieldsPanel1_Selection fp1;
     private FieldsPanel2_Options fp2;
     private FieldsPanel3_CheckCrops fp3;

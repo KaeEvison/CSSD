@@ -50,6 +50,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         initComponents();
         op1 = new OrdersPanel();
         contentPane.add(op1, "op1");
+        
         addListeners();
     }
 
