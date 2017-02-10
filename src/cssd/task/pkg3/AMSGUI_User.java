@@ -159,9 +159,22 @@ public class AMSGUI_User extends javax.swing.JFrame {
         // because the menus are different types, so placed here instead
         menu.jbtn_viewOrders.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "op1");
+                displayOrders();
             }
         });
+    }
+    
+    // The following function has been moved to Server
+        //protected void displayLogin(){
+        //}
+    
+    protected void displayOrders(){
+        this.layout.show(contentPane, "op1");
+    }
+    
+    private void displaySuitableFarmers()
+    {
+        // TO DO
     }
     
     protected void addListeners(){

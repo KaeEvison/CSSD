@@ -105,17 +105,35 @@ public class AMSGUI_Farmer extends AMSGUI_User
         layout.show(contentPane, "menu");
     }
     
+    private void displayFields(){
+        layout.show(contentPane, "fp1");
+    }
+    
+    private void viewField(/*Field field*/){
+        
+        //if currentField != null
+            layout.show(contentPane, "fp2");
+    }
+    
+    private void displayRecordHarvest(){
+        layout.show(contentPane, "fp4");
+    }
+    
+    private void displayCropTypes(){
+        // TO DO
+    }
+    
     private void addFarmerListeners(){
         
         menu.jbtn_viewOrders.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "op1");
+                displayOrders();
             }
         });
         
         menu.jbtn_viewFields.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp1");
+                displayFields();
             }
         });
         
@@ -127,7 +145,7 @@ public class AMSGUI_Farmer extends AMSGUI_User
         
         fp1.jbtn_options.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp2");
+                viewField();
             }
         });
         
@@ -145,7 +163,7 @@ public class AMSGUI_Farmer extends AMSGUI_User
         
         fp2.jbtn_recordHarvest.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp4");
+                displayRecordHarvest();
             }
         });
         

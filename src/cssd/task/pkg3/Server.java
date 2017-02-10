@@ -30,9 +30,7 @@ public class Server extends javax.swing.JFrame {
     private SetOfUsers users;
     private SetOfFarmers farmers;
     
-    /**
-     * Creates new form AMS2
-     */
+    
     public Server(SetOfSensorMonitors initialSensors) {
         initComponents();
         getContentPane().setBackground(new Color(102,153,0));
@@ -214,7 +212,11 @@ public class Server extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Invalid username or password!");
         }
     }//GEN-LAST:event_jbtn_submitActionPerformed
-
+    
+    public void displayLogin(){
+        this.setVisible(true);
+    }
+    
     private void testData_initialiseUsers()
     {
         farmers.addFarmer(
@@ -299,7 +301,7 @@ public class Server extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Server(new SetOfSensorMonitors()).setVisible(true);
+                new Server(new SetOfSensorMonitors()).displayLogin();
             }
         });
     }
