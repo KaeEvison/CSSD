@@ -34,14 +34,10 @@ public class AMSGUI_Farmer extends AMSGUI_User
     private FieldsPanel4_RecordHarvest fp4;
     private FieldsPanel5_RecordPlanting fp5;
     
-    private OrdersPanel op1;
-    
-    private CardLayout layout;
-    
     /**
      * Creates new form AMSGUI
      */
-    public AMSGUI_Farmer(Farmer currentFarmer) {
+    public AMSGUI_Farmer(Farmer currentFarmer, Server server) {
         super();
         initComponents();
         initManualComponents();
@@ -50,10 +46,11 @@ public class AMSGUI_Farmer extends AMSGUI_User
         setTitle("AMS");
         setSize(660, 550);
         
+        this.currentServer = server;
         this.currentFarmer = currentFarmer;
         jbl_username.setText( currentFarmer.getUsername() );
         
-        addListeners();
+        addFarmerListeners();
     }
 
     /**
@@ -65,81 +62,18 @@ public class AMSGUI_Farmer extends AMSGUI_User
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        container = new javax.swing.JPanel();
-        header = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        contentPane = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jbl_username = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 153, 0));
-
-        container.setBackground(new java.awt.Color(102, 153, 0));
-
-        header.setBackground(new java.awt.Color(102, 102, 0));
-        header.setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("AMS");
-        header.add(jLabel1, java.awt.BorderLayout.CENTER);
-
-        contentPane.setLayout(new java.awt.CardLayout());
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel3.setText("Welcome,");
-
-        jbl_username.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jbl_username.setText("User!");
-
-        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
-        container.setLayout(containerLayout);
-        containerLayout.setHorizontalGroup(
-            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerLayout.createSequentialGroup()
-                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(containerLayout.createSequentialGroup()
-                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(containerLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(containerLayout.createSequentialGroup()
-                                .addGap(208, 208, 208)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbl_username, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(contentPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        containerLayout.setVerticalGroup(
-            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbl_username, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contentPane, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
-                .addContainerGap())
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(container, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 661, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 517, Short.MAX_VALUE)
         );
 
         pack();
@@ -154,7 +88,6 @@ public class AMSGUI_Farmer extends AMSGUI_User
         fp3 = new FieldsPanel3_CheckCrops();
         fp4 = new FieldsPanel4_RecordHarvest();
         fp5 = new FieldsPanel5_RecordPlanting();
-        op1 = new OrdersPanel();
         
         layout = new CardLayout();
         
@@ -173,23 +106,11 @@ public class AMSGUI_Farmer extends AMSGUI_User
         layout.show(contentPane, "menu");
     }
     
-    private void addListeners(){
-        
-        addWindowListener(new WindowAdapter(){
-            public void windowClosing( WindowEvent e){
-                JOptionPane.showMessageDialog(getContentPane(), "Logging Off");
-            }
-        });
+    private void addFarmerListeners(){
         
         menu.jbtn_viewOrders.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 layout.show(contentPane, "op1");
-            }
-        });
-        
-        op1.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "menu");
             }
         });
         
@@ -255,11 +176,5 @@ public class AMSGUI_Farmer extends AMSGUI_User
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel container;
-    private javax.swing.JPanel contentPane;
-    private javax.swing.JPanel header;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jbl_username;
     // End of variables declaration//GEN-END:variables
 }

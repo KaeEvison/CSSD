@@ -22,15 +22,15 @@ public class AMSGUI_User extends javax.swing.JFrame {
     private User currentUser = null;
     protected Order currentOrder;
     protected Server currentServer;
-   
+    
     private MenuPanel_User menu;
     protected OrdersPanel op1;
-    private CardLayout layout;
+    protected CardLayout layout;
     
     /**
      * Creates new form AMSGUI_User
      */
-    public AMSGUI_User(User currentUser) {
+    public AMSGUI_User(User currentUser, Server server) {
         initComponents();
         initManualComponents();
         
@@ -38,13 +38,19 @@ public class AMSGUI_User extends javax.swing.JFrame {
         setTitle("AMS");
         setSize(660, 550);
         
+        this.currentServer = server;
         this.currentUser = currentUser;
         jbl_username.setText( currentUser.getUsername() );
  
         addListeners();
     }
     
+    // Default Constructor user by AMSGUI_Farmer to initialise inherited variables
     public AMSGUI_User() {
+        initComponents();
+        op1 = new OrdersPanel();
+        contentPane.add(op1, "op1");
+        addListeners();
     }
 
     /**
@@ -147,18 +153,20 @@ public class AMSGUI_User extends javax.swing.JFrame {
         setLocationByPlatform(true);
         
         layout.show(contentPane, "menu");
-    }
-    
-    private void addListeners(){
-        addWindowListener(new WindowAdapter(){
-            public void windowClosing( WindowEvent e){
-                JOptionPane.showMessageDialog(getContentPane(), "Logging Off");
-            }
-        });
         
+        // The following cannot be inherrited by AMSGUI_Farmer in addListeners()
+        // because the menus are different types, so placed here instead
         menu.jbtn_viewOrders.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 layout.show(contentPane, "op1");
+            }
+        });
+    }
+    
+    protected void addListeners(){
+        addWindowListener(new WindowAdapter(){
+            public void windowClosing( WindowEvent e){
+                JOptionPane.showMessageDialog(getContentPane(), "Logging Off");
             }
         });
         
@@ -170,11 +178,11 @@ public class AMSGUI_User extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel container;
-    private javax.swing.JPanel contentPane;
-    private javax.swing.JPanel header;
+    protected javax.swing.JPanel container;
+    protected javax.swing.JPanel contentPane;
+    protected javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jbl_username;
+    protected javax.swing.JLabel jLabel3;
+    protected javax.swing.JLabel jbl_username;
     // End of variables declaration//GEN-END:variables
 }

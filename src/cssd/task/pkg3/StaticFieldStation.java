@@ -36,11 +36,11 @@ public class StaticFieldStation {
     private Timer timer;
     private Server server;
     
-    public StaticFieldStation(){
+    public StaticFieldStation(Server server){
         timer = new Timer();
         sensorMonitors = new SetOfSensorMonitors();
         readingsToSend = new SetOfSensorReadings();
-        server = new Server();
+        this.server = server;
     }
 
     public SetOfSensorMonitors getSensorMonitors() {
