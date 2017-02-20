@@ -13,3 +13,7 @@ Added 'getLocation' method to 'SensorMonitor' class to fetch the location of a s
 Added 'getSize' method to SetOfSensorReadings so other classes could check the number of entries in a set.
 
 Added 'toString' override in SetOfSensorReadings to facilitate the outputting of a set.
+
+Added 'toString' override in SensorReading to facilitate the outputting of a reading.
+
+Added 'toString' override in Location to facilitate the outputting of a location.
