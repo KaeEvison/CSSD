@@ -22,17 +22,19 @@ public class SetOfUsers extends ArrayList<User>{
     
     
     
-    private User login(String username, String password)
+    public User login(String username, String password)
     {
+        User user = null;
+        
         for (int i = 0; i < noOfUsers; i++)
         {
-           // if () 
-           // {
-                
-           // }
+           if( this.get(i).getUsername().equals(username)
+                 && this.get(i).getPassword().equals(password) )
+           {
+               user = this.get(i);
+           }
         }
-        return null;
-        
+        return user;
     }
     
     void addUser(User auser)
