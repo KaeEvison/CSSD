@@ -29,4 +29,9 @@ public class SetOfFields {
     public Field getFieldByIndex(int index) {
         return fields.get(index);
     }
+    
+    public int size()
+    {
+        return fields.size();
+    }
 }

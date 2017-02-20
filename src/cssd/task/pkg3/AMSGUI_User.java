@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
 public class AMSGUI_User extends javax.swing.JFrame {
     
     private User currentUser = null;
-    protected Order currentOrder;
-    protected Server currentServer;
+    protected Order currentOrder = null;
+    protected Server currentServer = null;
     
     private MenuPanel_User menu;
     protected OrdersPanel op1;
