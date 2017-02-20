@@ -5,8 +5,12 @@
  */
 package subTask3Tests;
 
+import cssd.task.pkg3.Location;
+import cssd.task.pkg3.SensorReading;
 import cssd.task.pkg3.Server;
+import cssd.task.pkg3.SetOfSensorMonitors;
 import cssd.task.pkg3.SetOfSensorReadings;
+import java.time.LocalDateTime;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -16,11 +20,27 @@ import static org.junit.Assert.*;
  */
 public class ServerTest
 {
-    SetOfSensorReadings instance = new SetOfSensorReadings(/*......*/);
+    SensorReading test1 = new SensorReading(21, "degrees celcius", "Soil temperature", new Location(12, 20));
+    SensorReading test2 = new SensorReading(23, "degrees celcius", "Soil temperature", new Location(14, 6));
+    SensorReading test3 = new SensorReading(16, "degrees celcius", "Soil temperature", new Location(7, 14));
+    SetOfSensorReadings instance = new SetOfSensorReadings(test1, test2, test3);
+    SetOfSensorMonitors testMonitors = new SetOfSensorMonitors();
+    Server testServer = new Server(testMonitors);
     
     @Test
     public void testAddReadings()
     {
-        SetOfSensorReadings result;
+        System.out.println("\n\nBefore write:\n\n");
+//        System.out.println(testServer.readLog("readingsLog.ser"));
+        testServer.addReadings(instance);
+        System.out.println("\n\nAfter write:\n\n");
+        SetOfSensorReadings testSet = new SetOfSensorReadings();
+        SetOfSensorReadings receiveSet = new SetOfSensorReadings();
+        receiveSet = testServer.readLog("readingsLog.ser");
+        for (int i = 0; i < receiveSet.getSize(); i++)
+        {
+            testSet.add(receiveSet.get(i));
+        }
+        System.out.println(testSet.toString());
     }
 }

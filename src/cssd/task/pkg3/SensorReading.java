@@ -5,13 +5,14 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author b4027708
  */
-public class SensorReading
+public class SensorReading implements Serializable
 {
     private double value;
     private LocalDateTime timeTaken;
@@ -26,5 +27,25 @@ public class SensorReading
         readingUnit = pUnit;
         readingType = pType;
         location = pLocation;
+    }
+    
+    public String toString()
+    {
+        String outputTime = new String();
+        outputTime = timeTaken.toString().substring(0, 10);
+        outputTime += " ";
+        outputTime += timeTaken.toString().substring(11, 16);
+        String holder = new String("");
+        holder += "\n\nReading type:\t";
+        holder += readingType;
+        holder += "\nValue:\t\t";
+        holder += value;
+        holder += " ";
+        holder += readingUnit;
+        holder += "\nTime recorded:\t";
+        holder += outputTime;
+        holder += "\nLocation:\t";
+        holder += location;
+        return holder;
     }
 }

@@ -30,4 +30,21 @@ public class SetOfSensorReadings extends ArrayList<SensorReading> implements Ser
     {
         super.add(newReading);
     }
+    
+    public int getSize()
+    {
+        return this.size();
+    }
+    
+    public String toString()
+    {
+        String holder = new String("");
+        holder += this.get(0);
+        for (int i = 1; i < this.size(); i++)
+        {
+            holder += "\n";
+            holder += this.get(i).toString();
+        }
+        return holder;
+    }
 }
