@@ -23,8 +23,8 @@ public class AMSGUI_Farmer extends AMSGUI_User
     
     private Field currentField;
     private SetOfSensorReadings currentSensorReadings;
-    //private SetOfFields fields;
-    private ArrayList<Planting> availableCrops;
+    private SetOfFields fields;
+    //private ArrayList<Planting> availableCrops;
     
     private MenuPanel_Farmer menu;
     private FieldsPanel1_Selection fp1;
@@ -41,7 +41,8 @@ public class AMSGUI_Farmer extends AMSGUI_User
         initComponents();
         
         this.currentServer = server;
-        this.currentFarmer = currentFarmer;this.currentServer = server;
+        this.currentFarmer = currentFarmer;
+        this.fields = currentFarmer.getFields();
         
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("AMS");
@@ -98,7 +99,6 @@ public class AMSGUI_Farmer extends AMSGUI_User
             fp1.model.addElement("Field " + (i+1));
         }
         
-        
         fp1.jlPickField.setModel(fp1.model);
         
         contentPane.setLayout(layout);
@@ -120,15 +120,8 @@ public class AMSGUI_Farmer extends AMSGUI_User
         layout.show(contentPane, "fp1");
     }
     
-    private void viewField(/*Field field*/){
-        
-        if (currentField != null){
+    private void viewField(){
             layout.show(contentPane, "fp2");
-        }
-        else
-        {
-            
-        }
     }
     
     private void displayRecordHarvest(){
@@ -161,7 +154,7 @@ public class AMSGUI_Farmer extends AMSGUI_User
         
         fp1.jlPickField.addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                currentField = currentFarmer.getFields().getFieldByIndex(fp1.jlPickField.getSelectedIndex());
+                currentField = fields.getFieldByIndex(fp1.jlPickField.getSelectedIndex());
             }
         });
         
@@ -169,6 +162,8 @@ public class AMSGUI_Farmer extends AMSGUI_User
             public void actionPerformed(ActionEvent e){
                 
                 if(currentField != null){
+                    
+                    fp2.jbl_fieldname.setText("View Field  - " + fp1.jlPickField.getSelectedValue());
                     viewField();
                 }
                 else{
@@ -185,6 +180,13 @@ public class AMSGUI_Farmer extends AMSGUI_User
         
         fp2.jbtn_checkCrops.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
+                
+                fp3.jtf_airTemp.setText(currentField.currentPlanting.getPreferredAirTemperatureLevel() + "");
+                fp3.jtf_light.setText(currentField.currentPlanting.getLight() + "");
+                fp3.jtf_soilAcidity.setText(currentField.currentPlanting.getPreferredSoilAcidityLevel() + "");
+                fp3.jtf_soilMoisture.setText(currentField.currentPlanting.getPreferredSoilMoistureLevel() + "");
+                fp3.jtf_soilTemp.setText(currentField.currentPlanting.getPreferredSoilTemperatureLevel() + "");
+                
                 layout.show(contentPane, "fp3");
             }
         });

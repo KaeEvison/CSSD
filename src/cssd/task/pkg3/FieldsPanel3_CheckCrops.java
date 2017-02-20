@@ -161,10 +161,10 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     public javax.swing.JButton jbtn_back;
-    private javax.swing.JTextField jtf_airTemp;
-    private javax.swing.JTextField jtf_light;
-    private javax.swing.JTextField jtf_soilAcidity;
-    private javax.swing.JTextField jtf_soilMoisture;
-    private javax.swing.JTextField jtf_soilTemp;
+    public javax.swing.JTextField jtf_airTemp;
+    public javax.swing.JTextField jtf_light;
+    public javax.swing.JTextField jtf_soilAcidity;
+    public javax.swing.JTextField jtf_soilMoisture;
+    public javax.swing.JTextField jtf_soilTemp;
     // End of variables declaration//GEN-END:variables
 }

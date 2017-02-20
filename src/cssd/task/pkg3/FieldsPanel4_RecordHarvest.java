@@ -64,7 +64,7 @@ public class FieldsPanel4_RecordHarvest extends javax.swing.JPanel {
         add(jdccRecordHarvest, gridBagConstraints);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
-        jLabel6.setText("View Fields - Check Crops");
+        jLabel6.setText("View Fields - Record Harvest");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -74,7 +74,7 @@ public class FieldsPanel4_RecordHarvest extends javax.swing.JPanel {
         add(jLabel6, gridBagConstraints);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setText("Soil Moisture:");
+        jLabel3.setText("Yield:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -84,7 +84,7 @@ public class FieldsPanel4_RecordHarvest extends javax.swing.JPanel {
         add(jLabel3, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Soil Acidity:");
+        jLabel1.setText("Date Harvested:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;

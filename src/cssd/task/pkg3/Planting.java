@@ -18,6 +18,9 @@ public class Planting {
     private int preferredSoilMoistureLevel = 0;
     private int preferredSoilTemperatureLevel = 0;
     private int preferredSoilAcidityLevel = 0;
+    private int preferredAirTemperatureLevel = 0;
+    private int light = 0;
+
     
     public String getType() {
         return type;
@@ -46,6 +49,23 @@ public class Planting {
     public int getPreferredSoilAcidityLevel() {
         return preferredSoilAcidityLevel;
     }
+    
+    public int getPreferredAirTemperatureLevel() {
+        return preferredAirTemperatureLevel;
+    }
+
+     public int getLight() {
+        return light;
+    }
+    
+    public void setPreferredAirTemperatureLevel(int preferredAirTemperatureLevel) {
+        this.preferredAirTemperatureLevel = preferredAirTemperatureLevel;
+    }
+
+    public void setLight(int light) {
+        this.light = light;
+    }
+   
 
     public void setType(String type) {
         this.type = type;
