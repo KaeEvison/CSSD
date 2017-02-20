@@ -26,77 +26,53 @@ public class FieldsPanel2_Options extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jLabel2 = new javax.swing.JLabel();
+        jbl_username = new javax.swing.JLabel();
         jbtn_checkCrops = new javax.swing.JButton();
         jbtn_recordHarvest = new javax.swing.JButton();
         jbtn_recordPlanting = new javax.swing.JButton();
         jbtn_back = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 153, 0));
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("View Fields - Field");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(4, 21, 0, 0);
-        add(jLabel2, gridBagConstraints);
+        jbl_username.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jbl_username.setText("Welcome,");
+        add(jbl_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, -1, -1));
 
         jbtn_checkCrops.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_checkCrops.setText("Check Crops");
         jbtn_checkCrops.setName(""); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 195;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 9, 0, 33);
-        add(jbtn_checkCrops, gridBagConstraints);
+        add(jbtn_checkCrops, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 358, 57));
 
         jbtn_recordHarvest.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_recordHarvest.setText("Record Harvest");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 161;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 9, 0, 33);
-        add(jbtn_recordHarvest, gridBagConstraints);
+        add(jbtn_recordHarvest, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 358, 57));
 
         jbtn_recordPlanting.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_recordPlanting.setText("Record Planting");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 161;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 9, 21, 33);
-        add(jbtn_recordPlanting, gridBagConstraints);
+        add(jbtn_recordPlanting, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 358, 57));
 
         jbtn_back.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_back.setText("Back");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 9, 0, 0);
-        add(jbtn_back, gridBagConstraints);
+        add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 17, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setText("View Fields - Field");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setText("Welcome,");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jbl_username;
     public javax.swing.JButton jbtn_back;
     public javax.swing.JButton jbtn_checkCrops;
     public javax.swing.JButton jbtn_recordHarvest;
