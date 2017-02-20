@@ -5,11 +5,13 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
+
 /**
  *
  * @author trkirk
  */
-public class Location {
+public class Location implements Serializable{
     private int x = 0;
     private int y = 0;
     
@@ -32,5 +34,16 @@ public class Location {
     
     public void setY(int Y){
         y = Y;
+    }
+    
+    public String toString()
+    {
+        String holder = new String("");
+        holder += "(";
+        holder += x;
+        holder += ", ";
+        holder += y;
+        holder += ")";
+        return holder;
     }
 }
