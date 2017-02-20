@@ -9,3 +9,7 @@ Added 'Serialize' method in Server class to simulate database storage by saving 
 Added 'Deserialize' and 'readLog' methods so that the file can be accessed and its contents returned as a SetOfSensorReadings.
 
 Added 'getLocation' method to 'SensorMonitor' class to fetch the location of a sensor.
+
+Added 'getSize' method to SetOfSensorReadings so other classes could check the number of entries in a set.
+
+Added 'toString' override in SetOfSensorReadings to facilitate the outputting of a set.
