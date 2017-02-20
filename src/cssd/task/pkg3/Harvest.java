@@ -17,9 +17,10 @@ public class Harvest {
     private Planting planting;
     private Date timeHarvested;
     
-    public Harvest(Planting planting, Date timeHarvested ){
+    public Harvest(Planting planting, Date timeHarvested, double yield){
         this.planting = planting;
         this.timeHarvested = timeHarvested;
+        this.yield = yield;
     }
 
     public double getYield() {

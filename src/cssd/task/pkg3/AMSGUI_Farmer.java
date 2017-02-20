@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.JOptionPane;
 
 import java.util.ArrayList;
 
@@ -180,7 +181,7 @@ public class AMSGUI_Farmer extends AMSGUI_User
         
         fp2.jbtn_checkCrops.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                
+                fp3.jbl_title.setText("View Fields - " + fp1.jlPickField.getSelectedValue() + " (Check Crops)");
                 fp3.jtf_airTemp.setText(currentField.currentPlanting.getPreferredAirTemperatureLevel() + "");
                 fp3.jtf_light.setText(currentField.currentPlanting.getLight() + "");
                 fp3.jtf_soilAcidity.setText(currentField.currentPlanting.getPreferredSoilAcidityLevel() + "");
@@ -193,13 +194,30 @@ public class AMSGUI_Farmer extends AMSGUI_User
         
         fp2.jbtn_recordHarvest.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                displayRecordHarvest();
+                if ( currentField.currentPlanting != null ){
+                    fp4.jlbl_title.setText("View Fields - " + fp1.jlPickField.getSelectedValue() + " (Record Harvest)");
+                    displayRecordHarvest();
+                }else {
+                    JOptionPane.showMessageDialog(getContentPane(), 
+                        "No active planting found. Please enter a new planting"
+                            + " before recording your harvest.");
+                }
             }
         });
         
         fp2.jbtn_recordPlanting.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                layout.show(contentPane, "fp5");
+                if ( currentField != null 
+                        &&currentField.currentPlanting == null ){
+                    fp5.jlbl_title.setText(fp1.jlPickField.getSelectedValue() + " (Record Planting)");
+                    layout.show(contentPane, "fp5");
+                }
+                else{
+                    JOptionPane.showMessageDialog(getContentPane(), 
+                     "Planting harvest not yet recorded: "
+                             + "Please record your latest harvest"
+                             + " before recording a new planting.");
+                }
             }
         });
         
@@ -215,9 +233,71 @@ public class AMSGUI_Farmer extends AMSGUI_User
             }
         });
         
+        fp4.jbtn_submit.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                
+                if( currentField != null 
+                        && currentField.currentPlanting != null
+                        && fp4.jdccRecordHarvest.getSelectedDate() != null 
+                        && fp4.jspnYield.getValue() != null ){
+                    
+                    currentField.recordNewHarvest(
+                        new Harvest(currentField.currentPlanting, 
+                            fp4.jdccRecordHarvest.getSelectedDate().getTime(),
+                            (double)fp4.jspnYield.getValue()
+                        ));
+                    
+                    JOptionPane.showMessageDialog(getContentPane(), 
+                        "Harvest successfully recorded");
+                    layout.show(contentPane, "fp2");
+                }
+                else{
+                    JOptionPane.showMessageDialog(getContentPane(), 
+                        "Failed to record harvest: "
+                                + "Please make sure all "
+                                + "of the required fields are filled in.");
+                }
+            }
+        });
+        
         fp5.jbtn_back.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 layout.show(contentPane, "fp2");
+            }
+        });
+        
+        fp5.jbtn_submit.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if( currentField != null 
+                        && currentField.currentPlanting == null 
+                        && fp5.jtf_type.getText() != null 
+                        && fp5.jns_pricePerTon.getValue() != null 
+                        && fp5.jns_growthTime.getValue() != null 
+                        && fp5.jns_growthTime.getValue() != null 
+                        && fp5.jns_soilTemperatureLevel.getValue() != null 
+                        && fp5.jns_soilTemperatureLevel.getValue() != null 
+                        && fp5.jns_soilAcidityLevel.getValue() != null 
+                        && fp5.jns_airTemperatureLevel.getValue() != null )
+                {
+                    currentField.recordNewPlanting(
+                            
+                            
+                            
+                        new Planting( 
+                            fp5.jtf_type.getText(),
+                            (float)fp5.jns_pricePerTon.getValue(),
+                            (int)fp5.jns_growthTime.getValue(),
+                            (int)fp5.jns_growthTime.getValue(),
+                            (int)fp5.jns_soilTemperatureLevel.getValue(),
+                            (int)fp5.jns_soilAcidityLevel.getValue(),
+                            (int)fp5.jns_airTemperatureLevel.getValue() 
+                        )
+                    );
+                    JOptionPane.showMessageDialog(getContentPane(), 
+                        "Planting successfully recorded");
+                    layout.show(contentPane, "fp2");
+                    
+                }
             }
         });
     }

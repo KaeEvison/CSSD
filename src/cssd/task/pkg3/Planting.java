@@ -12,7 +12,7 @@ package cssd.task.pkg3;
 public class Planting {
     
     private String type = "";
-    private double pricePerTon = 0.0d;
+    private float pricePerTon = 0.00f;
     private int growthTime = 0;
     private boolean isGrowing = false;
     private int preferredSoilMoistureLevel = 0;
@@ -20,13 +20,32 @@ public class Planting {
     private int preferredSoilAcidityLevel = 0;
     private int preferredAirTemperatureLevel = 0;
     private int light = 0;
-
+    
+    public Planting(){}
+    
+    public Planting(String type, 
+            float pricePerTon, 
+            int growthTime, 
+            int preferredSoilMoistureLevel, 
+            int preferredSoilTemperatureLevel, 
+            int preferredSoilAcidityLevel, 
+            int preferredAirTemperatureLevel)
+    {
+        this.type = type; 
+        this.pricePerTon = pricePerTon; 
+        this.growthTime = growthTime; 
+        this.isGrowing = isGrowing;
+        this.preferredSoilMoistureLevel = preferredSoilMoistureLevel;
+        this.preferredSoilTemperatureLevel = preferredSoilTemperatureLevel;
+        this.preferredSoilAcidityLevel = preferredSoilAcidityLevel;
+        this.preferredAirTemperatureLevel = preferredAirTemperatureLevel;
+    }
     
     public String getType() {
         return type;
     }
 
-    public double getPricePerTon() {
+    public float getPricePerTon() {
         return pricePerTon;
     }
 
@@ -71,7 +90,7 @@ public class Planting {
         this.type = type;
     }
 
-    public void setPricePerTon(double pricePerTon) {
+    public void setPricePerTon(float pricePerTon) {
         this.pricePerTon = pricePerTon;
     }
 
