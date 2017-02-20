@@ -32,7 +32,7 @@ public class ServerTest
     {
         System.out.println("\n\nBefore write:\n\n");
 //        System.out.println(testServer.readLog("readingsLog.ser"));
-        testServer.addReadings(instance);
+        testServer.addReadings(instance, "Jim");
         System.out.println("\n\nAfter write:\n\n");
         SetOfSensorReadings testSet = new SetOfSensorReadings();
         SetOfSensorReadings receiveSet = new SetOfSensorReadings();

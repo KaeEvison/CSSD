@@ -24,7 +24,7 @@ public class Server extends javax.swing.JFrame {
   
     Location testData = new Location(2,3);
     private SetOfSensorReadings sensorReadings;
-    private static final String FILENAME = "readingsLog.ser";
+    private static String FILENAME = "readingsLog.ser";
     File outputFile = new File(FILENAME);
     private SetOfSensorMonitors allSensors = new SetOfSensorMonitors();
     
@@ -46,8 +46,10 @@ public class Server extends javax.swing.JFrame {
         
     }
     
-    public void addReadings(SetOfSensorReadings newReadings)
+    public void addReadings(SetOfSensorReadings newReadings, String username)
     {
+        FILENAME = username;
+        FILENAME += ".ser";
         try
         {
             Serialize(newReadings, FILENAME);
@@ -58,20 +60,27 @@ public class Server extends javax.swing.JFrame {
         }
     }
     
-    public SetOfSensorReadings readLog(String filename)
+    public SetOfSensorReadings readLog(String username)
     {
         SetOfSensorReadings log = new SetOfSensorReadings();
-        try
+        String filename = new String("");
+        filename = username;
+        filename += ".ser";
+        File checkExists = new File(filename);
+        if (checkExists.exists() == true)
         {
-            log = (SetOfSensorReadings)Deserialize(filename);
-        }
-        catch (IOException e)
-        {
-            System.out.println(e);
-        }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println(e);
+            try
+            {
+                log = (SetOfSensorReadings)Deserialize(filename);
+            }
+            catch (IOException e)
+            {
+                System.out.println(e);
+            }
+            catch (ClassNotFoundException e)
+            {
+                System.out.println(e);
+            }
         }
         return log;
     }
