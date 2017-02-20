@@ -122,8 +122,13 @@ public class AMSGUI_Farmer extends AMSGUI_User
     
     private void viewField(/*Field field*/){
         
-        //if currentField != null
+        if (currentField != null){
             layout.show(contentPane, "fp2");
+        }
+        else
+        {
+            
+        }
     }
     
     private void displayRecordHarvest(){
