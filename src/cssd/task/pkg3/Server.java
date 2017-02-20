@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
 
@@ -229,6 +230,39 @@ public class Server extends javax.swing.JFrame {
                         "password"
                 )
         );
+        
+        SetOfFields fields = new SetOfFields(new ArrayList<Field>());
+        
+        ArrayList<Harvest> harvests = new ArrayList<Harvest>();
+        
+        Location points[] = new Location[4];
+        points[0] = new Location(0, 0);
+        points[1] = new Location(1, 0);
+        points[2] = new Location(1, 1);
+        points[3] = new Location(0, 1);
+        
+        Location points2[] = new Location[4];
+        points2[0] = new Location(2, 4);
+        points2[1] = new Location(4, 2);
+        points2[2] = new Location(4, 4);
+        points2[3] = new Location(2, 4);
+        
+        Planting planting1 = new Planting();
+        planting1.setType("Bananas");
+        planting1.setPricePerTon(902.4);
+        planting1.setGrowthTime(6);
+        planting1.setIsGrowing(false);
+        
+        Planting planting2 = new Planting();
+        planting2.setType("Wheat");
+        planting2.setPricePerTon(103.3);
+        planting2.setGrowthTime(2);
+        planting2.setIsGrowing(true);
+        
+        fields.addField(new Field(planting1, new FieldArea(points), harvests));
+        fields.addField(new Field(planting2, new FieldArea(points2), harvests));
+        
+        farmers.get(0).setFields(fields);
         
         users.addUser(
                 new User(

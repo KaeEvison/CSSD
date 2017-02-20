@@ -15,12 +15,21 @@ import java.util.Date;
 public class Farmer extends User{
 
     private ArrayList<Planting> crops;
-    //private SetOfFields fields;
+    private SetOfFields fields;
+
+    public SetOfFields getFields() {
+        return fields;
+    }
+
+    public void setFields(SetOfFields fields) {
+        this.fields = fields;
+    }
     
     public Farmer(String username, String firstName, String surname, 
             String location, String phoneNumber, String password)
     {
         super(username, firstName, surname, location, phoneNumber, password);
+        fields = new SetOfFields(new ArrayList<Field>());
     }
     
     private Boolean hasAutomatedMachinery = false;

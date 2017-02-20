@@ -41,7 +41,7 @@ public class SetOfFarmers extends ArrayList<Farmer>{
         noOfFarmers++;
     }
     
-    private void removerFarmer(Farmer afarmer)
+    private void removeFarmer(Farmer afarmer)
     {
         super.remove(afarmer);
         noOfFarmers--;

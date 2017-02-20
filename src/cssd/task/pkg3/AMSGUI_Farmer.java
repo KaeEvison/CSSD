@@ -8,10 +8,10 @@ package cssd.task.pkg3;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import java.util.ArrayList;
-
-
 
 /**
  *
@@ -21,7 +21,7 @@ public class AMSGUI_Farmer extends AMSGUI_User
 {
     private Farmer currentFarmer = null;
     
-    //private Field currentField;
+    private Field currentField;
     private SetOfSensorReadings currentSensorReadings;
     //private SetOfFields fields;
     private ArrayList<Planting> availableCrops;
@@ -39,14 +39,16 @@ public class AMSGUI_Farmer extends AMSGUI_User
     public AMSGUI_Farmer(Farmer currentFarmer, Server server) {
         super();
         initComponents();
-        initManualComponents();
+        
+        this.currentServer = server;
+        this.currentFarmer = currentFarmer;this.currentServer = server;
         
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("AMS");
         setSize(660, 550);
         
-        this.currentServer = server;
-        this.currentFarmer = currentFarmer;
+        initManualComponents();
+        
         jbl_username.setText( currentFarmer.getUsername() );
         
         addFarmerListeners();
@@ -89,6 +91,15 @@ public class AMSGUI_Farmer extends AMSGUI_User
         fp5 = new FieldsPanel5_RecordPlanting();
         
         layout = new CardLayout();
+        
+        fp1.model = new DefaultListModel<Field>();
+        
+        for(int i=0; i<currentFarmer.getFields().size(); ++i){
+            fp1.model.addElement("Field " + (i+1));
+        }
+        
+        
+        fp1.jlPickField.setModel(fp1.model);
         
         contentPane.setLayout(layout);
         contentPane.add(menu, "menu");
@@ -143,9 +154,21 @@ public class AMSGUI_Farmer extends AMSGUI_User
             }
         });
         
+        fp1.jlPickField.addListSelectionListener(new ListSelectionListener(){
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                currentField = currentFarmer.getFields().getFieldByIndex(fp1.jlPickField.getSelectedIndex());
+            }
+        });
+        
         fp1.jbtn_options.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                viewField();
+                
+                if(currentField != null){
+                    viewField();
+                }
+                else{
+                    JOptionPane.showMessageDialog(getContentPane(), "No field selected");
+                }
             }
         });
         

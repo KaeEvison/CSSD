@@ -5,12 +5,16 @@
  */
 package cssd.task.pkg3;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author thoma
  */
 public class FieldsPanel1_Selection extends javax.swing.JPanel {
-
+    
+    public DefaultListModel model;
+    
     /**
      * Creates new form AMSGUI_ViewFields
      */
@@ -26,53 +30,43 @@ public class FieldsPanel1_Selection extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
         jbtn_back = new javax.swing.JButton();
         jbtn_options = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jlPickField = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(102, 153, 0));
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("View Fields - Fields Selection");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(84, 50, 0, 0);
-        add(jLabel1, gridBagConstraints);
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 248, -1));
 
         jbtn_back.setText("Back");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 12;
-        gridBagConstraints.ipady = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(37, 39, 34, 0);
-        add(jbtn_back, gridBagConstraints);
+        add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 89, 44));
 
-        jbtn_options.setText("Pick Field / Display Options");
+        jbtn_options.setText("View Field");
         jbtn_options.setActionCommand("");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 22;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(31, 39, 0, 70);
-        add(jbtn_options, gridBagConstraints);
+        add(jbtn_options, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 132, 47));
+
+        jlPickField.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jlPickField);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 278, 114));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JButton jbtn_back;
     public javax.swing.JButton jbtn_options;
+    public javax.swing.JList<String> jlPickField;
     // End of variables declaration//GEN-END:variables
 }
