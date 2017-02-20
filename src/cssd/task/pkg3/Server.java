@@ -42,7 +42,6 @@ public class Server extends javax.swing.JFrame {
         users = new SetOfUsers();
         farmers = new SetOfFarmers();
         testData_initialiseUsers();
-        
     }
     
     public void addReadings(SetOfSensorReadings newReadings)

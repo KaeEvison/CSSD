@@ -8,6 +8,7 @@ package subTask3Tests;
 import cssd.task.pkg3.Location;
 import cssd.task.pkg3.SensorReading;
 import cssd.task.pkg3.Server;
+import cssd.task.pkg3.SetOfSensorMonitors;
 import cssd.task.pkg3.SetOfSensorReadings;
 import java.time.LocalDateTime;
 import org.junit.Test;
@@ -23,7 +24,8 @@ public class ServerTest
     SensorReading test2 = new SensorReading(23, "degrees celcius", "Soil temperature", new Location(14, 6));
     SensorReading test3 = new SensorReading(16, "degrees celcius", "Soil temperature", new Location(7, 14));
     SetOfSensorReadings instance = new SetOfSensorReadings(test1, test2, test3);
-    Server testServer = new Server();
+    SetOfSensorMonitors testMonitors = new SetOfSensorMonitors();
+    Server testServer = new Server(testMonitors);
     
     @Test
     public void testAddReadings()
