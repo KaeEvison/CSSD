@@ -18,41 +18,41 @@ import java.util.ArrayList;
  *
  * @author b3014277, trkirk
  */
-public class AMSGUI_Farmer extends AMSGUI_User
-{
+public class AMSGUI_Farmer extends AMSGUI_User {
+
     private Farmer currentFarmer = null;
-    
+
     private Field currentField;
     private SetOfSensorReadings currentSensorReadings;
     private SetOfFields fields;
     //private ArrayList<Planting> availableCrops;
-    
+
     private MenuPanel_Farmer menu;
     private FieldsPanel1_Selection fp1;
     private FieldsPanel2_Options fp2;
     private FieldsPanel3_CheckCrops fp3;
     private FieldsPanel4_RecordHarvest fp4;
     private FieldsPanel5_RecordPlanting fp5;
-    
+
     /**
      * Creates new form AMSGUI
      */
     public AMSGUI_Farmer(Farmer currentFarmer, Server server) {
         super();
         initComponents();
-        
+
         this.currentServer = server;
         this.currentFarmer = currentFarmer;
         this.fields = currentFarmer.getFields();
-        
+
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("AMS");
         setSize(660, 550);
-        
+
         initManualComponents();
-        
-        jbl_username.setText( currentFarmer.getUsername() );
-        
+
+        jbl_username.setText(currentFarmer.getUsername());
+
         addFarmerListeners();
     }
 
@@ -81,27 +81,27 @@ public class AMSGUI_Farmer extends AMSGUI_User
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     @Override
-    protected void initManualComponents(){
-        
+    protected void initManualComponents() {
+
         menu = new MenuPanel_Farmer();
         fp1 = new FieldsPanel1_Selection();
         fp2 = new FieldsPanel2_Options();
         fp3 = new FieldsPanel3_CheckCrops();
         fp4 = new FieldsPanel4_RecordHarvest();
         fp5 = new FieldsPanel5_RecordPlanting();
-        
+
         layout = new CardLayout();
-        
+
         fp1.model = new DefaultListModel<Field>();
-        
-        for(int i=0; i<currentFarmer.getFields().size(); ++i){
-            fp1.model.addElement("Field " + (i+1));
+
+        for (int i = 0; i < currentFarmer.getFields().size(); ++i) {
+            fp1.model.addElement("Field " + (i + 1));
         }
-        
+
         fp1.jlPickField.setModel(fp1.model);
-        
+
         contentPane.setLayout(layout);
         contentPane.add(menu, "menu");
         contentPane.add(fp1, "fp1");
@@ -110,194 +110,215 @@ public class AMSGUI_Farmer extends AMSGUI_User
         contentPane.add(fp4, "fp4");
         contentPane.add(fp5, "fp5");
         contentPane.add(op1, "op1");
-        
+
         pack();
         setLocationByPlatform(true);
-        
+
         layout.show(contentPane, "menu");
     }
-    
-    private void displayFields(){
+
+    private void displayFields() {
         layout.show(contentPane, "fp1");
     }
-    
-    private void viewField(){
-            layout.show(contentPane, "fp2");
+
+    private void viewField() {
+        layout.show(contentPane, "fp2");
     }
-    
-    private void displayRecordHarvest(){
+
+    private void displayRecordHarvest() {
         layout.show(contentPane, "fp4");
     }
-    
-    private void displayCropTypes(){
-        // TO DO
+
+    private void displayCrops() {
+        fp3.jbl_title.setText("View Fields - " + fp1.jlPickField.
+                getSelectedValue() + " (Check Crops)");
+        fp3.jtf_airTemp.setText(currentField.currentPlanting.
+                getPreferredAirTemperatureLevel() + "");
+        fp3.jtf_light.setText(currentField.currentPlanting.
+                getLight() + "");
+        fp3.jtf_soilAcidity.setText(currentField.currentPlanting.
+                getPreferredSoilAcidityLevel() + "");
+        fp3.jtf_soilMoisture.setText(currentField.currentPlanting.
+                getPreferredSoilMoistureLevel() + "");
+        fp3.jtf_soilTemp.setText(currentField.currentPlanting.
+                getPreferredSoilTemperatureLevel() + "");
+
+        layout.show(contentPane, "fp3");
     }
-    
-    private void addFarmerListeners(){
-        
-        menu.jbtn_viewOrders.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+
+    private void clickSelectField() {
+        currentField = fields.getFieldByIndex(fp1.jlPickField.getSelectedIndex());
+        viewField();
+    }
+
+    private void clickRecordHarvest() {
+        fp4.jlbl_title.setText("View Fields - "
+                + fp1.jlPickField.getSelectedValue()
+                + " (Record Harvest)");
+        displayRecordHarvest();
+    }
+
+    private void clickRecordPlanting() {
+        if (currentField != null
+                && currentField.currentPlanting == null) {
+            fp5.jlbl_title.setText(fp1.jlPickField.getSelectedValue() + " (Record Planting)");
+            layout.show(contentPane, "fp5");
+        } else {
+            JOptionPane.showMessageDialog(getContentPane(),
+                    "Planting harvest not yet recorded: "
+                    + "Please record your latest harvest"
+                    + " before recording a new planting.");
+        }
+    }
+
+    private void clickSaveHarvestDetails() {
+        if (currentField != null
+                && currentField.currentPlanting != null
+                && fp4.jdccRecordHarvest.getSelectedDate() != null
+                && fp4.jspnYield.getValue() != null) {
+
+            currentField.recordNewHarvest(
+                    new Harvest(currentField.currentPlanting,
+                            fp4.jdccRecordHarvest.getSelectedDate().getTime(),
+                            (double) fp4.jspnYield.getValue()
+                    )
+            );
+
+            JOptionPane.showMessageDialog(getContentPane(),
+                    "Harvest successfully recorded");
+            layout.show(contentPane, "fp2");
+        } else {
+            JOptionPane.showMessageDialog(getContentPane(),
+                    "Failed to record harvest: "
+                    + "Please make sure all "
+                    + "of the required fields are filled in.");
+        }
+    }
+
+    private void clickSavePlantingDetails() {
+        if (currentField != null
+                && currentField.currentPlanting == null
+                && fp5.jtf_type.getText() != null
+                && fp5.jns_pricePerTon.getValue() != null
+                && fp5.jns_growthTime.getValue() != null
+                && fp5.jns_growthTime.getValue() != null
+                && fp5.jns_soilTemperatureLevel.getValue() != null
+                && fp5.jns_soilTemperatureLevel.getValue() != null
+                && fp5.jns_soilAcidityLevel.getValue() != null
+                && fp5.jns_airTemperatureLevel.getValue() != null) 
+        {
+            currentField.recordNewPlanting(
+                    new Planting(
+                            fp5.jtf_type.getText(),
+                            (float) fp5.jns_pricePerTon.getValue(),
+                            (int) fp5.jns_growthTime.getValue(),
+                            (int) fp5.jns_growthTime.getValue(),
+                            (int) fp5.jns_soilTemperatureLevel.getValue(),
+                            (int) fp5.jns_soilAcidityLevel.getValue(),
+                            (int) fp5.jns_airTemperatureLevel.getValue()
+                    )
+            );
+            JOptionPane.showMessageDialog(getContentPane(),
+                    "Planting successfully recorded");
+            layout.show(contentPane, "fp2");
+
+        }
+    }
+
+    private void addFarmerListeners() {
+
+        menu.jbtn_viewOrders.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 displayOrders();
             }
         });
-        
-        menu.jbtn_viewFields.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+
+        menu.jbtn_viewFields.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 displayFields();
             }
         });
-        
-        fp1.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+
+        fp1.jbtn_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 layout.show(contentPane, "menu");
             }
         });
-        
-        fp1.jlPickField.addListSelectionListener(new ListSelectionListener(){
+
+        fp1.jlPickField.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
                 currentField = fields.getFieldByIndex(fp1.jlPickField.getSelectedIndex());
             }
         });
-        
-        fp1.jbtn_options.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                
-                if(currentField != null){
-                    
-                    fp2.jbl_fieldname.setText("View Field  - " + fp1.jlPickField.getSelectedValue());
-                    viewField();
-                }
-                else{
+
+        fp1.jbtn_selectField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                if (currentField != null) {
+                    clickSelectField();
+                } else {
                     JOptionPane.showMessageDialog(getContentPane(), "No field selected");
                 }
             }
         });
-        
-        fp2.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+
+        fp2.jbtn_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 layout.show(contentPane, "fp1");
             }
         });
-        
-        fp2.jbtn_checkCrops.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                fp3.jbl_title.setText("View Fields - " + fp1.jlPickField.getSelectedValue() + " (Check Crops)");
-                fp3.jtf_airTemp.setText(currentField.currentPlanting.getPreferredAirTemperatureLevel() + "");
-                fp3.jtf_light.setText(currentField.currentPlanting.getLight() + "");
-                fp3.jtf_soilAcidity.setText(currentField.currentPlanting.getPreferredSoilAcidityLevel() + "");
-                fp3.jtf_soilMoisture.setText(currentField.currentPlanting.getPreferredSoilMoistureLevel() + "");
-                fp3.jtf_soilTemp.setText(currentField.currentPlanting.getPreferredSoilTemperatureLevel() + "");
-                
-                layout.show(contentPane, "fp3");
+
+        fp2.jbtn_checkCrops.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                displayCrops();
             }
         });
-        
-        fp2.jbtn_recordHarvest.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                if ( currentField.currentPlanting != null ){
-                    fp4.jlbl_title.setText("View Fields - " + fp1.jlPickField.getSelectedValue() + " (Record Harvest)");
-                    displayRecordHarvest();
-                }else {
-                    JOptionPane.showMessageDialog(getContentPane(), 
-                        "No active planting found. Please enter a new planting"
+
+        fp2.jbtn_recordHarvest.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (currentField.currentPlanting != null) {
+                    clickRecordHarvest();
+                } else {
+                    JOptionPane.showMessageDialog(getContentPane(),
+                            "No active planting found. Please enter a new planting"
                             + " before recording your harvest.");
                 }
             }
         });
-        
-        fp2.jbtn_recordPlanting.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                if ( currentField != null 
-                        &&currentField.currentPlanting == null ){
-                    fp5.jlbl_title.setText(fp1.jlPickField.getSelectedValue() + " (Record Planting)");
-                    layout.show(contentPane, "fp5");
-                }
-                else{
-                    JOptionPane.showMessageDialog(getContentPane(), 
-                     "Planting harvest not yet recorded: "
-                             + "Please record your latest harvest"
-                             + " before recording a new planting.");
-                }
+
+        fp2.jbtn_recordPlanting.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                clickRecordPlanting();
             }
         });
-        
-        fp3.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+
+        fp3.jbtn_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 layout.show(contentPane, "fp2");
             }
         });
-        
-        fp4.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+
+        fp4.jbtn_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 layout.show(contentPane, "fp2");
             }
         });
-        
-        fp4.jbtn_submit.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                
-                if( currentField != null 
-                        && currentField.currentPlanting != null
-                        && fp4.jdccRecordHarvest.getSelectedDate() != null 
-                        && fp4.jspnYield.getValue() != null ){
-                    
-                    currentField.recordNewHarvest(
-                        new Harvest(currentField.currentPlanting, 
-                            fp4.jdccRecordHarvest.getSelectedDate().getTime(),
-                            (double)fp4.jspnYield.getValue()
-                        ));
-                    
-                    JOptionPane.showMessageDialog(getContentPane(), 
-                        "Harvest successfully recorded");
-                    layout.show(contentPane, "fp2");
-                }
-                else{
-                    JOptionPane.showMessageDialog(getContentPane(), 
-                        "Failed to record harvest: "
-                                + "Please make sure all "
-                                + "of the required fields are filled in.");
-                }
+
+        fp4.jbtn_submit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                clickSaveHarvestDetails();
             }
         });
-        
-        fp5.jbtn_back.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+
+        fp5.jbtn_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 layout.show(contentPane, "fp2");
             }
         });
-        
-        fp5.jbtn_submit.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                if( currentField != null 
-                        && currentField.currentPlanting == null 
-                        && fp5.jtf_type.getText() != null 
-                        && fp5.jns_pricePerTon.getValue() != null 
-                        && fp5.jns_growthTime.getValue() != null 
-                        && fp5.jns_growthTime.getValue() != null 
-                        && fp5.jns_soilTemperatureLevel.getValue() != null 
-                        && fp5.jns_soilTemperatureLevel.getValue() != null 
-                        && fp5.jns_soilAcidityLevel.getValue() != null 
-                        && fp5.jns_airTemperatureLevel.getValue() != null )
-                {
-                    currentField.recordNewPlanting(
-                            
-                            
-                            
-                        new Planting( 
-                            fp5.jtf_type.getText(),
-                            (float)fp5.jns_pricePerTon.getValue(),
-                            (int)fp5.jns_growthTime.getValue(),
-                            (int)fp5.jns_growthTime.getValue(),
-                            (int)fp5.jns_soilTemperatureLevel.getValue(),
-                            (int)fp5.jns_soilAcidityLevel.getValue(),
-                            (int)fp5.jns_airTemperatureLevel.getValue() 
-                        )
-                    );
-                    JOptionPane.showMessageDialog(getContentPane(), 
-                        "Planting successfully recorded");
-                    layout.show(contentPane, "fp2");
-                    
-                }
+
+        fp5.jbtn_submit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                clickSavePlantingDetails();
             }
         });
     }

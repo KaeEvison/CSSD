@@ -33,7 +33,7 @@ public class FieldsPanel1_Selection extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jbtn_back = new javax.swing.JButton();
-        jbtn_options = new javax.swing.JButton();
+        jbtn_selectField = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlPickField = new javax.swing.JList<>();
 
@@ -47,9 +47,9 @@ public class FieldsPanel1_Selection extends javax.swing.JPanel {
         jbtn_back.setText("Back");
         add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 89, 44));
 
-        jbtn_options.setText("View Field");
-        jbtn_options.setActionCommand("");
-        add(jbtn_options, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 132, 47));
+        jbtn_selectField.setText("View Field");
+        jbtn_selectField.setActionCommand("");
+        add(jbtn_selectField, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 132, 47));
 
         jlPickField.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -66,7 +66,7 @@ public class FieldsPanel1_Selection extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JButton jbtn_back;
-    public javax.swing.JButton jbtn_options;
+    public javax.swing.JButton jbtn_selectField;
     public javax.swing.JList<String> jlPickField;
     // End of variables declaration//GEN-END:variables
 }
