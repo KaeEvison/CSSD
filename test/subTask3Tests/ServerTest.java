@@ -35,10 +35,7 @@ public class ServerTest
         SetOfSensorReadings testSet = new SetOfSensorReadings();
         SetOfSensorReadings receiveSet = new SetOfSensorReadings();
         receiveSet = testServer.readLog("Jim");
-        for (int i = 0; i < receiveSet.getSize(); i++)
-        {
-            testSet.add(receiveSet.get(i));
-        }
+        testSet.append(receiveSet);
         System.out.println(testSet.toString());
     }
 }

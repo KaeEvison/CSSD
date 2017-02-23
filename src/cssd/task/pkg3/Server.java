@@ -50,11 +50,13 @@ public class Server extends javax.swing.JFrame {
     {
         FILENAME = username;
         FILENAME += ".ser";
-        //FETCH ENTIRE LOG, ADD NEW VALUES, RESERIALIZE LOG
+        SetOfSensorReadings readingHolder = new SetOfSensorReadings();
+        readingHolder = readLog(username);
+        readingHolder.append(newReadings);
         //GUI UPDATE WITH VALUES
         try
         {
-            Serialize(newReadings, FILENAME);
+            Serialize(readingHolder, FILENAME);
         }
         catch (IOException e)
         {
@@ -84,6 +86,8 @@ public class Server extends javax.swing.JFrame {
                 System.out.println(e);
             }
         }
+        else
+            System.out.println("FILE NOT FOUND");
         return log;
     }
     
