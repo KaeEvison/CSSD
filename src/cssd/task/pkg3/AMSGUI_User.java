@@ -190,12 +190,14 @@ public class AMSGUI_User extends javax.swing.JFrame {
         // TO DO
     }
     
+    
     protected void addListeners(){
         addWindowListener(new WindowAdapter(){
             public void windowClosing( WindowEvent e){
-                JOptionPane.showMessageDialog(getContentPane(), "Logging Off");
+                    JOptionPane.showMessageDialog(getContentPane(), "Logging Off");
             }
         });
+        
         
         op1.jbtn_back.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){

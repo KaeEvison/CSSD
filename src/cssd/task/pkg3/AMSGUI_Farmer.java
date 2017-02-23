@@ -224,9 +224,18 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         }
     }
+    
+    protected void addListeners(){
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing( WindowEvent e){
+                JOptionPane.showMessageDialog(getContentPane(), "Logging Off (2)");
+            }
+        });
+    }
 
     private void addFarmerListeners() {
-
+        
         menu.jbtn_viewOrders.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 displayOrders();
@@ -255,6 +264,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             public void actionPerformed(ActionEvent e) {
 
                 if (currentField != null) {
+                    fp2.jbl_fieldname.setText("View Fields - " + fp1.jlPickField.getSelectedValue());
                     clickSelectField();
                 } else {
                     JOptionPane.showMessageDialog(getContentPane(), "No field selected");

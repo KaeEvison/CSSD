@@ -12,6 +12,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
@@ -30,6 +32,7 @@ public class Server extends javax.swing.JFrame {
     
     private SetOfUsers users;
     private SetOfFarmers farmers;
+    private SetOfOrders orders;
     
     
     public Server(SetOfSensorMonitors initialSensors) {
@@ -42,6 +45,7 @@ public class Server extends javax.swing.JFrame {
         
         users = new SetOfUsers();
         farmers = new SetOfFarmers();
+        orders = new SetOfOrders();
         testData_initialiseUsers();
         
     }
@@ -227,6 +231,17 @@ public class Server extends javax.swing.JFrame {
         this.setVisible(true);
     }
     
+    void setOrders(int farmer_index)
+    {
+        if(orders.size() > 0){
+            for(int i=0; i<orders.size(); ++i){
+                if(orders.get(i).getSupplier() == farmers.get(farmer_index)){
+                    farmers.get(farmer_index).addOrder(orders.get(i));
+                }
+            }
+        }
+    }
+    
     private void testData_initialiseUsers()
     {
         farmers.addFarmer(
@@ -305,6 +320,30 @@ public class Server extends javax.swing.JFrame {
                         "password3"
                 )
         );
+        
+        Order order1 = new Order(
+                "Peas",
+                12.33,
+                farmers.get(0),
+                users.get(0),
+                LocalDateTime.of(2017, Month.MARCH, 27, 17, 28),
+                LocalDateTime.now(),
+                "active"
+        );
+        
+        Order order2 = new Order(
+                "Carrots",
+                10.76,
+                farmers.get(0),
+                users.get(0),
+                LocalDateTime.of(2017, Month.MARCH, 26, 12, 21),
+                LocalDateTime.now(),
+                "complete"
+        );
+        
+        orders.add(order1);
+        orders.add(order2);
+        //setOrders(0);
     }
     
     private void jtf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_usernameActionPerformed
