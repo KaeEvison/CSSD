@@ -30,13 +30,11 @@ public class ServerTest
     @Test
     public void testAddReadings()
     {
-        System.out.println("\n\nBefore write:\n\n");
-//        System.out.println(testServer.readLog("readingsLog.ser"));
         testServer.addReadings(instance, "Jim");
         System.out.println("\n\nAfter write:\n\n");
         SetOfSensorReadings testSet = new SetOfSensorReadings();
         SetOfSensorReadings receiveSet = new SetOfSensorReadings();
-        receiveSet = testServer.readLog("readingsLog.ser");
+        receiveSet = testServer.readLog("Jim");
         for (int i = 0; i < receiveSet.getSize(); i++)
         {
             testSet.add(receiveSet.get(i));

@@ -50,6 +50,8 @@ public class Server extends javax.swing.JFrame {
     {
         FILENAME = username;
         FILENAME += ".ser";
+        //FETCH ENTIRE LOG, ADD NEW VALUES, RESERIALIZE LOG
+        //GUI UPDATE WITH VALUES
         try
         {
             Serialize(newReadings, FILENAME);
