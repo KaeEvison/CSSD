@@ -260,13 +260,13 @@ public class Server extends javax.swing.JFrame {
         
         Planting planting1 = new Planting();
         planting1.setType("Bananas");
-        planting1.setPricePerTon(902.4);
+        planting1.setPricePerTon(902.92f);
         planting1.setGrowthTime(6);
         planting1.setIsGrowing(false);
         
         Planting planting2 = new Planting();
         planting2.setType("Wheat");
-        planting2.setPricePerTon(103.3);
+        planting2.setPricePerTon(109.33f);
         planting2.setGrowthTime(2);
         planting2.setIsGrowing(true);
         

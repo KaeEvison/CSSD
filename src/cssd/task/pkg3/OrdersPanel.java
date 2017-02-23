@@ -26,80 +26,41 @@ public class OrdersPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
+        jbtn_back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jbtn_makeOrder = new javax.swing.JButton();
         jbtn_orderHistory = new javax.swing.JButton();
         jbtn_manageFarmers = new javax.swing.JButton();
-        jbtn_back = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 153, 0));
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 153, 0));
+        jbtn_back.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jbtn_back.setText("Back");
+        add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("View Orders");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
 
         jbtn_makeOrder.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_makeOrder.setText("Make an Order");
         jbtn_makeOrder.setName(""); // NOI18N
+        add(jbtn_makeOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 358, 57));
 
         jbtn_orderHistory.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_orderHistory.setText("Order History");
+        add(jbtn_orderHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 358, 57));
 
         jbtn_manageFarmers.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_manageFarmers.setText("Manage farmers");
-
-        jbtn_back.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jbtn_back.setText("Back");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbtn_back)
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel2))
-                    .addComponent(jbtn_makeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtn_orderHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtn_manageFarmers, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtn_back)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel2)))
-                .addGap(12, 12, 12)
-                .addComponent(jbtn_makeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jbtn_orderHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jbtn_manageFarmers, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(19, 16, 20, 17);
-        add(jPanel1, gridBagConstraints);
+        add(jbtn_manageFarmers, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 358, 57));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     public javax.swing.JButton jbtn_back;
     public javax.swing.JButton jbtn_makeOrder;
     private javax.swing.JButton jbtn_manageFarmers;
