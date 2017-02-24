@@ -16,7 +16,7 @@ public class User {
     private String location;
     private String phoneNumber;
     private String password;
-    private SetOfOrders orders;
+    protected SetOfOrders orders;
 
     public String getUsername() {
         return username;
@@ -34,6 +34,8 @@ public User (String username, String firstName, String surname, String location,
     this.location = location;
     this.phoneNumber = phoneNumber;
     this.password = password;
+    
+    orders = new SetOfOrders();
     
 }
     

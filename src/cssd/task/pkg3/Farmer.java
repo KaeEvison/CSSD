@@ -30,6 +30,7 @@ public class Farmer extends User{
     {
         super(username, firstName, surname, location, phoneNumber, password);
         fields = new SetOfFields(new ArrayList<Field>());
+        orders = new SetOfOrders();
     }
     
     private Boolean hasAutomatedMachinery = false;

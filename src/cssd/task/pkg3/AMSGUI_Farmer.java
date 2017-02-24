@@ -28,6 +28,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     //private ArrayList<Planting> availableCrops;
 
     private MenuPanel_Farmer menu;
+    private OrdersPanel1_Farmer_Selection op1;
+    private OrdersPanel3_Farmer_Update op3;
     private FieldsPanel1_Selection fp1;
     private FieldsPanel2_Options fp2;
     private FieldsPanel3_CheckCrops fp3;
@@ -52,7 +54,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         initManualComponents();
 
         jbl_username.setText(currentFarmer.getUsername());
-
+        
         addFarmerListeners();
     }
 
@@ -81,11 +83,68 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    @Override
+    
+    void resetOrderJLists(){
+        op2.model.clear();
+        op3.model.clear();
+        
+        String orderStatus = "";
+        
+        for (int i = 0; i < currentFarmer.orders.size(); ++i) {
+            
+            if( currentFarmer.orders.get(i).
+                    getStatus().toLowerCase().equals("complete") 
+                    || currentFarmer.orders.get(i).
+                            getStatus().toLowerCase().equals("cancelled") )
+            {
+                
+                if( currentFarmer.orders.get(i).
+                            getStatus().toLowerCase().equals("cancelled"))
+                {
+                    orderStatus = "Cancelled";
+                }
+                else{
+                    orderStatus = "Delivered: " + currentFarmer.orders.get(i).
+                            getEstimatedDeliveryDate().toLocalDate();
+                }
+                
+                 op2.model.addElement("#" + (i + 1) 
+                    + ".       Customer: " + currentFarmer.orders.get(i).
+                            getBuyer().getUsername()
+                    + "        Date: " + currentFarmer.orders.get(i).
+                            getDateCreated().toLocalDate()
+                    + "        " + orderStatus
+                    + "        Crop: " + currentFarmer.orders.get(i).getCrop() 
+                    + "        Total: " + currentFarmer.orders.get(i).getCost()
+                );
+            }
+            
+            if( currentFarmer.orders.get(i).
+                    getStatus().toLowerCase().equals("active") )
+            {
+                op3.model.addElement("#" + (i + 1) 
+                    + ".    Customer: " + currentFarmer.orders.get(i).
+                            getBuyer().getUsername()
+                    + "           Date: " + currentFarmer.orders.get(i).
+                            getDateCreated().toLocalDate()
+                    + "           Due: " + currentFarmer.orders.get(i).
+                            getEstimatedDeliveryDate().toLocalDate()
+                    + "           Crop: " + currentFarmer.orders.get(i).getCrop() 
+                    + "           Total: " + currentFarmer.orders.get(i).getCost()
+                );
+            }
+        }
+    }
+    
+    
     protected void initManualComponents() {
 
         menu = new MenuPanel_Farmer();
+        
+        op1 = new OrdersPanel1_Farmer_Selection();
+        op2 = new OrdersPanel2_OrderHistory();
+        op3 = new OrdersPanel3_Farmer_Update();
+        
         fp1 = new FieldsPanel1_Selection();
         fp2 = new FieldsPanel2_Options();
         fp3 = new FieldsPanel3_CheckCrops();
@@ -93,23 +152,30 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         fp5 = new FieldsPanel5_RecordPlanting();
 
         layout = new CardLayout();
-
+        
         fp1.model = new DefaultListModel<Field>();
+        op2.model = new DefaultListModel<Order>();
+        op3.model = new DefaultListModel<Order>();
 
         for (int i = 0; i < currentFarmer.getFields().size(); ++i) {
             fp1.model.addElement("Field " + (i + 1));
         }
+        
+        resetOrderJLists();
 
         fp1.jlPickField.setModel(fp1.model);
-
+        op2.jlPickOrder.setModel(op2.model);
+        op3.jlPickOrder.setModel(op3.model);
         contentPane.setLayout(layout);
         contentPane.add(menu, "menu");
+        contentPane.add(op1, "op1");
+        contentPane.add(op2, "op2");
+        contentPane.add(op3, "op3");
         contentPane.add(fp1, "fp1");
         contentPane.add(fp2, "fp2");
         contentPane.add(fp3, "fp3");
         contentPane.add(fp4, "fp4");
         contentPane.add(fp5, "fp5");
-        contentPane.add(op1, "op1");
 
         pack();
         setLocationByPlatform(true);
@@ -225,28 +291,70 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
     
-    protected void addListeners(){
+    @Override
+    public void addListeners(){
         addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing( WindowEvent e){
-                JOptionPane.showMessageDialog(getContentPane(), "Logging Off (2)");
+                JOptionPane.showMessageDialog(getContentPane(), "Logging Off");
             }
         });
     }
-
-    private void addFarmerListeners() {
+    
+    public void addFarmerListeners() {
         
-        menu.jbtn_viewOrders.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                displayOrders();
-            }
-        });
-
         menu.jbtn_viewFields.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 displayFields();
             }
         });
+        
+        menu.jbtn_viewOrders.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                displayOrders();
+            }
+        });
+        
+        menu.jButton3.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                JOptionPane.showMessageDialog(getContentPane(), "Coming Soon");
+            }
+        });
+        
+        op1.jbtn_back.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "menu");
+            }
+        });
+        
+        op1.jbtn_currentOrders.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                layout.show(contentPane, "op3");
+            }
+        });
+     
+        op1.jbtn_orderHistory.addActionListener(new ActionListener(){
+           
+            public void actionPerformed(ActionEvent e) {
+                layout.show(contentPane, "op2");
+            }
+        });
+        
+        op2.jbtn_back.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                layout.show(contentPane, "op1");
+            }
+        });
+        
+        op3.jbtn_back.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+                layout.show(contentPane, "op1");
+            }
+        });
+        
 
         fp1.jbtn_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -259,6 +367,47 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                 currentField = fields.getFieldByIndex(fp1.jlPickField.getSelectedIndex());
             }
         });
+        
+        op3.jlPickOrder.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                for(int i = 0; i< currentFarmer.orders.size(); ++i){
+                    if(currentFarmer.orders.get(i).
+                            getStatus().toLowerCase().equals("active") )
+                    {
+                        currentOrder = currentFarmer.orders.get(i);
+                    }
+                }
+            } 
+        });
+        
+        op3.jbtn_cancelOrder.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if (currentOrder != null ) {
+                    
+                    currentOrder.setStatus("cancelled");
+                    JOptionPane.showMessageDialog(getContentPane(), "Order cancelled.");
+                    resetOrderJLists();
+                    
+                } else {
+                    JOptionPane.showMessageDialog(getContentPane(), "No order selected");
+                }
+            }
+        });
+        
+        op3.jbtn_completeOrder.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if (currentOrder != null ) {
+                    
+                    currentOrder.setStatus("complete");
+                    JOptionPane.showMessageDialog(getContentPane(), "Order Completed");
+                    resetOrderJLists();
+                    
+                } else {
+                    JOptionPane.showMessageDialog(getContentPane(), "No order selected");
+                }
+            }
+        });
+    
 
         fp1.jbtn_selectField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

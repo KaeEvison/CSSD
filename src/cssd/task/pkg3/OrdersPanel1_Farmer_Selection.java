@@ -9,12 +9,12 @@ package cssd.task.pkg3;
  *
  * @author thoma
  */
-public class OrdersPanel extends javax.swing.JPanel {
+public class OrdersPanel1_Farmer_Selection extends javax.swing.JPanel {
 
     /**
-     * Creates new form AMSGUI_OrdersPanel
+     * Creates new form OrdersPanel_Farmer
      */
-    public OrdersPanel() {
+    public OrdersPanel1_Farmer_Selection() {
         initComponents();
     }
 
@@ -29,9 +29,8 @@ public class OrdersPanel extends javax.swing.JPanel {
 
         jbtn_back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jbtn_makeOrder = new javax.swing.JButton();
+        jbtn_currentOrders = new javax.swing.JButton();
         jbtn_orderHistory = new javax.swing.JButton();
-        jbtn_manageFarmers = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -44,26 +43,22 @@ public class OrdersPanel extends javax.swing.JPanel {
         jLabel2.setText("View Orders");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, -1, -1));
 
-        jbtn_makeOrder.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jbtn_makeOrder.setText("Make an Order");
-        jbtn_makeOrder.setName(""); // NOI18N
-        add(jbtn_makeOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 358, 57));
+        jbtn_currentOrders.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jbtn_currentOrders.setText("Current Orders");
+        jbtn_currentOrders.setActionCommand("");
+        jbtn_currentOrders.setName(""); // NOI18N
+        add(jbtn_currentOrders, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 358, 57));
 
         jbtn_orderHistory.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_orderHistory.setText("Order History");
         add(jbtn_orderHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 358, 57));
-
-        jbtn_manageFarmers.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jbtn_manageFarmers.setText("Manage farmers");
-        add(jbtn_manageFarmers, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 358, 57));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     public javax.swing.JButton jbtn_back;
-    public javax.swing.JButton jbtn_makeOrder;
-    private javax.swing.JButton jbtn_manageFarmers;
-    private javax.swing.JButton jbtn_orderHistory;
+    public javax.swing.JButton jbtn_currentOrders;
+    public javax.swing.JButton jbtn_orderHistory;
     // End of variables declaration//GEN-END:variables
 }

@@ -25,7 +25,8 @@ public class AMSGUI_User extends javax.swing.JFrame {
     protected Server currentServer = null;
     
     private MenuPanel_User menu;
-    protected OrdersPanel op1;
+    private OrdersPanel1_User_Selection op1;
+    protected OrdersPanel2_OrderHistory op2;
     protected CardLayout layout;
     
     /**
@@ -49,10 +50,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
     // Default Constructor user by AMSGUI_Farmer to initialise inherited variables
     public AMSGUI_User() {
         initComponents();
-        op1 = new OrdersPanel();
-        contentPane.add(op1, "op1");
         getContentPane().setBackground(new Color(102,153,0));
-        
         addListeners();
     }
 
@@ -155,26 +153,20 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
     protected void initManualComponents(){
         menu = new MenuPanel_User();
-        op1 = new OrdersPanel();
+        op1 = new OrdersPanel1_User_Selection();
+        op2 = new OrdersPanel2_OrderHistory();
         
         layout = new CardLayout();
         
         contentPane.setLayout(layout);
         contentPane.add(menu, "menu");
         contentPane.add(op1, "op1");
+        contentPane.add(op2, "op2");
         
         pack();
         setLocationByPlatform(true);
         
         layout.show(contentPane, "menu");
-        
-        // The following cannot be inherrited by AMSGUI_Farmer in addListeners()
-        // because the menus are different types, so placed here instead
-        menu.jbtn_viewOrders.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                displayOrders();
-            }
-        });
     }
     
     // The following function has been moved to Server
@@ -190,18 +182,35 @@ public class AMSGUI_User extends javax.swing.JFrame {
         // TO DO
     }
     
-    
-    protected void addListeners(){
+    public void addListeners(){
         addWindowListener(new WindowAdapter(){
+            
             public void windowClosing( WindowEvent e){
                     JOptionPane.showMessageDialog(getContentPane(), "Logging Off");
             }
         });
         
-        
         op1.jbtn_back.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 layout.show(contentPane, "menu");
+            }
+        });
+        
+        menu.jbtn_viewOrders.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                displayOrders();
+            }
+        });
+        
+        op1.jbtn_orderHistory.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                layout.show(contentPane, "op2");
+            }
+        });
+        
+        op2.jbtn_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                layout.show(contentPane, "op1");
             }
         });
     }
