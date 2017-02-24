@@ -29,6 +29,7 @@ public class Server extends javax.swing.JFrame {
     private static String FILENAME = "readingsLog.ser";
     File outputFile = new File(FILENAME);
     private SetOfSensorMonitors allSensors = new SetOfSensorMonitors();
+    public ArrayList<Planting> availableCrops;
     
     private SetOfUsers users;
     private SetOfFarmers farmers;
@@ -46,6 +47,7 @@ public class Server extends javax.swing.JFrame {
         users = new SetOfUsers();
         farmers = new SetOfFarmers();
         orders = new SetOfOrders();
+        availableCrops = new ArrayList<Planting>();
         testData_initialiseUsers();
         
     }
@@ -212,7 +214,7 @@ public class Server extends javax.swing.JFrame {
             this.jtf_username.setText("");
             this.jtf_password.setText("");
 
-            new AMSGUI_User(currentUser, this).setVisible(true);
+            new AMSGUI_User(currentUser, this, availableCrops).setVisible(true);
         }
         else
         {
@@ -233,6 +235,23 @@ public class Server extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtn_submitActionPerformed
     
+    public SetOfFarmers getSuitableFarmers(Planting aPlanting)
+    {
+        SetOfFarmers suitableFarmers = new SetOfFarmers();
+        
+        for(int i=0; i<farmers.size(); ++i){
+            for(int j=0; j<(farmers.get(i).getFields()).size(); ++j){
+
+                if(farmers.get(i).getFields().getFieldByIndex(j).
+                        currentPlanting.getType().toLowerCase().
+                        equals(aPlanting.getType().toLowerCase()) ){
+                    suitableFarmers.add(farmers.get(i));
+                }
+            }
+        }
+        return suitableFarmers;
+    }
+    
     public void displayLogin(){
         this.setVisible(true);
     }
@@ -250,12 +269,28 @@ public class Server extends javax.swing.JFrame {
     
     private void testData_initialiseUsers()
     {
+        Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli;
+        
+        carrots = new Planting( "Carrots", 1000.10f );
+        sweetcorn = new Planting("Sweetcorn", 909.99f);
+        peas = new Planting("Peas", 908.78f);
+        sprouts = new Planting("Sprouts", 808.45f);
+        potatoes = new Planting("Potatoes", 1101.12f);
+        broccoli = new Planting("Broccoli", 998.77f);
+        
+        availableCrops.add(carrots);
+        availableCrops.add(sweetcorn);
+        availableCrops.add(peas);
+        availableCrops.add(sprouts);
+        availableCrops.add(potatoes);
+        availableCrops.add(broccoli);
+        
         farmers.addFarmer(
                 new Farmer(
                         "admin",
-                        "firstname",
-                        "surname",
-                        "location",
+                        "John",
+                        "Smith",
+                        "Hull",
                         "phoneno",
                         "password"
                 )
@@ -284,7 +319,7 @@ public class Server extends javax.swing.JFrame {
         planting1.setIsGrowing(false);
         
         Planting planting2 = new Planting();
-        planting2.setType("Wheat");
+        planting2.setType("Peas");
         planting2.setPricePerTon(109.33f);
         planting2.setGrowthTime(2);
         planting2.setIsGrowing(true);

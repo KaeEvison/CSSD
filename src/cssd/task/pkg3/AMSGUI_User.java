@@ -13,6 +13,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.DefaultListModel;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Year;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -23,16 +28,24 @@ public class AMSGUI_User extends javax.swing.JFrame {
     private User currentUser = null;
     protected Order currentOrder = null;
     protected Server currentServer = null;
+    private ArrayList<Planting> availableCrops;
+    private SetOfFarmers suitableFarmers = null;
+    private Planting requiredPlanting = null;
     
     private MenuPanel_User menu;
     private OrdersPanel1_User_Selection op1;
     protected OrdersPanel2_OrderHistory op2;
+    private OrdersPanel4_ProductSelection op4;
+    private OrdersPanel5_SuitableFarmers op5;
+    private OrdersPanel6_OrderDetails op6;
+    
+    private DecimalFormat df;
     protected CardLayout layout;
     
     /**
      * Creates new form AMSGUI_User
      */
-    public AMSGUI_User(User currentUser, Server server) {
+    public AMSGUI_User(User currentUser, Server server, ArrayList<Planting> crops) {
         initComponents();
         initManualComponents();
         
@@ -43,7 +56,9 @@ public class AMSGUI_User extends javax.swing.JFrame {
         this.currentServer = server;
         this.currentUser = currentUser;
         jbl_username.setText( currentUser.getUsername() );
- 
+        
+        this.availableCrops = crops;
+        
         addListeners();
     }
     
@@ -152,9 +167,15 @@ public class AMSGUI_User extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     protected void initManualComponents(){
+        df = new DecimalFormat("##.##");
         menu = new MenuPanel_User();
         op1 = new OrdersPanel1_User_Selection();
         op2 = new OrdersPanel2_OrderHistory();
+        op4 = new OrdersPanel4_ProductSelection();
+        op5 = new OrdersPanel5_SuitableFarmers();
+        op5.model = new DefaultListModel<Farmer>();
+        op2.model = new DefaultListModel<Order>();
+        op6 = new OrdersPanel6_OrderDetails();
         
         layout = new CardLayout();
         
@@ -162,6 +183,9 @@ public class AMSGUI_User extends javax.swing.JFrame {
         contentPane.add(menu, "menu");
         contentPane.add(op1, "op1");
         contentPane.add(op2, "op2");
+        contentPane.add(op4, "op4");
+        contentPane.add(op5, "op5");
+        contentPane.add(op6, "op6");
         
         pack();
         setLocationByPlatform(true);
@@ -177,9 +201,130 @@ public class AMSGUI_User extends javax.swing.JFrame {
         this.layout.show(contentPane, "op1");
     }
     
-    private void displaySuitableFarmers()
-    {
-        // TO DO
+    public void displayOrderHistory(){
+        if(currentUser != null &&
+                currentUser.orders.size() > 0){
+            
+            op2.model.clear();
+            
+            for(int i=0; i<currentUser.orders.size(); ++i){
+                op2.model.addElement("#" + (i + 1) 
+                    + ".       Supplier: " + currentUser.orders.get(i).
+                            getSupplier().getFirstName() 
+                    + currentUser.orders.get(i).getSupplier().getSurname()
+                    + "        Delivery Date: " + currentUser.orders.get(i).getEstimatedDeliveryDate().toLocalDate()
+                    + "        Crop: " + currentUser.orders.get(i).getCrop() 
+                    + "        Total: " + df.format(currentUser.orders.get(i).getCost())
+                    + "        Status: " + currentUser.orders.get(i).getStatus()
+                );
+            }
+        
+            op2.jlPickOrder.setModel(op2.model);
+            this.layout.show(contentPane, "op2");
+        }
+        else{
+            JOptionPane.showMessageDialog(getContentPane(), "No order(s) found.");
+        }
+    }
+    
+    private void clickSelectCrop(int crop){
+        
+        requiredPlanting = availableCrops.get(crop);
+        suitableFarmers = currentServer.getSuitableFarmers(requiredPlanting);
+        
+        if( suitableFarmers != null 
+                &&suitableFarmers.size() > 0){
+            //JOptionPane.showMessageDialog(getContentPane(), "Suitable farmer(s) found for: " + aPlanting.getType());
+            op5.model.clear();
+            
+            Planting planting;
+            float price = 0.0f;
+            
+            for(int i=0; i<suitableFarmers.size(); ++i ){
+                for(int j=0; j<(suitableFarmers.get(i).getFields()).size(); ++j){
+                    
+                    planting = suitableFarmers.get(i).getFields().getFieldByIndex(j).
+                            currentPlanting;
+                    
+                    if(planting.getType().toLowerCase().
+                        equals(requiredPlanting.getType().toLowerCase()) ){
+                        price = planting.getPricePerTon();
+                    }
+                }
+                
+                op5.model.addElement("Name: " + suitableFarmers.get(i).getFirstName() +  " " 
+                        + suitableFarmers.get(i).getSurname() 
+                        + "           Location: " + suitableFarmers.get(i).getLocation() 
+                        + "           Price: " + price );
+            }
+            
+            op5.jlPickFarmer.setModel(op5.model);
+            displaySuitableFarmers();
+        }
+        else
+            JOptionPane.showMessageDialog(getContentPane(), "No suitable farmer(s) found");
+        
+    }
+    
+    private void clickSelectFarmer(){
+        Farmer aFarmer = suitableFarmers.get(op5.jlPickFarmer.getSelectedIndex());
+        Planting aPlanting = null;
+        
+        for(int i = 0; i<aFarmer.getFields().size(); ++i){
+            if( aFarmer.getFields().getFieldByIndex(i).currentPlanting.getType().
+                    toLowerCase().equals(requiredPlanting.getType().toLowerCase()) ){
+                aPlanting = aFarmer.getFields().getFieldByIndex(i).currentPlanting;
+            }
+        }
+        
+        if( aFarmer != null 
+                && aPlanting != null){
+            displayOrderDetails(aFarmer, aPlanting);
+        }
+        else
+            JOptionPane.showMessageDialog(getContentPane(), "There was an error with the requested farmer or planting");
+    }
+    
+    private void displaySuitableFarmers(){
+        layout.show(contentPane, "op5");
+    }
+    
+    private void displayOrderDetails(Farmer aFarmer, Planting aPlanting){
+        
+        currentOrder = new Order(
+             aPlanting.getType(),
+             aPlanting.getPricePerTon(),
+             aFarmer,
+             currentUser,
+             LocalDateTime.now().plusDays(aPlanting.getGrowthTime()),
+             LocalDateTime.now(),
+             "active"
+        );
+
+        if( currentOrder != null){
+            op6.lbl_name.setText(currentOrder.getSupplier().getFirstName() + " " 
+                + currentOrder.getSupplier().getSurname());
+            op6.lbl_location.setText(currentOrder.getSupplier().getLocation());
+            op6.lbl_phone.setText(currentOrder.getSupplier().getPhoneNumber());
+            op6.lbl_product.setText(currentOrder.getCrop());
+            op6.lbl_delivery.setText(currentOrder.getEstimatedDeliveryDate().toLocalDate() + "");
+            op6.lbl_price.setText(df.format(currentOrder.getCost()) + "");
+            
+            layout.show(contentPane, "op6");
+        }
+        else
+           JOptionPane.showMessageDialog(getContentPane(), "Sorry, There was an issue with the order.");
+    }
+    
+    public void clickSendOrder(){
+        if(currentOrder != null){
+            currentUser.orders.add(currentOrder);
+            currentOrder = null;
+            JOptionPane.showMessageDialog(getContentPane(), "Order Successfully created.");
+            layout.show(contentPane, "menu");
+        }
+        else
+            JOptionPane.showMessageDialog(getContentPane(), "Error: Order could not be saved."); 
     }
     
     public void addListeners(){
@@ -202,9 +347,15 @@ public class AMSGUI_User extends javax.swing.JFrame {
             }
         });
         
+        menu.jButton3.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                JOptionPane.showMessageDialog(getContentPane(), "Coming Soon");
+            }
+        });
+        
         op1.jbtn_orderHistory.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                layout.show(contentPane, "op2");
+                displayOrderHistory();
             }
         });
         
@@ -213,6 +364,81 @@ public class AMSGUI_User extends javax.swing.JFrame {
                 layout.show(contentPane, "op1");
             }
         });
+        
+        op1.jbtn_makeOrder.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                layout.show(contentPane, "op4");
+            }
+        });
+        
+        op4.jbtn_selectCrop.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if( op4.jrb_broccoli.isSelected() ){
+                    clickSelectCrop(5);
+                }
+                else if( op4.jrb_carrots.isSelected() ){
+                    clickSelectCrop(0);
+                }
+                else if( op4.jrb_peas.isSelected() ){
+                    clickSelectCrop(2);
+                }
+                else if( op4.jrb_potatoes.isSelected() ){
+                    clickSelectCrop(4);
+                }
+                else if( op4.jrb_sprouts.isSelected() ){
+                        clickSelectCrop(3);
+                }
+                else if( op4.jrb_sweetcorn.isSelected() ){
+                    clickSelectCrop(1);
+                }
+                else{
+                    JOptionPane.showMessageDialog(getContentPane(), "Please select a crop");
+                }
+            }
+        });
+        
+        op4.jbtn_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                layout.show(contentPane, "op1");
+            }
+        });
+        
+        op5.jbtn_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                layout.show(contentPane, "op4");
+            }
+        });
+        
+        op5.jbtn_selectFarmer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if ( suitableFarmers != null ){
+                    
+                    clickSelectFarmer();
+                }
+                else
+                   JOptionPane.showMessageDialog(getContentPane(), "No suitable farmers available"); 
+            }
+        });
+        
+        op6.jbtn_back.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                layout.show(contentPane, "op5");
+            }
+        });
+        
+        op6.jbtn_sendOrder.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               clickSendOrder();
+            }
+        });
+        
+        op1.jbtn_manageFarmers.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+               JOptionPane.showMessageDialog(getContentPane(), "Coming Soon."); 
+            }
+        });
+        
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -25,7 +25,6 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     private Field currentField;
     private SetOfSensorReadings currentSensorReadings;
     private SetOfFields fields;
-    //private ArrayList<Planting> availableCrops;
 
     private MenuPanel_Farmer menu;
     private OrdersPanel1_Farmer_Selection op1;

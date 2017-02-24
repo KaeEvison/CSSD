@@ -63,7 +63,7 @@ public class OrdersPanel1_User_Selection extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     public javax.swing.JButton jbtn_back;
     public javax.swing.JButton jbtn_makeOrder;
-    private javax.swing.JButton jbtn_manageFarmers;
+    public javax.swing.JButton jbtn_manageFarmers;
     public javax.swing.JButton jbtn_orderHistory;
     // End of variables declaration//GEN-END:variables
 }
