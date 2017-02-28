@@ -63,12 +63,27 @@ public class FieldsPanel4_RecordHarvest extends javax.swing.JPanel {
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, -1));
 
         jspnYield.setModel(new SpinnerNumberModel(0.0, 0.0, 100.00, 0.1));
+        jspnYield.setName(""); // NOI18N
         add(jspnYield, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 152, -1));
 
         jbtn_submit.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_submit.setText("Submit");
+        jbtn_submit.setName("btnRecordHarvest"); // NOI18N
+        jbtn_submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_submitActionPerformed(evt);
+            }
+        });
         add(jbtn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 360, 50));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtn_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_submitActionPerformed
+        //------------------------
+        //Dont know how to fetch planting/farmer name
+        //------------------------
+        Harvest newHarvest = new Harvest(new Planting(), jdccRecordHarvest.getCurrent().getTime(), (double)jspnYield.getValue());
+        Server.recordHarvest(newHarvest, "Jim");
+    }//GEN-LAST:event_jbtn_submitActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

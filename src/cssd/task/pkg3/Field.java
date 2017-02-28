@@ -16,6 +16,7 @@ public class Field {
     Planting currentPlanting;
     FieldArea fieldArea;
     ArrayList<Harvest> harvestHistory;
+    SetOfSensorMonitors activeMonitors;
     //ArrayList<AutomatedMachineryMonitor> automatedMachineryMonitor;
     
     public Field(Planting a, FieldArea b, ArrayList<Harvest> c) {
@@ -39,5 +40,16 @@ public class Field {
     
     public ArrayList<Harvest> getHarvestHistory() {
         return harvestHistory;
+    }
+    
+    public void addSensorMonitor(Sensor newSensor)
+    {
+        SensorMonitor newMonitor = new SensorMonitor(newSensor);
+        activeMonitors.add(newMonitor);
+    }
+    
+    public SetOfSensorMonitors getMonitors()
+    {
+        return activeMonitors;
     }
 }

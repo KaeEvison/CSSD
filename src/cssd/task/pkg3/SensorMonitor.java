@@ -19,6 +19,11 @@ public class SensorMonitor {
     private Sensor sensor;
     private int interval = 0;
     private Date lastReadingTime;
+    
+    public SensorMonitor(Sensor newSensor)
+    {
+        sensor = newSensor;
+    }
 
     public Sensor getSensor() {
         return sensor;

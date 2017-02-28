@@ -17,6 +17,22 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
     public FieldsPanel3_CheckCrops() {
         initComponents();
     }
+    
+    //----------------
+    //populate the text boxes with the values from current field's sensors
+    //hopefully dynamically generate labels and text boxes if we're allowing the sddition of sensors
+    //if so need add and remove sensor buttons
+    //update button? or try to auto update at intervals?
+    
+    
+    //code for record readings button will be along the lines of:
+    
+    //new setofsensorreadings ex
+    //for each in current field's setofsensormonitors
+    //                      fetch reading from pertaining sensor
+    //                      add that reading to ex
+    //recordreadings(ex)
+    //----------------
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,13 +55,24 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jbl_title = new javax.swing.JLabel();
         jbtn_back = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jtf_soilAcidity.setName("txtSoilAcidity"); // NOI18N
         add(jtf_soilAcidity, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 150, -1));
+
+        jtf_airTemp.setName("txtAirTemperature"); // NOI18N
         add(jtf_airTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 150, -1));
+
+        jtf_soilMoisture.setName("txtSoilMoisture"); // NOI18N
         add(jtf_soilMoisture, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 150, -1));
+
+        jtf_light.setName("txtLight"); // NOI18N
         add(jtf_light, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 150, -1));
+
+        jtf_soilTemp.setName("txtSoilTemperature"); // NOI18N
         add(jtf_soilTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 150, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -75,10 +102,15 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         jbtn_back.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_back.setText("Back");
         add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+
+        jButton1.setText("Save current readings");
+        jButton1.setName("btnAddReadings"); // NOI18N
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

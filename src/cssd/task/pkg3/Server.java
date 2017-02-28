@@ -52,12 +52,13 @@ public class Server extends javax.swing.JFrame {
         
     }
     
-    public void addReadings(SetOfSensorReadings newReadings, String username)
+    public void recordReadings(SetOfSensorReadings newReadings, String username)
     {
         FILENAME = username;
+        FILENAME += "Readings";
         FILENAME += ".ser";
         SetOfSensorReadings readingHolder = new SetOfSensorReadings();
-        readingHolder = readLog(username);
+        readingHolder = retrieveReadings(username);
         readingHolder.append(newReadings);
         //GUI UPDATE WITH VALUES
         try
@@ -70,31 +71,44 @@ public class Server extends javax.swing.JFrame {
         }
     }
     
-    public SetOfSensorReadings readLog(String username)
+    public SetOfSensorReadings retrieveReadings(String username)
     {
-        SetOfSensorReadings log = new SetOfSensorReadings();
+        SetOfSensorReadings data = new SetOfSensorReadings();
         String filename = new String("");
         filename = username;
+        filename += "Readings";
         filename += ".ser";
-        File checkExists = new File(filename);
-        if (checkExists.exists() == true)
+        data = (SetOfSensorReadings)readFile(filename);
+        return data;
+    }
+    
+    public static void recordHarvest(Harvest newHarvest, String username)
+    {
+        FILENAME = username;
+        FILENAME += "Harvests";
+        FILENAME += ".ser";
+        ArrayList<Harvest> harvestHolder = new ArrayList();
+        harvestHolder = retrieveHarvests(username);
+        harvestHolder.add(newHarvest);
+        try
         {
-            try
-            {
-                log = (SetOfSensorReadings)Deserialize(filename);
-            }
-            catch (IOException e)
-            {
-                System.out.println(e);
-            }
-            catch (ClassNotFoundException e)
-            {
-                System.out.println(e);
-            }
+            Serialize(harvestHolder, FILENAME);
         }
-        else
-            System.out.println("FILE NOT FOUND");
-        return log;
+        catch (IOException e)
+        {
+            System.out.println(e);
+        }
+    }
+    
+    public static ArrayList<Harvest> retrieveHarvests(String username)
+    {
+        ArrayList<Harvest> data = new ArrayList();
+        String filename = new String("");
+        filename = username;
+        filename += "Harvests";
+        filename += ".ser";
+        data = (ArrayList<Harvest>)readFile(filename);
+        return data;
     }
     
     public SetOfSensorReadings getReadingsForFieldArea(FieldArea fieldArea)
@@ -126,6 +140,30 @@ public class Server extends javax.swing.JFrame {
         in.close();
 
         return obj;
+    }
+    
+    public static Object readFile(String filename)
+    {
+        Object returnObj = new Object();
+        File checkExists = new File(filename);
+        if (checkExists.exists() == true)
+        {
+            try
+            {
+                returnObj = Deserialize(filename);
+            }
+            catch (IOException e)
+            {
+                System.out.println(e);
+            }
+            catch (ClassNotFoundException e)
+            {
+                System.out.println(e);
+            }
+        }
+        else
+            System.out.println("FILE NOT FOUND");
+        return returnObj;
     }
     
     /**
