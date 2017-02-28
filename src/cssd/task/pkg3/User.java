@@ -16,8 +16,56 @@ public class User {
     private String location;
     private String phoneNumber;
     private String password;
-    private SetOfOrders orders;
+    protected SetOfOrders orders;
+    
+    public User (String username, 
+        String firstName, String surname, 
+        String location, String 
+        phoneNumber, String password)
+    {
+        this.username = username;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.location = location;
+        this.phoneNumber = phoneNumber;
+        this.password = password;
+    
+        orders = new SetOfOrders();
+    
+    }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+    
     public String getUsername() {
         return username;
     }
@@ -25,17 +73,6 @@ public class User {
     public String getPassword() {
         return password;
     }
-    
-public User (String username, String firstName, String surname, String location, String phoneNumber, String password)
-{
-    this.username = username;
-    this.firstName = firstName;
-    this.surname = surname;
-    this.location = location;
-    this.phoneNumber = phoneNumber;
-    this.password = password;
-    
-}
     
 public void changePassword(String newPass, String oldPass)
 {
@@ -47,7 +84,6 @@ public void changePassword(String newPass, String oldPass)
     {
         System.out.println("Password Incorrect");
     }
-    
 }
 
 public void addOrder(Order newOrder)

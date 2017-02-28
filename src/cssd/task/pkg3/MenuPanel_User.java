@@ -26,7 +26,6 @@ public class MenuPanel_User extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -38,41 +37,19 @@ public class MenuPanel_User extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(102, 153, 0));
         jPanel1.setLayout(new java.awt.GridBagLayout());
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel2.setText("Menu");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 163, 0, 0);
-        jPanel1.add(jLabel2, gridBagConstraints);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
 
         jbtn_viewOrders.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_viewOrders.setText("View Orders");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 195;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 21, 0, 21);
-        jPanel1.add(jbtn_viewOrders, gridBagConstraints);
+        add(jbtn_viewOrders, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 358, 57));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton3.setText("My Account");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 203;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 21, 32, 21);
-        jPanel1.add(jButton3, gridBagConstraints);
-
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 358, 57));
     }// </editor-fold>//GEN-END:initComponents
 
 

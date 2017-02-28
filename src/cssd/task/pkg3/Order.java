@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * @author b3014277
  */
 public class Order {
-   
+    
     private String crop;
     private double cost;
     private Farmer supplier;

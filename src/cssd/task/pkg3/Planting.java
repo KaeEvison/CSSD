@@ -23,6 +23,11 @@ public class Planting {
     
     public Planting(){}
     
+    public Planting( String type, float pricePerTon){
+        this.type = type; 
+        this.pricePerTon = pricePerTon; 
+    }
+    
     public Planting(String type, 
             float pricePerTon, 
             int growthTime, 
