@@ -82,23 +82,23 @@ public class Server extends javax.swing.JFrame {
         return data;
     }
     
-    public static void recordHarvest(Harvest newHarvest, String username)
-    {
-        FILENAME = username;
-        FILENAME += "Harvests";
-        FILENAME += ".ser";
-        ArrayList<Harvest> harvestHolder = new ArrayList();
-        harvestHolder = retrieveHarvests(username);
-        harvestHolder.add(newHarvest);
-        try
-        {
-            Serialize(harvestHolder, FILENAME);
-        }
-        catch (IOException e)
-        {
-            System.out.println(e);
-        }
-    }
+//    public static void recordHarvest(Harvest newHarvest, String username)
+//    {
+//        FILENAME = username;
+//        FILENAME += "Harvests";
+//        FILENAME += ".ser";
+//        ArrayList<Harvest> harvestHolder = new ArrayList();
+//        harvestHolder = retrieveHarvests(username);
+//        harvestHolder.add(newHarvest);
+//        try
+//        {
+//            Serialize(harvestHolder, FILENAME);
+//        }
+//        catch (IOException e)
+//        {
+//            System.out.println(e);
+//        }
+//    }
     
     public static ArrayList<Harvest> retrieveHarvests(String username)
     {
@@ -108,6 +108,30 @@ public class Server extends javax.swing.JFrame {
         filename += "Harvests";
         filename += ".ser";
         data = (ArrayList<Harvest>)readFile(filename);
+        return data;
+    }
+    
+    public static void recordUser(User user)
+    {
+        FILENAME = user.getUsername();
+        FILENAME += ".ser";
+        try
+        {
+            Serialize(user, FILENAME);
+        }
+        catch (IOException e)
+        {
+            System.out.println(e);
+        }
+    }
+    
+    public static User retrieveUser(String username)
+    {
+        User data = new User(null, null, null, null, null, null);
+        String filename = new String("");
+        filename = username;
+        filename += ".ser";
+        data = (User)readFile(filename);
         return data;
     }
     

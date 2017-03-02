@@ -81,8 +81,8 @@ public class FieldsPanel4_RecordHarvest extends javax.swing.JPanel {
         //------------------------
         //Dont know how to fetch planting/farmer name
         //------------------------
-        Harvest newHarvest = new Harvest(new Planting(), jdccRecordHarvest.getCurrent().getTime(), (double)jspnYield.getValue());
-        Server.recordHarvest(newHarvest, "Jim");
+//        Harvest newHarvest = new Harvest(new Planting(), jdccRecordHarvest.getCurrent().getTime(), (double)jspnYield.getValue());
+//        Server.recordHarvest(newHarvest, "Jim");
     }//GEN-LAST:event_jbtn_submitActionPerformed
     
 
