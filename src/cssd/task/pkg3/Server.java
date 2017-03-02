@@ -318,12 +318,22 @@ public class Server extends javax.swing.JFrame {
         this.setVisible(true);
     }
     
-    void setOrders(Farmer farmer)
+    void getFarmerOrders(Farmer farmer)
     {
         if(orders.size() > 0){
             for(int i=0; i<orders.size(); ++i){
                 if(orders.get(i).getSupplier() == farmer){
                     farmer.addOrder(orders.get(i));
+                }
+            }
+        }
+    }
+    
+    void getUserOrders(User user){
+        if(orders.size() > 0){
+            for(int i=0; i<orders.size(); ++i){
+                if(orders.get(i).getSupplier() == user){
+                    user.addOrder(orders.get(i));
                 }
             }
         }
@@ -446,7 +456,8 @@ public class Server extends javax.swing.JFrame {
         
         orders.add(order1);
         orders.add(order2);
-        setOrders(farmers.get(0));
+        getFarmerOrders(farmers.get(0));
+        getUserOrders(farmers.get(0));
     }
     
     private void jtf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_usernameActionPerformed
