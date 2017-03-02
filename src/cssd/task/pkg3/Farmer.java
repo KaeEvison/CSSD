@@ -31,6 +31,7 @@ public class Farmer extends User{
         super(username, firstName, surname, location, phoneNumber, password);
         fields = new SetOfFields(new ArrayList<Field>());
         orders = new SetOfOrders();
+        isFarmer = true;
     }
     
     private Boolean hasAutomatedMachinery = false;
@@ -51,6 +52,11 @@ public class Farmer extends User{
     // Calls getGrowthTime but this returns an int?
     int getTimeForCrop(Planting planting){
         return planting.getGrowthTime();
+    }
+    
+    public String getUserType()
+    {
+        return "Farmer";
     }
     
 }

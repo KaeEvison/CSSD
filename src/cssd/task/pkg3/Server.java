@@ -6,6 +6,8 @@
 package cssd.task.pkg3;
 
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -40,99 +42,44 @@ public class Server extends javax.swing.JFrame {
         initComponents();
         getContentPane().setBackground(new Color(102,153,0));
         setTitle("AMS Login");
+        
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        addWindowListener(new WindowAdapter()
+        {
+            public void windowClosing(WindowEvent e)
+            {
+                serializeAll(farmers, users, orders);
+            }
+        });
         
         allSensors = initialSensors;
         
         users = new SetOfUsers();
         farmers = new SetOfFarmers();
         orders = new SetOfOrders();
+        deserializeAll();
         availableCrops = new ArrayList<Planting>();
-        testData_initialiseUsers();
-        
     }
     
-    public void recordReadings(SetOfSensorReadings newReadings, String username)
+    public static void serializeAll(SetOfFarmers farmerData, SetOfUsers userData, SetOfOrders orderData)
     {
-        FILENAME = username;
-        FILENAME += "Readings";
-        FILENAME += ".ser";
-        SetOfSensorReadings readingHolder = new SetOfSensorReadings();
-        readingHolder = retrieveReadings(username);
-        readingHolder.append(newReadings);
-        //GUI UPDATE WITH VALUES
         try
         {
-            Serialize(readingHolder, FILENAME);
+            Serialize(farmerData, "farmers.ser");
+            Serialize(userData, "users.ser");
+            Serialize(orderData, "orders.ser");
         }
-        catch (IOException e)
+        catch (IOException ex)
         {
-            System.out.println(e);
+            System.out.println(ex);
         }
     }
     
-    public SetOfSensorReadings retrieveReadings(String username)
+    public void deserializeAll()
     {
-        SetOfSensorReadings data = new SetOfSensorReadings();
-        String filename = new String("");
-        filename = username;
-        filename += "Readings";
-        filename += ".ser";
-        data = (SetOfSensorReadings)readFile(filename);
-        return data;
-    }
-    
-//    public static void recordHarvest(Harvest newHarvest, String username)
-//    {
-//        FILENAME = username;
-//        FILENAME += "Harvests";
-//        FILENAME += ".ser";
-//        ArrayList<Harvest> harvestHolder = new ArrayList();
-//        harvestHolder = retrieveHarvests(username);
-//        harvestHolder.add(newHarvest);
-//        try
-//        {
-//            Serialize(harvestHolder, FILENAME);
-//        }
-//        catch (IOException e)
-//        {
-//            System.out.println(e);
-//        }
-//    }
-    
-    public static ArrayList<Harvest> retrieveHarvests(String username)
-    {
-        ArrayList<Harvest> data = new ArrayList();
-        String filename = new String("");
-        filename = username;
-        filename += "Harvests";
-        filename += ".ser";
-        data = (ArrayList<Harvest>)readFile(filename);
-        return data;
-    }
-    
-    public static void recordUser(User user)
-    {
-        FILENAME = user.getUsername();
-        FILENAME += ".ser";
-        try
-        {
-            Serialize(user, FILENAME);
-        }
-        catch (IOException e)
-        {
-            System.out.println(e);
-        }
-    }
-    
-    public static User retrieveUser(String username)
-    {
-        User data = new User(null, null, null, null, null, null);
-        String filename = new String("");
-        filename = username;
-        filename += ".ser";
-        data = (User)readFile(filename);
-        return data;
+        users = readUsers();
+        farmers = readFarmers();
+        orders = readOrders();
     }
     
     public SetOfSensorReadings getReadingsForFieldArea(FieldArea fieldArea)
@@ -166,15 +113,15 @@ public class Server extends javax.swing.JFrame {
         return obj;
     }
     
-    public static Object readFile(String filename)
+    public static SetOfUsers readUsers()
     {
-        Object returnObj = new Object();
-        File checkExists = new File(filename);
-        if (checkExists.exists() == true)
+        SetOfUsers data = new SetOfUsers();
+        File fileCheck = new File("users.ser");
+        if (fileCheck.exists() == true)
         {
             try
             {
-                returnObj = Deserialize(filename);
+                data = (SetOfUsers)Deserialize("users.ser");
             }
             catch (IOException e)
             {
@@ -186,8 +133,56 @@ public class Server extends javax.swing.JFrame {
             }
         }
         else
-            System.out.println("FILE NOT FOUND");
-        return returnObj;
+            System.out.println("USERS FILE NOT FOUND");
+        return data;
+    }
+    
+    public static SetOfFarmers readFarmers()
+    {
+        SetOfFarmers data = new SetOfFarmers();
+        File fileCheck = new File("farmers.ser");
+        if (fileCheck.exists() == true)
+        {
+            try
+            {
+                data = (SetOfFarmers)Deserialize("farmers.ser");
+            }
+            catch (IOException e)
+            {
+                System.out.println(e);
+            }
+            catch (ClassNotFoundException e)
+            {
+                System.out.println(e);
+            }
+        }
+        else
+            System.out.println("FARMERS FILE NOT FOUND");
+        return data;
+    }
+    
+    public static SetOfOrders readOrders()
+    {
+        SetOfOrders data = new SetOfOrders();
+        File fileCheck = new File("orders.ser");
+        if (fileCheck.exists() == true)
+        {
+            try
+            {
+                data = (SetOfOrders)Deserialize("orders.ser");
+            }
+            catch (IOException e)
+            {
+                System.out.println(e);
+            }
+            catch (ClassNotFoundException e)
+            {
+                System.out.println(e);
+            }
+        }
+        else
+            System.out.println("ORDERS FILE NOT FOUND");
+        return data;
     }
     
     /**
@@ -339,126 +334,126 @@ public class Server extends javax.swing.JFrame {
         }
     }
     
-    private void testData_initialiseUsers()
-    {
-        Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli;
-        
-        carrots = new Planting( "Carrots", 1000.10f );
-        sweetcorn = new Planting("Sweetcorn", 909.99f);
-        peas = new Planting("Peas", 908.78f);
-        sprouts = new Planting("Sprouts", 808.45f);
-        potatoes = new Planting("Potatoes", 1101.12f);
-        broccoli = new Planting("Broccoli", 998.77f);
-        
-        availableCrops.add(carrots);
-        availableCrops.add(sweetcorn);
-        availableCrops.add(peas);
-        availableCrops.add(sprouts);
-        availableCrops.add(potatoes);
-        availableCrops.add(broccoli);
-        
-        farmers.addFarmer(
-                new Farmer(
-                        "admin",
-                        "John",
-                        "Smith",
-                        "Hull",
-                        "phoneno",
-                        "password"
-                )
-        );
-        
-        SetOfFields fields = new SetOfFields(new ArrayList<Field>());
-        
-        ArrayList<Harvest> harvests = new ArrayList<Harvest>();
-        
-        Location points[] = new Location[4];
-        points[0] = new Location(0, 0);
-        points[1] = new Location(1, 0);
-        points[2] = new Location(1, 1);
-        points[3] = new Location(0, 1);
-        
-        Location points2[] = new Location[4];
-        points2[0] = new Location(2, 4);
-        points2[1] = new Location(4, 2);
-        points2[2] = new Location(4, 4);
-        points2[3] = new Location(2, 4);
-        
-        Planting planting1 = new Planting();
-        planting1.setType("Bananas");
-        planting1.setPricePerTon(902.92f);
-        planting1.setGrowthTime(6);
-        planting1.setIsGrowing(false);
-        
-        Planting planting2 = new Planting();
-        planting2.setType("Peas");
-        planting2.setPricePerTon(109.33f);
-        planting2.setGrowthTime(2);
-        planting2.setIsGrowing(true);
-        
-        fields.addField(new Field(planting1, new FieldArea(points), harvests));
-        fields.addField(new Field(planting2, new FieldArea(points2), harvests));
-        
-        farmers.get(0).setFields(fields);
-        
-        users.addUser(
-                new User(
-                        "trkirk",
-                        "thomas",
-                        "kirk",
-                        "sheffield",
-                        "0114 2483710",
-                        "Pa55w0rd"
-                )
-        );
-        
-        users.addUser(
-                new User(
-                        "kevison",
-                        "kae",
-                        "evison",
-                        "sheffield",
-                        "0114 2456712",
-                        "Pa55w0rd2"
-                )
-        );
-        
-        users.addUser(
-                new User(
-                        "sgeorge",
-                        "sam",
-                        "george",
-                        "manchester",
-                        "07734737348",
-                        "password3"
-                )
-        );
-        
-        Order order1 = new Order(
-                "Peas",
-                12.33,
-                farmers.get(0),
-                users.get(0),
-                LocalDateTime.of(2017, Month.MARCH, 27, 17, 28),
-                LocalDateTime.now(),
-                "active"
-        );
-        
-        Order order2 = new Order(
-                "Carrots",
-                10.76,
-                farmers.get(0),
-                users.get(0),
-                LocalDateTime.of(2017, Month.MARCH, 26, 12, 21),
-                LocalDateTime.now(),
-                "complete"
-        );
-        
-        orders.add(order1);
-        orders.add(order2);
-        getFarmerOrders(farmers.get(0));
-        getUserOrders(farmers.get(0));
-    }
+//    private void testData_initialiseUsers()
+//    {
+//        Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli;
+//        
+//        carrots = new Planting( "Carrots", 1000.10f );
+//        sweetcorn = new Planting("Sweetcorn", 909.99f);
+//        peas = new Planting("Peas", 908.78f);
+//        sprouts = new Planting("Sprouts", 808.45f);
+//        potatoes = new Planting("Potatoes", 1101.12f);
+//        broccoli = new Planting("Broccoli", 998.77f);
+//        
+//        availableCrops.add(carrots);
+//        availableCrops.add(sweetcorn);
+//        availableCrops.add(peas);
+//        availableCrops.add(sprouts);
+//        availableCrops.add(potatoes);
+//        availableCrops.add(broccoli);
+//        
+//        farmers.addFarmer(
+//                new Farmer(
+//                        "admin",
+//                        "John",
+//                        "Smith",
+//                        "Hull",
+//                        "phoneno",
+//                        "password"
+//                )
+//        );
+//        
+//        SetOfFields fields = new SetOfFields(new ArrayList<Field>());
+//        
+//        ArrayList<Harvest> harvests = new ArrayList<Harvest>();
+//        
+//        Location points[] = new Location[4];
+//        points[0] = new Location(0, 0);
+//        points[1] = new Location(1, 0);
+//        points[2] = new Location(1, 1);
+//        points[3] = new Location(0, 1);
+//        
+//        Location points2[] = new Location[4];
+//        points2[0] = new Location(2, 4);
+//        points2[1] = new Location(4, 2);
+//        points2[2] = new Location(4, 4);
+//        points2[3] = new Location(2, 4);
+//        
+//        Planting planting1 = new Planting();
+//        planting1.setType("Bananas");
+//        planting1.setPricePerTon(902.92f);
+//        planting1.setGrowthTime(6);
+//        planting1.setIsGrowing(false);
+//        
+//        Planting planting2 = new Planting();
+//        planting2.setType("Peas");
+//        planting2.setPricePerTon(109.33f);
+//        planting2.setGrowthTime(2);
+//        planting2.setIsGrowing(true);
+//        
+//        fields.addField(new Field(planting1, new FieldArea(points), harvests));
+//        fields.addField(new Field(planting2, new FieldArea(points2), harvests));
+//        
+//        farmers.get(0).setFields(fields);
+//        
+//        users.addUser(
+//                new User(
+//                        "trkirk",
+//                        "thomas",
+//                        "kirk",
+//                        "sheffield",
+//                        "0114 2483710",
+//                        "Pa55w0rd"
+//                )
+//        );
+//        
+//        users.addUser(
+//                new User(
+//                        "kevison",
+//                        "kae",
+//                        "evison",
+//                        "sheffield",
+//                        "0114 2456712",
+//                        "Pa55w0rd2"
+//                )
+//        );
+//        
+//        users.addUser(
+//                new User(
+//                        "sgeorge",
+//                        "sam",
+//                        "george",
+//                        "manchester",
+//                        "07734737348",
+//                        "password3"
+//                )
+//        );
+//        
+//        Order order1 = new Order(
+//                "Peas",
+//                12.33,
+//                farmers.get(0),
+//                users.get(0),
+//                LocalDateTime.of(2017, Month.MARCH, 27, 17, 28),
+//                LocalDateTime.now(),
+//                "active"
+//        );
+//        
+//        Order order2 = new Order(
+//                "Carrots",
+//                10.76,
+//                farmers.get(0),
+//                users.get(0),
+//                LocalDateTime.of(2017, Month.MARCH, 26, 12, 21),
+//                LocalDateTime.now(),
+//                "complete"
+//        );
+//        
+//        orders.add(order1);
+//        orders.add(order2);
+//        getFarmerOrders(farmers.get(0));
+//        getUserOrders(farmers.get(0));
+//    }
     
     private void jtf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_usernameActionPerformed
         // TODO add your handling code here:

@@ -19,6 +19,7 @@ public class SensorMonitor {
     private Sensor sensor;
     private int interval = 0;
     private Date lastReadingTime;
+    private SetOfSensorReadings log;
     
     public SensorMonitor(Sensor newSensor)
     {
@@ -50,11 +51,19 @@ public class SensorMonitor {
     }
     
     public SensorReading getNewReading(double pValue, String pUnit, String pType, Location pLocation){
-        return sensor.takeReading(pValue, pUnit, pType, pLocation);
+        SensorReading holder;
+        holder = sensor.takeReading(pValue, pUnit, pType, pLocation);
+        log.add(holder);
+        return holder;
     }
     
     public Location getLocation()
     {
         return sensor.getLocation();
+    }
+    
+    public SetOfSensorReadings getReadings()
+    {
+        return log;
     }
 }

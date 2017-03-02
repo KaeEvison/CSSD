@@ -17,6 +17,7 @@ public class User {
     private String phoneNumber;
     private String password;
     protected SetOfOrders orders;
+    public boolean isFarmer;
     
     public User (String username, 
         String firstName, String surname, 
@@ -31,6 +32,8 @@ public class User {
         this.password = password;
     
         orders = new SetOfOrders();
+        
+        isFarmer = false;
     
     }
 
@@ -74,24 +77,22 @@ public class User {
         return password;
     }
     
-public void changePassword(String newPass, String oldPass)
-{
-    if (oldPass == this.password)
+    public void changePassword(String newPass, String oldPass)
     {
-        this.password = newPass;
+        if (oldPass == this.password)
+        {
+            this.password = newPass;
+        }
+        else
+        {
+            System.out.println("Password Incorrect");
+        }
     }
-    else
-    {
-        System.out.println("Password Incorrect");
-    }
-}
 
-public void addOrder(Order newOrder)
-{
-    orders.addOrder(newOrder);
-}
-    
-    
+    public void addOrder(Order newOrder)
+    {
+        orders.addOrder(newOrder);
+    }
 }
 
 

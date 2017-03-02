@@ -18,5 +18,11 @@ public class ProductLineManager extends User
     {
         super(username, firstName, surname, location, phoneNumber, password);
         company = companyName;
+        isFarmer = false;
+    }
+    
+    public String getUserType()
+    {
+        return "Manager";
     }
 }
