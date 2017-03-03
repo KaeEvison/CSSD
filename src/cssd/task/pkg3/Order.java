@@ -5,12 +5,13 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 /**
  *
  * @author b3014277
  */
-public class Order {
+public class Order implements Serializable {
     
     private String crop;
     private double cost;

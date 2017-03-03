@@ -251,6 +251,9 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
             JOptionPane.showMessageDialog(getContentPane(),
                     "Harvest successfully recorded");
+            
+            currentServer.updateFarmer(currentFarmer);
+            
             layout.show(contentPane, "fp2");
         } else {
             JOptionPane.showMessageDialog(getContentPane(),
@@ -285,8 +288,11 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             );
             JOptionPane.showMessageDialog(getContentPane(),
                     "Planting successfully recorded");
+            
+            currentServer.updateFarmer(currentFarmer);
+            
             layout.show(contentPane, "fp2");
-
+            
         }
     }
     
@@ -386,6 +392,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                     currentOrder.setStatus("cancelled");
                     JOptionPane.showMessageDialog(getContentPane(), "Order cancelled.");
                     resetOrderJLists();
+                    currentServer.updateFarmer(currentFarmer);
                     
                 } else {
                     JOptionPane.showMessageDialog(getContentPane(), "No order selected");
@@ -400,6 +407,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                     currentOrder.setStatus("complete");
                     JOptionPane.showMessageDialog(getContentPane(), "Order Completed");
                     resetOrderJLists();
+                    currentServer.updateFarmer(currentFarmer);
                     
                 } else {
                     JOptionPane.showMessageDialog(getContentPane(), "No order selected");

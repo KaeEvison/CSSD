@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package cssd.task.pkg3;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author b4027708
  */
-public class FieldArea
+public class FieldArea implements Serializable
 {
     ArrayList<Location> points;
     

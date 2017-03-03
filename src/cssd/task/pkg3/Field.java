@@ -5,6 +5,7 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,7 +13,7 @@ import java.util.Arrays;
  *
  * @author b4027320
  */
-public class Field {
+public class Field implements Serializable{
     Planting currentPlanting;
     FieldArea fieldArea;
     ArrayList<Harvest> harvestHistory;

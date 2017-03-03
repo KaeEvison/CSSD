@@ -59,6 +59,8 @@ public class Server extends javax.swing.JFrame {
         orders = new SetOfOrders();
         deserializeAll();
         availableCrops = new ArrayList<Planting>();
+        
+        //testData_initialiseUsers();
     }
     
     public static void serializeAll(SetOfFarmers farmerData, SetOfUsers userData, SetOfOrders orderData)
@@ -99,6 +101,7 @@ public class Server extends javax.swing.JFrame {
     {
         FileOutputStream out = new FileOutputStream(filename);
         ObjectOutputStream oos = new ObjectOutputStream(out);
+        
         oos.writeObject(obj);
         out.close();
     }
@@ -111,6 +114,24 @@ public class Server extends javax.swing.JFrame {
         in.close();
 
         return obj;
+    }
+    
+    public void updateFarmer(Farmer farmer){
+        for(int i=0; i<farmers.size(); ++i){
+            if( farmers.get(i).getUsername().toLowerCase().
+                    equals(farmer.getUsername().toLowerCase()) ){
+                farmers.set(i, farmer);
+            }
+        }
+    }
+    
+    public void updateUser(User user){
+        for(int i=0; i<users.size(); ++i){
+            if( users.get(i).getUsername().toLowerCase().
+                    equals(user.getUsername().toLowerCase()) ){
+                users.set(i, user);
+            }
+        }
     }
     
     public static SetOfUsers readUsers()

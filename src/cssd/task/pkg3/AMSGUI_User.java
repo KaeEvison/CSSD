@@ -322,6 +322,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
             currentOrder = null;
             JOptionPane.showMessageDialog(getContentPane(), "Order Successfully created.");
             layout.show(contentPane, "menu");
+            currentServer.updateUser(currentUser);
         }
         else
             JOptionPane.showMessageDialog(getContentPane(), "Error: Order could not be saved."); 

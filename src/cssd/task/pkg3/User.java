@@ -5,11 +5,13 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
+
 /**
  *
  * @author b3014277
  */
-public class User {
+public class User implements Serializable{
     private String username;
     private String firstName;
     private String surname;

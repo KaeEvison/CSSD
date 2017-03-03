@@ -5,14 +5,15 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author thoma
  */
-public class SetOfFarmers extends ArrayList<Farmer>{
-    
+public class SetOfFarmers extends ArrayList<Farmer> implements Serializable 
+{
     private int noOfFarmers = 0;
     
     public SetOfFarmers()

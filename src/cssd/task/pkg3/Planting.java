@@ -5,11 +5,13 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
+
 /**
  *
  * @author trkirk
  */
-public class Planting {
+public class Planting implements Serializable{
     
     private String type = "";
     private float pricePerTon = 0.00f;

@@ -5,6 +5,7 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author b3014277, trkirk
  */
-public class Farmer extends User{
+public class Farmer extends User implements Serializable{
 
     private ArrayList<Planting> crops;
     private SetOfFields fields;
@@ -23,6 +24,10 @@ public class Farmer extends User{
 
     public void setFields(SetOfFields fields) {
         this.fields = fields;
+    }
+    
+    public Farmer(){
+        super("","","","","","");
     }
     
     public Farmer(String username, String firstName, String surname, 

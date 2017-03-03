@@ -5,13 +5,14 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author b4027320
  */
-public class SetOfFields {
+public class SetOfFields implements Serializable{
     ArrayList<Field> fields;
     
     public SetOfFields(ArrayList<Field> fields) {

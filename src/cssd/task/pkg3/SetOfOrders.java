@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package cssd.task.pkg3;
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  *
  * @author b3014277
  */
-public class SetOfOrders extends ArrayList<Order>
+public class SetOfOrders extends ArrayList<Order> implements Serializable
 {
     void addOrder(Order newOrder)
     {
