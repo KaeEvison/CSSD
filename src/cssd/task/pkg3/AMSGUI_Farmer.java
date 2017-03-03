@@ -8,6 +8,7 @@ package cssd.task.pkg3;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JOptionPane;
@@ -180,6 +181,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         setLocationByPlatform(true);
 
         layout.show(contentPane, "menu");
+        
+        df = new DecimalFormat("##.##");
     }
 
     private void displayFields() {
@@ -295,6 +298,32 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             
         }
     }
+    @Override
+    public void displayOrderHistory(){
+        if(currentFarmer != null &&
+                currentFarmer.orders.size() > 0){
+            
+            op2.model.clear();
+            
+            for(int i=0; i<currentFarmer.orders.size(); ++i){
+                op2.model.addElement("#" + (i + 1) 
+                    + ".       Customer: " + currentFarmer.orders.get(i).
+                            getBuyer().getFirstName() 
+                    + currentFarmer.orders.get(i).getBuyer().getSurname()
+                    + "        Due: " + currentFarmer.orders.get(i).getEstimatedDeliveryDate().toLocalDate()
+                    + "        Crop: " + currentFarmer.orders.get(i).getCrop() 
+                    + "        Total: " + df.format(currentFarmer.orders.get(i).getCost())
+                    + "        Status: " + currentFarmer.orders.get(i).getStatus()
+                );
+            }
+        
+            op2.jlPickOrder.setModel(op2.model);
+            this.layout.show(contentPane, "op2");
+        }
+        else{
+            JOptionPane.showMessageDialog(getContentPane(), "No order(s) found.");
+        }
+    }
     
     @Override
     public void addListeners(){
@@ -342,7 +371,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         op1.jbtn_orderHistory.addActionListener(new ActionListener(){
            
             public void actionPerformed(ActionEvent e) {
-                layout.show(contentPane, "op2");
+                displayOrderHistory();
             }
         });
         
@@ -393,6 +422,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                     JOptionPane.showMessageDialog(getContentPane(), "Order cancelled.");
                     resetOrderJLists();
                     currentServer.updateFarmer(currentFarmer);
+                    currentServer.updateOrders(currentFarmer.orders);
                     
                 } else {
                     JOptionPane.showMessageDialog(getContentPane(), "No order selected");
@@ -408,6 +438,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                     JOptionPane.showMessageDialog(getContentPane(), "Order Completed");
                     resetOrderJLists();
                     currentServer.updateFarmer(currentFarmer);
+                    currentServer.updateOrders(currentFarmer.orders);
                     
                 } else {
                     JOptionPane.showMessageDialog(getContentPane(), "No order selected");

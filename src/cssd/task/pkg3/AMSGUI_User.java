@@ -39,7 +39,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
     private OrdersPanel5_SuitableFarmers op5;
     private OrdersPanel6_OrderDetails op6;
     
-    private DecimalFormat df;
+    protected DecimalFormat df;
     protected CardLayout layout;
     
     /**
@@ -55,6 +55,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         
         this.currentServer = server;
         this.currentUser = currentUser;
+        
         jbl_username.setText( currentUser.getUsername() );
         
         this.availableCrops = crops;
@@ -323,6 +324,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(getContentPane(), "Order Successfully created.");
             layout.show(contentPane, "menu");
             currentServer.updateUser(currentUser);
+            currentServer.updateOrders(currentUser.orders);
         }
         else
             JOptionPane.showMessageDialog(getContentPane(), "Error: Order could not be saved."); 

@@ -134,6 +134,25 @@ public class Server extends javax.swing.JFrame {
         }
     }
     
+    public void updateOrders(SetOfOrders aOrders){
+        for(int i= 0; i< orders.size(); ++i ){
+            for(int j=0; j<aOrders.size(); ++j){
+                
+                if( ( aOrders.get(j).getSupplier().getUsername().toLowerCase().
+                      equals(orders.get(i).getSupplier().getUsername().toLowerCase()) )
+                        && ( aOrders.get(j).getBuyer().getUsername().toLowerCase().
+                                equals(orders.get(i).getBuyer().getUsername().toLowerCase() ))
+                        && (aOrders.get(j).getCrop().toLowerCase().
+                                equals(orders.get(i).getCrop().toLowerCase())  )
+                        && (aOrders.get(j).getEstimatedDeliveryDate() ==
+                                orders.get(i).getEstimatedDeliveryDate()  )   )
+                {
+                    orders.set(i, aOrders.get(j));
+                }
+            }
+        }
+    }
+    
     public static SetOfUsers readUsers()
     {
         SetOfUsers data = new SetOfUsers();
@@ -291,7 +310,8 @@ public class Server extends javax.swing.JFrame {
         if( currentUser != null){
             this.jtf_username.setText("");
             this.jtf_password.setText("");
-
+            
+            getUserOrders(currentUser);
             new AMSGUI_User(currentUser, this, availableCrops).setVisible(true);
         }
         else
@@ -305,7 +325,8 @@ public class Server extends javax.swing.JFrame {
             {
                 this.jtf_username.setText("");
                 this.jtf_password.setText("");
-
+                
+                getFarmerOrders(currentFarmer);
                 new AMSGUI_Farmer(currentFarmer, this).setVisible(true);
             }
             else
@@ -336,9 +357,12 @@ public class Server extends javax.swing.JFrame {
     
     void getFarmerOrders(Farmer farmer)
     {
-        if(orders.size() > 0){
+        farmer.orders.clear();
+        
+        if(orders.size() >= 0){
             for(int i=0; i<orders.size(); ++i){
-                if(orders.get(i).getSupplier() == farmer){
+                if(orders.get(i).getSupplier().getUsername().toLowerCase().
+                        equals(farmer.getUsername().toLowerCase() )){
                     farmer.addOrder(orders.get(i));
                 }
             }
@@ -346,15 +370,19 @@ public class Server extends javax.swing.JFrame {
     }
     
     void getUserOrders(User user){
+        
+        user.orders.clear();
+        
         if(orders.size() > 0){
             for(int i=0; i<orders.size(); ++i){
-                if(orders.get(i).getSupplier() == user){
+                if(orders.get(i).getBuyer().getUsername().toLowerCase().
+                        equals(user.getUsername().toLowerCase() )){
                     user.addOrder(orders.get(i));
                 }
             }
         }
     }
-    
+//    
 //    private void testData_initialiseUsers()
 //    {
 //        Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli;
@@ -424,7 +452,7 @@ public class Server extends javax.swing.JFrame {
 //                        "kirk",
 //                        "sheffield",
 //                        "0114 2483710",
-//                        "Pa55w0rd"
+//                        "password"
 //                )
 //        );
 //        
@@ -435,7 +463,7 @@ public class Server extends javax.swing.JFrame {
 //                        "evison",
 //                        "sheffield",
 //                        "0114 2456712",
-//                        "Pa55w0rd2"
+//                        "password"
 //                )
 //        );
 //        
@@ -446,7 +474,7 @@ public class Server extends javax.swing.JFrame {
 //                        "george",
 //                        "manchester",
 //                        "07734737348",
-//                        "password3"
+//                        "password"
 //                )
 //        );
 //        
@@ -473,7 +501,7 @@ public class Server extends javax.swing.JFrame {
 //        orders.add(order1);
 //        orders.add(order2);
 //        getFarmerOrders(farmers.get(0));
-//        getUserOrders(farmers.get(0));
+//        getUserOrders(users.get(0));
 //    }
     
     private void jtf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_usernameActionPerformed
