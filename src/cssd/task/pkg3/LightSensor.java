@@ -11,7 +11,11 @@ package cssd.task.pkg3;
  */
 public class LightSensor extends Sensor {
     
-    public LightSensor(){
-        super();
+    public LightSensor(Location loc){
+        sensorType = "Light level";
+        location = loc;
+        dataUnit = "lx";
+        minReading = -0;
+        readingRange = 10752;
     }
 }

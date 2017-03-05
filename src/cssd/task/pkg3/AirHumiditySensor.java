@@ -7,15 +7,15 @@ package cssd.task.pkg3;
 
 /**
  *
- * @author thoma
+ * @author Kae
  */
-public class AirTemperatureSensor extends Sensor {
+public class AirHumiditySensor extends Sensor {
     
-    public AirTemperatureSensor(Location loc){
-        sensorType = "Air temperature";
+    public AirHumiditySensor(Location loc){
+        sensorType = "Air humidity";
         location = loc;
-        dataUnit = "Degrees celcius";
-        minReading = -5;
-        readingRange = 30;
+        dataUnit = "%";
+        minReading = 0;
+        readingRange = 100;
     }
 }

@@ -5,14 +5,19 @@
  */
 package cssd.task.pkg3;
 
+import java.util.Random;
+
 /**
  *
  * @author thoma
  */
 public class Sensor {
     
+    protected String sensorType = "";
     protected String dataUnit = "";
     protected Location location;
+    protected static Random numberGen = new Random();
+    protected double minReading, readingRange;
     
     public String getDataUnit() {
         return dataUnit;
@@ -30,9 +35,19 @@ public class Sensor {
         this.location = location;
     }
     
-    
-    public SensorReading takeReading(double pValue, String pUnit, String pType, Location pLocation)
+    public SensorReading takeReading()
     {
-        return new SensorReading(pValue, pUnit, pType, pLocation);
+        return new SensorReading(   getRandomValue(),
+                                    this.dataUnit,
+                                    this.sensorType,
+                                    this.location);
+    }
+    
+    private double getRandomValue()
+    {
+        double value = numberGen.nextDouble();
+        value *= readingRange;
+        value += minReading;
+        return value;
     }
 }

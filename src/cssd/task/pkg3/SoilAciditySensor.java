@@ -11,7 +11,11 @@ package cssd.task.pkg3;
  */
 public class SoilAciditySensor extends Sensor
 {
-    public SoilAciditySensor(){
-        super();
+    public SoilAciditySensor(Location loc){
+        sensorType = "Soil acidity";
+        location = loc;
+        dataUnit = "pH";
+        minReading = 0;
+        readingRange = 14;
     }
 }

@@ -5,11 +5,15 @@
  */
 package cssd.task.pkg3;
 
+import java.util.Random;
+
 /**
  *
  * @author thoma
  */
 public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
+    
+    private static Random numberGen = new Random();
 
     /**
      * Creates new form AMSGUI_FieldsPanel3_CheckCrops
@@ -23,15 +27,6 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
     //hopefully dynamically generate labels and text boxes if we're allowing the sddition of sensors
     //if so need add and remove sensor buttons
     //update button? or try to auto update at intervals?
-    
-    
-    //code for record readings button will be along the lines of:
-    
-    //new setofsensorreadings ex
-    //for each in current field's setofsensormonitors
-    //                      fetch reading from pertaining sensor
-    //                      add that reading to ex
-    //recordreadings(ex)
     //----------------
 
     /**
@@ -55,7 +50,8 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jbl_title = new javax.swing.JLabel();
         jbtn_back = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnAddReadings = new javax.swing.JButton();
+        btnGetReadings = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -103,14 +99,33 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         jbtn_back.setText("Back");
         add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
-        jButton1.setText("Save current readings");
-        jButton1.setName("btnAddReadings"); // NOI18N
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+        btnAddReadings.setText("Save current readings");
+        btnAddReadings.setName("btnAddReadings"); // NOI18N
+        add(btnAddReadings, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+
+        btnGetReadings.setText("Get readings");
+        btnGetReadings.setName("btnGetReadings"); // NOI18N
+        btnGetReadings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGetReadingsActionPerformed(evt);
+            }
+        });
+        add(btnGetReadings, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGetReadingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetReadingsActionPerformed
+        // Stopgap for providing values
+        this.jtf_airTemp.setText((numberGen.nextDouble()*20) + "");
+        this.jtf_light.setText((numberGen.nextDouble()*20) + "");
+        this.jtf_soilAcidity.setText((numberGen.nextDouble()*20) + "");
+        this.jtf_soilMoisture.setText((numberGen.nextDouble()*20) + "");
+        this.jtf_soilTemp.setText((numberGen.nextDouble()*20) + "");
+    }//GEN-LAST:event_btnGetReadingsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAddReadings;
+    private javax.swing.JButton btnGetReadings;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

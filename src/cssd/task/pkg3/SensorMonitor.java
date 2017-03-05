@@ -52,7 +52,7 @@ public class SensorMonitor {
     
     public SensorReading getNewReading(double pValue, String pUnit, String pType, Location pLocation){
         SensorReading holder;
-        holder = sensor.takeReading(pValue, pUnit, pType, pLocation);
+        holder = sensor.takeReading();
         log.add(holder);
         return holder;
     }

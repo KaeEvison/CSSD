@@ -11,7 +11,11 @@ package cssd.task.pkg3;
  */
 public class SoilTemperatureSensor extends Sensor {
     
-    public SoilTemperatureSensor(){
-        super();
+    public SoilTemperatureSensor(Location loc){
+        sensorType = "Soil temperature";
+        location = loc;
+        dataUnit = "Degrees celcius";
+        minReading = -10;
+        readingRange = 15;
     }
 }
