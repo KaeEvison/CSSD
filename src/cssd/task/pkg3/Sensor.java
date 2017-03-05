@@ -6,6 +6,7 @@
 package cssd.task.pkg3;
 
 import java.util.Random;
+import static jdk.nashorn.internal.objects.NativeMath.round;
 
 /**
  *
@@ -48,6 +49,9 @@ public class Sensor {
         double value = numberGen.nextDouble();
         value *= readingRange;
         value += minReading;
+        value *= 100;
+        value = Math.round(value);
+        value /= 100;
         return value;
     }
 }

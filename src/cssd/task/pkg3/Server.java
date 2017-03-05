@@ -91,7 +91,7 @@ public class Server extends javax.swing.JFrame {
         {
             if (fieldArea.isLocationInArea(allSensors.get(i).getLocation()))
             {
-                readingsForArea.add(allSensors.get(i).getNewReading(21.0, "Celcius", "Soil temperature", testData));
+                readingsForArea.add(allSensors.get(i).getNewReading());
             }
         }
         return readingsForArea;

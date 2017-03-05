@@ -19,7 +19,7 @@ public class SensorMonitor {
     private Sensor sensor;
     private int interval = 0;
     private Date lastReadingTime;
-    private SetOfSensorReadings log;
+    private SetOfSensorReadings log = new SetOfSensorReadings();
     
     public SensorMonitor(Sensor newSensor)
     {
@@ -50,8 +50,8 @@ public class SensorMonitor {
         this.lastReadingTime = lastReadingTime;
     }
     
-    public SensorReading getNewReading(double pValue, String pUnit, String pType, Location pLocation){
-        SensorReading holder;
+    public SensorReading getNewReading(){
+        SensorReading holder = new SensorReading(-500, "NULL", "NULL", new Location(0, 0));
         holder = sensor.takeReading();
         log.add(holder);
         return holder;

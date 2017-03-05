@@ -30,6 +30,31 @@ public class SensorReading implements Serializable
         location = pLocation;
     }
     
+    public double getValue()
+    {
+        return value;
+    }
+    
+    public LocalDateTime getTime()
+    {
+        return timeTaken;
+    }
+    
+    public String getUnit()
+    {
+        return readingUnit;
+    }
+    
+    public String getType()
+    {
+        return readingType;
+    }
+    
+    public Location getLocation()
+    {
+        return location;
+    }
+    
     public String toString()
     {
         String outputTime = new String();
