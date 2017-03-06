@@ -60,7 +60,7 @@ public class Server extends javax.swing.JFrame {
         deserializeAll();
         availableCrops = new ArrayList<Planting>();
         
-        //testData_initialiseUsers();
+//        testData_initialiseUsers();
     }
     
     public static void serializeAll(SetOfFarmers farmerData, SetOfUsers userData, SetOfOrders orderData)
@@ -382,7 +382,7 @@ public class Server extends javax.swing.JFrame {
             }
         }
     }
-//    
+    
 //    private void testData_initialiseUsers()
 //    {
 //        Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli;

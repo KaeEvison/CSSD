@@ -26,7 +26,7 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
     
     private String ranNum()
     {
-        return (numberGen.nextDouble()*20) + "";
+        return (Math.round((numberGen.nextDouble()*2000))/100) + "";
     }
     
     //----------------
@@ -123,8 +123,7 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         this.txtValue1.setText(ranNum());
         this.txtValue3.setText(ranNum());
         
-//        //Make currentFarmer and currentField public?
-//        //Cant make them static so cant use getCurrentFarmer method
+//        //Cant access currentField, this class seems to be static
 //        SetOfSensorMonitors popHolder = AMSGUI_Farmer.currentField.getMonitors();
 //        //Goes in class header
 //        lblType1.setText(popHolder.get(0).getNewReading().getType());
