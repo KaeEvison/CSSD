@@ -36,6 +36,18 @@ public class SetOfFarmers extends ArrayList<Farmer> implements Serializable
         return farmer;
     }
     
+    public Boolean availability(String username){
+        
+        for (int i = 0; i < noOfFarmers; i++) 
+        {
+            if (this.get(i).getUsername().equals(username))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     void addFarmer(Farmer afarmer)
     {
         super.add(afarmer);

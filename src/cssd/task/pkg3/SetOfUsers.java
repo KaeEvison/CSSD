@@ -37,6 +37,18 @@ public class SetOfUsers extends ArrayList<User>{
         return user;
     }
     
+    public Boolean availability(String username){
+        
+        for (int i = 0; i < noOfUsers; i++) 
+        {
+            if (this.get(i).getUsername().equals(username))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     void addUser(User auser)
     {
         super.add(auser);
