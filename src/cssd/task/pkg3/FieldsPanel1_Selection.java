@@ -63,10 +63,10 @@ public class FieldsPanel1_Selection extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 278, 114));
 
         btnAddField.setText("Add new field");
-        add(btnAddField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 140, -1));
+        add(btnAddField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 140, -1));
 
         btnRemoveField.setText("Remove field");
-        add(btnRemoveField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 140, -1));
+        add(btnRemoveField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 140, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
