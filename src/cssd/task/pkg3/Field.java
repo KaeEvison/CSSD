@@ -31,6 +31,12 @@ public class Field implements Serializable{
         currentPlanting = new Planting();
         fieldArea = new FieldArea();
         harvestHistory = new ArrayList<Harvest>();
+        activeMonitors = new SetOfSensorMonitors();
+        activeMonitors.add(new SensorMonitor(new AirHumiditySensor(new Location(1, 1))));
+        activeMonitors.add(new SensorMonitor(new AirTemperatureSensor(new Location(1, 1))));
+        activeMonitors.add(new SensorMonitor(new SoilAciditySensor(new Location(1, 1))));
+        activeMonitors.add(new SensorMonitor(new LightSensor(new Location(1, 1))));
+        activeMonitors.add(new SensorMonitor(new SoilMoistureSensor(new Location(1, 1))));
     }
     
     public void recordNewHarvest(Harvest newHarvest) {

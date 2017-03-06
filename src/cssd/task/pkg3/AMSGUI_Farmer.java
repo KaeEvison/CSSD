@@ -491,7 +491,6 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             public void actionPerformed(ActionEvent e) {
                 currentFarmer.getFields().addField(new Field());
                 resetFieldJLists();
-                currentServer.updateFarmer(currentFarmer);
                 JOptionPane.showMessageDialog(getContentPane(), "New field added");
             }
         });
@@ -505,7 +504,6 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                 {
                     int pos = fp1.jlPickField.getSelectedIndex();
                     currentFarmer.getFields().removeField(pos);
-                    currentServer.updateFarmer(currentFarmer);
                     resetFieldJLists();
                     JOptionPane.showMessageDialog(getContentPane(), "Field removed");
                 }
