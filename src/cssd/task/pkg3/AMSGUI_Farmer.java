@@ -200,15 +200,15 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     private void displayCrops() {
         fp3.jbl_title.setText("View Fields - " + fp1.jlPickField.
                 getSelectedValue() + " (Check Crops)");
-        fp3.jtf_airTemp.setText(currentField.currentPlanting.
+        fp3.txtValue4.setText(currentField.currentPlanting.
                 getPreferredAirTemperatureLevel() + "");
-        fp3.jtf_light.setText(currentField.currentPlanting.
+        fp3.txtValue5.setText(currentField.currentPlanting.
                 getLight() + "");
-        fp3.jtf_soilAcidity.setText(currentField.currentPlanting.
+        fp3.txtValue2.setText(currentField.currentPlanting.
                 getPreferredSoilAcidityLevel() + "");
-        fp3.jtf_soilMoisture.setText(currentField.currentPlanting.
+        fp3.txtValue1.setText(currentField.currentPlanting.
                 getPreferredSoilMoistureLevel() + "");
-        fp3.jtf_soilTemp.setText(currentField.currentPlanting.
+        fp3.txtValue3.setText(currentField.currentPlanting.
                 getPreferredSoilTemperatureLevel() + "");
 
         layout.show(contentPane, "fp3");

@@ -23,7 +23,7 @@
     <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="jtf_soilAcidity">
+    <Component class="javax.swing.JTextField" name="txtValue2">
       <Properties>
         <Property name="name" type="java.lang.String" value="txtSoilAcidity" noResource="true"/>
       </Properties>
@@ -36,7 +36,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtf_airTemp">
+    <Component class="javax.swing.JTextField" name="txtValue4">
       <Properties>
         <Property name="name" type="java.lang.String" value="txtAirTemperature" noResource="true"/>
       </Properties>
@@ -49,7 +49,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtf_soilMoisture">
+    <Component class="javax.swing.JTextField" name="txtValue1">
       <Properties>
         <Property name="name" type="java.lang.String" value="txtSoilMoisture" noResource="true"/>
       </Properties>
@@ -62,7 +62,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtf_light">
+    <Component class="javax.swing.JTextField" name="txtValue5">
       <Properties>
         <Property name="name" type="java.lang.String" value="txtLight" noResource="true"/>
       </Properties>
@@ -75,7 +75,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtf_soilTemp">
+    <Component class="javax.swing.JTextField" name="txtValue3">
       <Properties>
         <Property name="name" type="java.lang.String" value="txtSoilTemperature" noResource="true"/>
       </Properties>
@@ -88,7 +88,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblType2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
@@ -101,7 +101,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="lblType3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
@@ -114,7 +114,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="lblType1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
@@ -127,7 +127,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="lblType5">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
@@ -140,7 +140,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="lblType4">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="24" style="1"/>
@@ -182,17 +182,6 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="100" y="10" width="-1" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAddReadings">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Save current readings"/>
-        <Property name="name" type="java.lang.String" value="btnAddReadings" noResource="true"/>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="230" y="290" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

@@ -14,12 +14,19 @@ import java.util.Random;
 public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
     
     private static Random numberGen = new Random();
+    Farmer currentFarmer;
+    Field currentField;
 
     /**
      * Creates new form AMSGUI_FieldsPanel3_CheckCrops
      */
     public FieldsPanel3_CheckCrops() {
         initComponents();
+    }
+    
+    private String ranNum()
+    {
+        return (numberGen.nextDouble()*20) + "";
     }
     
     //----------------
@@ -38,58 +45,57 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jtf_soilAcidity = new javax.swing.JTextField();
-        jtf_airTemp = new javax.swing.JTextField();
-        jtf_soilMoisture = new javax.swing.JTextField();
-        jtf_light = new javax.swing.JTextField();
-        jtf_soilTemp = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        txtValue2 = new javax.swing.JTextField();
+        txtValue4 = new javax.swing.JTextField();
+        txtValue1 = new javax.swing.JTextField();
+        txtValue5 = new javax.swing.JTextField();
+        txtValue3 = new javax.swing.JTextField();
+        lblType2 = new javax.swing.JLabel();
+        lblType3 = new javax.swing.JLabel();
+        lblType1 = new javax.swing.JLabel();
+        lblType5 = new javax.swing.JLabel();
+        lblType4 = new javax.swing.JLabel();
         jbl_title = new javax.swing.JLabel();
         jbtn_back = new javax.swing.JButton();
-        btnAddReadings = new javax.swing.JButton();
         btnGetReadings = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jtf_soilAcidity.setName("txtSoilAcidity"); // NOI18N
-        add(jtf_soilAcidity, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 150, -1));
+        txtValue2.setName("txtSoilAcidity"); // NOI18N
+        add(txtValue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 150, -1));
 
-        jtf_airTemp.setName("txtAirTemperature"); // NOI18N
-        add(jtf_airTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 150, -1));
+        txtValue4.setName("txtAirTemperature"); // NOI18N
+        add(txtValue4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 150, -1));
 
-        jtf_soilMoisture.setName("txtSoilMoisture"); // NOI18N
-        add(jtf_soilMoisture, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 150, -1));
+        txtValue1.setName("txtSoilMoisture"); // NOI18N
+        add(txtValue1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 150, -1));
 
-        jtf_light.setName("txtLight"); // NOI18N
-        add(jtf_light, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 150, -1));
+        txtValue5.setName("txtLight"); // NOI18N
+        add(txtValue5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 150, -1));
 
-        jtf_soilTemp.setName("txtSoilTemperature"); // NOI18N
-        add(jtf_soilTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 150, -1));
+        txtValue3.setName("txtSoilTemperature"); // NOI18N
+        add(txtValue3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 150, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Soil Acidity:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
+        lblType2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblType2.setText("Soil Acidity:");
+        add(lblType2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel2.setText("Soil Temperature:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
+        lblType3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblType3.setText("Soil Temperature:");
+        add(lblType3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setText("Soil Moisture:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+        lblType1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblType1.setText("Soil Moisture:");
+        add(lblType1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setText("Light:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
+        lblType5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblType5.setText("Light:");
+        add(lblType5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel5.setText("Air Temperature:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+        lblType4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblType4.setText("Air Temperature:");
+        add(lblType4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
 
         jbl_title.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
         jbl_title.setText("View Fields - Check Crops");
@@ -98,10 +104,6 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         jbtn_back.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_back.setText("Back");
         add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
-
-        btnAddReadings.setText("Save current readings");
-        btnAddReadings.setName("btnAddReadings"); // NOI18N
-        add(btnAddReadings, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
 
         btnGetReadings.setText("Get readings");
         btnGetReadings.setName("btnGetReadings"); // NOI18N
@@ -115,28 +117,42 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
 
     private void btnGetReadingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetReadingsActionPerformed
         // Stopgap for providing values
-        this.jtf_airTemp.setText((numberGen.nextDouble()*20) + "");
-        this.jtf_light.setText((numberGen.nextDouble()*20) + "");
-        this.jtf_soilAcidity.setText((numberGen.nextDouble()*20) + "");
-        this.jtf_soilMoisture.setText((numberGen.nextDouble()*20) + "");
-        this.jtf_soilTemp.setText((numberGen.nextDouble()*20) + "");
+        this.txtValue4.setText(ranNum());
+        this.txtValue5.setText(ranNum());
+        this.txtValue2.setText(ranNum());
+        this.txtValue1.setText(ranNum());
+        this.txtValue3.setText(ranNum());
+        
+//        //Make currentFarmer and currentField public?
+//        //Cant make them static so cant use getCurrentFarmer method
+//        SetOfSensorMonitors popHolder = AMSGUI_Farmer.currentField.getMonitors();
+//        //Goes in class header
+//        lblType1.setText(popHolder.get(0).getNewReading().getType());
+//        txtValue1.setText(popHolder.get(0).getNewReading().getValue() + "");
+//        lblType2.setText(popHolder.get(1).getNewReading().getType());
+//        txtValue2.setText(popHolder.get(1).getNewReading().getValue() + "");
+//        lblType3.setText(popHolder.get(2).getNewReading().getType());
+//        txtValue3.setText(popHolder.get(2).getNewReading().getValue() + "");
+//        lblType4.setText(popHolder.get(3).getNewReading().getType());
+//        txtValue4.setText(popHolder.get(3).getNewReading().getValue() + "");
+//        lblType5.setText(popHolder.get(4).getNewReading().getType());
+//        txtValue5.setText(popHolder.get(4).getNewReading().getValue() + "");
     }//GEN-LAST:event_btnGetReadingsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddReadings;
     private javax.swing.JButton btnGetReadings;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     public javax.swing.JLabel jbl_title;
     public javax.swing.JButton jbtn_back;
-    public javax.swing.JTextField jtf_airTemp;
-    public javax.swing.JTextField jtf_light;
-    public javax.swing.JTextField jtf_soilAcidity;
-    public javax.swing.JTextField jtf_soilMoisture;
-    public javax.swing.JTextField jtf_soilTemp;
+    private javax.swing.JLabel lblType1;
+    private javax.swing.JLabel lblType2;
+    private javax.swing.JLabel lblType3;
+    private javax.swing.JLabel lblType4;
+    private javax.swing.JLabel lblType5;
+    public javax.swing.JTextField txtValue1;
+    public javax.swing.JTextField txtValue2;
+    public javax.swing.JTextField txtValue3;
+    public javax.swing.JTextField txtValue4;
+    public javax.swing.JTextField txtValue5;
     // End of variables declaration//GEN-END:variables
 }
