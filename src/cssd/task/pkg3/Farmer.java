@@ -16,7 +16,7 @@ import java.util.Date;
 public class Farmer extends User implements Serializable{
 
     private ArrayList<Planting> crops;
-    private SetOfFields fields;
+    protected SetOfFields fields;
 
     public SetOfFields getFields() {
         return fields;

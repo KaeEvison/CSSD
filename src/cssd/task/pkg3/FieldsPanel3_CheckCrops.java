@@ -116,38 +116,19 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGetReadingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetReadingsActionPerformed
-        // Stopgap for providing values
-        this.txtValue4.setText(ranNum());
-        this.txtValue5.setText(ranNum());
-        this.txtValue2.setText(ranNum());
-        this.txtValue1.setText(ranNum());
-        this.txtValue3.setText(ranNum());
         
-//        //Cant access currentField, this class seems to be static
-//        SetOfSensorMonitors popHolder = AMSGUI_Farmer.currentField.getMonitors();
-//        //Goes in class header
-//        lblType1.setText(popHolder.get(0).getNewReading().getType());
-//        txtValue1.setText(popHolder.get(0).getNewReading().getValue() + "");
-//        lblType2.setText(popHolder.get(1).getNewReading().getType());
-//        txtValue2.setText(popHolder.get(1).getNewReading().getValue() + "");
-//        lblType3.setText(popHolder.get(2).getNewReading().getType());
-//        txtValue3.setText(popHolder.get(2).getNewReading().getValue() + "");
-//        lblType4.setText(popHolder.get(3).getNewReading().getType());
-//        txtValue4.setText(popHolder.get(3).getNewReading().getValue() + "");
-//        lblType5.setText(popHolder.get(4).getNewReading().getType());
-//        txtValue5.setText(popHolder.get(4).getNewReading().getValue() + "");
     }//GEN-LAST:event_btnGetReadingsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGetReadings;
+    public javax.swing.JButton btnGetReadings;
     public javax.swing.JLabel jbl_title;
     public javax.swing.JButton jbtn_back;
-    private javax.swing.JLabel lblType1;
-    private javax.swing.JLabel lblType2;
-    private javax.swing.JLabel lblType3;
-    private javax.swing.JLabel lblType4;
-    private javax.swing.JLabel lblType5;
+    public javax.swing.JLabel lblType1;
+    public javax.swing.JLabel lblType2;
+    public javax.swing.JLabel lblType3;
+    public javax.swing.JLabel lblType4;
+    public javax.swing.JLabel lblType5;
     public javax.swing.JTextField txtValue1;
     public javax.swing.JTextField txtValue2;
     public javax.swing.JTextField txtValue3;

@@ -26,6 +26,13 @@ public class Field implements Serializable{
         harvestHistory = c;
     }
     
+    public Field()
+    {
+        currentPlanting = new Planting();
+        fieldArea = new FieldArea();
+        harvestHistory = new ArrayList<Harvest>();
+    }
+    
     public void recordNewHarvest(Harvest newHarvest) {
         harvestHistory.add(newHarvest);
         currentPlanting = null;

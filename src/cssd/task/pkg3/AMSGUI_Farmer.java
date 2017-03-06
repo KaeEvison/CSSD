@@ -136,6 +136,14 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
     
+    void resetFieldJLists(){
+        fp1.model.clear();
+        
+        for (int i = 0; i < currentFarmer.getFields().size(); ++i) {
+            fp1.model.addElement("Field " + (i + 1));
+        }
+    }
+    
     
     protected void initManualComponents() {
 
@@ -157,9 +165,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         op2.model = new DefaultListModel<Order>();
         op3.model = new DefaultListModel<Order>();
 
-        for (int i = 0; i < currentFarmer.getFields().size(); ++i) {
-            fp1.model.addElement("Field " + (i + 1));
-        }
+        resetFieldJLists();
         
         resetOrderJLists();
 
@@ -325,6 +331,27 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
     
+    private void updateSensorValues()
+    {
+        // Stopgap for providing values
+//        fp3.txtValue4.setText(ranNum());
+//        fp3.txtValue5.setText(ranNum());
+//        fp3.txtValue2.setText(ranNum());
+//        fp3.txtValue1.setText(ranNum());
+//        fp3.txtValue3.setText(ranNum());
+        
+        fp3.lblType1.setText(currentField.getMonitors().get(0).getNewReading().getType());
+        fp3.txtValue1.setText(currentField.getMonitors().get(0).getNewReading().getValue() + "");
+        fp3.lblType2.setText(currentField.getMonitors().get(1).getNewReading().getType());
+        fp3.txtValue2.setText(currentField.getMonitors().get(1).getNewReading().getValue() + "");
+        fp3.lblType3.setText(currentField.getMonitors().get(2).getNewReading().getType());
+        fp3.txtValue3.setText(currentField.getMonitors().get(2).getNewReading().getValue() + "");
+        fp3.lblType4.setText(currentField.getMonitors().get(3).getNewReading().getType());
+        fp3.txtValue4.setText(currentField.getMonitors().get(3).getNewReading().getValue() + "");
+        fp3.lblType5.setText(currentField.getMonitors().get(4).getNewReading().getType());
+        fp3.txtValue5.setText(currentField.getMonitors().get(4).getNewReading().getValue() + "");
+    }
+    
     @Override
     public void addListeners(){
         addWindowListener(new WindowAdapter(){
@@ -398,7 +425,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp1.jlPickField.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
-                currentField = fields.getFieldByIndex(fp1.jlPickField.getSelectedIndex());
+                if (fp1.jlPickField.getSelectedValue() != null)
+                    currentField = fields.getFieldByIndex(fp1.jlPickField.getSelectedIndex());
             }
         });
         
@@ -458,6 +486,31 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                 }
             }
         });
+        
+        fp1.btnAddField.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentFarmer.getFields().addField(new Field());
+                resetFieldJLists();
+                currentServer.updateFarmer(currentFarmer);
+                JOptionPane.showMessageDialog(getContentPane(), "New field added");
+            }
+        });
+        
+        fp1.btnRemoveField.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                int confirmDelete = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to delete the selected field?");
+                if (confirmDelete == 0)
+                {
+                    int pos = fp1.jlPickField.getSelectedIndex();
+                    currentFarmer.getFields().removeField(pos);
+                    currentServer.updateFarmer(currentFarmer);
+                    resetFieldJLists();
+                    JOptionPane.showMessageDialog(getContentPane(), "Field removed");
+                }
+            }
+        });
 
         fp2.jbtn_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -467,6 +520,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp2.jbtn_checkCrops.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                updateSensorValues();
                 displayCrops();
             }
         });
@@ -492,6 +546,14 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         fp3.jbtn_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 layout.show(contentPane, "fp2");
+            }
+        });
+        
+        fp3.btnGetReadings.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                updateSensorValues();
             }
         });
 
