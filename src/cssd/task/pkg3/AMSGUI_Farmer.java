@@ -261,7 +261,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             JOptionPane.showMessageDialog(getContentPane(),
                     "Harvest successfully recorded");
             
-            currentServer.updateFarmer(currentFarmer);
+            //currentServer.updateFarmer(currentFarmer);
             
             layout.show(contentPane, "fp2");
         } else {
@@ -298,7 +298,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             JOptionPane.showMessageDialog(getContentPane(),
                     "Planting successfully recorded");
             
-            currentServer.updateFarmer(currentFarmer);
+            //currentServer.updateFarmer(currentFarmer);
             
             layout.show(contentPane, "fp2");
             
@@ -449,7 +449,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                     currentOrder.setStatus("cancelled");
                     JOptionPane.showMessageDialog(getContentPane(), "Order cancelled.");
                     resetOrderJLists();
-                    currentServer.updateFarmer(currentFarmer);
+                    //currentServer.updateFarmer(currentFarmer);
                     currentServer.updateOrders(currentFarmer.orders);
                     
                 } else {
@@ -465,7 +465,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                     currentOrder.setStatus("complete");
                     JOptionPane.showMessageDialog(getContentPane(), "Order Completed");
                     resetOrderJLists();
-                    currentServer.updateFarmer(currentFarmer);
+                    //currentServer.updateFarmer(currentFarmer);
                     currentServer.updateOrders(currentFarmer.orders);
                     
                 } else {
@@ -491,7 +491,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             public void actionPerformed(ActionEvent e) {
                 currentFarmer.getFields().addField(new Field());
                 resetFieldJLists();
-                currentServer.updateFarmer(currentFarmer);
+                //currentServer.updateFarmer(currentFarmer);
                 JOptionPane.showMessageDialog(getContentPane(), "New field added");
             }
         });
@@ -505,7 +505,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                 {
                     int pos = fp1.jlPickField.getSelectedIndex();
                     currentFarmer.getFields().removeField(pos);
-                    currentServer.updateFarmer(currentFarmer);
+                    //currentServer.updateFarmer(currentFarmer);
                     resetFieldJLists();
                     JOptionPane.showMessageDialog(getContentPane(), "Field removed");
                 }
