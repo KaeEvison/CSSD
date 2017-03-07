@@ -198,6 +198,8 @@ public class AMSGUI_User extends javax.swing.JFrame {
         //protected void displayLogin(){
         //}
     
+    
+    
     protected void displayOrders(){
         this.layout.show(contentPane, "op1");
     }

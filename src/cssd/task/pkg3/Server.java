@@ -62,12 +62,14 @@ public class Server extends javax.swing.JFrame {
         });
         
         allSensors = initialSensors;
+        currentServer = this;
         
         users = new SetOfUsers();
         farmers = new SetOfFarmers();
         orders = new SetOfOrders();
         deserializeAll();
         availableCrops = new ArrayList<Planting>();
+//        setCrops();
          
         File dataExists = new File("users.ser");
         if (dataExists.exists() == false)
