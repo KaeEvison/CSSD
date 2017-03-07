@@ -62,12 +62,14 @@ public class Server extends javax.swing.JFrame {
         });
         
         allSensors = initialSensors;
+        currentServer = this;
         
         users = new SetOfUsers();
         farmers = new SetOfFarmers();
         orders = new SetOfOrders();
         deserializeAll();
         availableCrops = new ArrayList<Planting>();
+        setCrops();
          
         
     //    testData_initialiseUsers();
@@ -277,24 +279,26 @@ public class Server extends javax.swing.JFrame {
     });
     }
     
+    void setCrops(){
+        Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli; 
+         
+        carrots = new Planting( "Carrots", 1000.10f ); 
+        sweetcorn = new Planting("Sweetcorn", 909.99f); 
+        peas = new Planting("Peas", 908.78f); 
+        sprouts = new Planting("Sprouts", 808.45f); 
+        potatoes = new Planting("Potatoes", 1101.12f); 
+        broccoli = new Planting("Broccoli", 998.77f); 
+         
+        availableCrops.add(carrots); 
+        availableCrops.add(sweetcorn); 
+        availableCrops.add(peas); 
+        availableCrops.add(sprouts); 
+        availableCrops.add(potatoes); 
+        availableCrops.add(broccoli); 
+    }
+    
 //    private void testData_initialiseUsers() 
-//    { 
-//       Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli; 
-//         
-//        carrots = new Planting( "Carrots", 1000.10f ); 
-//        sweetcorn = new Planting("Sweetcorn", 909.99f); 
-//        peas = new Planting("Peas", 908.78f); 
-//        sprouts = new Planting("Sprouts", 808.45f); 
-//        potatoes = new Planting("Potatoes", 1101.12f); 
-//        broccoli = new Planting("Broccoli", 998.77f); 
-//         
-//        availableCrops.add(carrots); 
-//        availableCrops.add(sweetcorn); 
-//        availableCrops.add(peas); 
-//        availableCrops.add(sprouts); 
-//        availableCrops.add(potatoes); 
-//        availableCrops.add(broccoli); 
-//         
+//    {   
 //        farmers.addFarmer( 
 //                new Farmer( 
 //                        "admin", 
