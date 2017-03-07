@@ -24,6 +24,7 @@ public class Field implements Serializable{
         currentPlanting = a;
         fieldArea = b;
         harvestHistory = c;
+        activeMonitors = new SetOfSensorMonitors();
     }
     
     public Field()
