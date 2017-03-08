@@ -72,7 +72,7 @@ public class Server extends javax.swing.JFrame {
         setCrops();
          
         
-    //    testData_initialiseUsers();
+        //testData_initialiseUsers();
     }
     
     protected void initManualComponents(){
@@ -98,12 +98,13 @@ public class Server extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(getContentPane(), "Exiting...");
             }
         });
-    log.jbtn_submit.addActionListener(new java.awt.event.ActionListener() {
-    public void actionPerformed(java.awt.event.ActionEvent evt) {
-        User currentUser = users.login(
-        log.jtf_username.getText(),
-            new String( log.jtf_password.getPassword() )
-        );
+    
+        log.jbtn_submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductLineManager currentUser = users.login(
+                log.jtf_username.getText(),
+                new String( log.jtf_password.getPassword() )
+            );
 
         if( currentUser != null){
             log.jtf_username.setText("");
@@ -246,13 +247,14 @@ public class Server extends javax.swing.JFrame {
             else
             {
                 users.addUser(
-                    new User(
+                    new ProductLineManager(
                             username,
                             firstName,
                             surname,
                             location,
                             phoneNo,
-                            passW
+                            passW,
+                            ""
                     )
             );
                 userAdded = true; 
@@ -344,35 +346,38 @@ public class Server extends javax.swing.JFrame {
 //        farmers.get(0).setFields(fields); 
 //         
 //        users.addUser( 
-//                new User( 
+//                new ProductLineManager( 
 //                        "trkirk", 
 //                        "thomas", 
 //                        "kirk", 
 //                        "sheffield", 
 //                        "0114 2483710", 
-//                        "password" 
+//                        "password",
+//                        "EvilCorp"
 //                ) 
 //        ); 
 //         
 //        users.addUser( 
-//                new User( 
+//                new ProductLineManager( 
 //                        "kevison", 
 //                        "kae", 
 //                        "evison", 
 //                        "sheffield", 
 //                        "0114 2456712", 
-//                        "password" 
+//                        "password",
+//                        "GoodCorp"
 //                ) 
 //        ); 
 //         
 //        users.addUser( 
-//                new User( 
+//                new ProductLineManager( 
 //                        "sgeorge", 
 //                        "sam", 
 //                        "george", 
 //                        "manchester", 
 //                        "07734737348", 
-//                        "password" 
+//                        "password",
+//                        "BigCorp"
 //                ) 
 //        ); 
 //         
@@ -465,7 +470,7 @@ public class Server extends javax.swing.JFrame {
         }
     }
     
-    public void updateUser(User user){
+    public void updateUser(ProductLineManager user){
         for(int i=0; i<users.size(); ++i){
             if( users.get(i).getUsername().toLowerCase().
                     equals(user.getUsername().toLowerCase()) ){
@@ -611,6 +616,10 @@ public class Server extends javax.swing.JFrame {
         return suitableFarmers;
     }
     
+    public SetOfFarmers getFarmers(){
+        return farmers;
+    }
+    
     public void displayLogin(){
         this.setVisible(true);
     }
@@ -629,7 +638,7 @@ public class Server extends javax.swing.JFrame {
         }
     }
     
-    void getUserOrders(User user){
+    void getUserOrders(ProductLineManager user){
         
         user.orders.clear();
         

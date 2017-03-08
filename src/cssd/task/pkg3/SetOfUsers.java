@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author b3014277
  */
 
-public class SetOfUsers extends ArrayList<User>{
+public class SetOfUsers extends ArrayList<ProductLineManager>{
     
     private int noOfUsers = 0;
     
@@ -22,9 +22,9 @@ public class SetOfUsers extends ArrayList<User>{
     
     
     
-    public User login(String username, String password)
+    public ProductLineManager login(String username, String password)
     {
-        User user = null;
+        ProductLineManager user = null;
         
         for (int i = 0; i < noOfUsers; i++)
         {
@@ -49,13 +49,13 @@ public class SetOfUsers extends ArrayList<User>{
         return false;
     }
     
-    void addUser(User auser)
+    void addUser(ProductLineManager auser)
     {
         super.add(auser);
         noOfUsers++;
     }
     
-    private void removerUser(User auser)
+    private void removerUser(ProductLineManager auser)
     {
         super.remove(auser);
         noOfUsers--;

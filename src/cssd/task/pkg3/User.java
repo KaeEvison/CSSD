@@ -6,6 +6,7 @@
 package cssd.task.pkg3;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -34,8 +35,8 @@ public class User implements Serializable{
         this.password = password;
     
         orders = new SetOfOrders();
-        
         isFarmer = false;
+        
     
     }
 
