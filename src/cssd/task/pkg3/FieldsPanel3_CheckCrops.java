@@ -58,44 +58,51 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         jbl_title = new javax.swing.JLabel();
         jbtn_back = new javax.swing.JButton();
         btnGetReadings = new javax.swing.JButton();
+        cmbSensorSelect = new javax.swing.JComboBox<>();
+        btnAddSensor = new javax.swing.JButton();
+        btnRemoveSensor1 = new javax.swing.JButton();
+        btnRemoveSensor2 = new javax.swing.JButton();
+        btnRemoveSensor3 = new javax.swing.JButton();
+        btnRemoveSensor4 = new javax.swing.JButton();
+        btnRemoveSensor5 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtValue2.setName("txtSoilAcidity"); // NOI18N
-        add(txtValue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 150, -1));
+        add(txtValue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 150, -1));
 
         txtValue4.setName("txtAirTemperature"); // NOI18N
-        add(txtValue4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 150, -1));
+        add(txtValue4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 150, -1));
 
         txtValue1.setName("txtSoilMoisture"); // NOI18N
-        add(txtValue1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 150, -1));
+        add(txtValue1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 150, -1));
 
         txtValue5.setName("txtLight"); // NOI18N
-        add(txtValue5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 150, -1));
+        add(txtValue5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 150, -1));
 
         txtValue3.setName("txtSoilTemperature"); // NOI18N
-        add(txtValue3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 150, -1));
+        add(txtValue3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 150, -1));
 
         lblType2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblType2.setText("Soil Acidity:");
-        add(lblType2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
+        lblType2.setText("No sensor detected");
+        add(lblType2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
         lblType3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblType3.setText("Soil Temperature:");
-        add(lblType3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
+        lblType3.setText("No sensor detected");
+        add(lblType3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         lblType1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblType1.setText("Soil Moisture:");
-        add(lblType1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+        lblType1.setText("No sensor detected");
+        add(lblType1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
 
         lblType5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblType5.setText("Light:");
-        add(lblType5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, -1, -1));
+        lblType5.setText("No sensor detected");
+        add(lblType5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
         lblType4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        lblType4.setText("Air Temperature:");
-        add(lblType4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+        lblType4.setText("No sensor detected");
+        add(lblType4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
         jbl_title.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
         jbl_title.setText("View Fields - Check Crops");
@@ -103,7 +110,7 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
 
         jbtn_back.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_back.setText("Back");
-        add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+        add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         btnGetReadings.setText("Get readings");
         btnGetReadings.setName("btnGetReadings"); // NOI18N
@@ -112,7 +119,28 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
                 btnGetReadingsActionPerformed(evt);
             }
         });
-        add(btnGetReadings, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
+        add(btnGetReadings, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
+
+        cmbSensorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Air humidity", "Air temperature", "Light level", "Soil acidity", "Soil moisture", "Soil temperature" }));
+        add(cmbSensorSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 130, 30));
+
+        btnAddSensor.setText("Add Sensor");
+        add(btnAddSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 100, -1));
+
+        btnRemoveSensor1.setText("Remove sensor");
+        add(btnRemoveSensor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
+
+        btnRemoveSensor2.setText("Remove sensor");
+        add(btnRemoveSensor2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, -1, -1));
+
+        btnRemoveSensor3.setText("Remove sensor");
+        add(btnRemoveSensor3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 150, -1, -1));
+
+        btnRemoveSensor4.setText("Remove sensor");
+        add(btnRemoveSensor4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 190, -1, -1));
+
+        btnRemoveSensor5.setText("Remove sensor");
+        add(btnRemoveSensor5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGetReadingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetReadingsActionPerformed
@@ -121,7 +149,14 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnAddSensor;
     public javax.swing.JButton btnGetReadings;
+    public javax.swing.JButton btnRemoveSensor1;
+    public javax.swing.JButton btnRemoveSensor2;
+    public javax.swing.JButton btnRemoveSensor3;
+    public javax.swing.JButton btnRemoveSensor4;
+    public javax.swing.JButton btnRemoveSensor5;
+    public javax.swing.JComboBox<String> cmbSensorSelect;
     public javax.swing.JLabel jbl_title;
     public javax.swing.JButton jbtn_back;
     public javax.swing.JLabel lblType1;

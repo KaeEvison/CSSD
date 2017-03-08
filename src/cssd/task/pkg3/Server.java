@@ -69,8 +69,13 @@ public class Server extends javax.swing.JFrame {
         orders = new SetOfOrders();
         deserializeAll();
         availableCrops = new ArrayList<Planting>();
-        setCrops();
+//        setCrops();
          
+        File dataExists = new File("users.ser");
+        if (dataExists.exists() == false)
+        {
+            testData_initialiseUsers();
+        }
         
         //testData_initialiseUsers();
     }
@@ -281,8 +286,9 @@ public class Server extends javax.swing.JFrame {
     });
     }
     
-    void setCrops(){
-        Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli; 
+    private void addCrops() 
+    { 
+       Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli; 
          
         carrots = new Planting( "Carrots", 1000.10f ); 
         sweetcorn = new Planting("Sweetcorn", 909.99f); 
@@ -299,113 +305,113 @@ public class Server extends javax.swing.JFrame {
         availableCrops.add(broccoli); 
     }
     
-//    private void testData_initialiseUsers() 
-//    {   
-//        farmers.addFarmer( 
-//                new Farmer( 
-//                        "admin", 
-//                        "John", 
-//                        "Smith", 
-//                        "Hull", 
-//                        "phoneno", 
-//                        "password" 
-//                ) 
-//        ); 
-//         
-//        SetOfFields fields = new SetOfFields(new ArrayList<Field>()); 
-//         
-//        ArrayList<Harvest> harvests = new ArrayList<Harvest>(); 
-//         
-//        Location points[] = new Location[4]; 
-//        points[0] = new Location(0, 0); 
-//        points[1] = new Location(1, 0); 
-//        points[2] = new Location(1, 1); 
-//        points[3] = new Location(0, 1); 
-//         
-//        Location points2[] = new Location[4]; 
-//        points2[0] = new Location(2, 4); 
-//        points2[1] = new Location(4, 2); 
-//        points2[2] = new Location(4, 4); 
-//        points2[3] = new Location(2, 4); 
-//        
-//        Planting planting1 = new Planting(); 
-//        planting1.setType("Bananas"); 
-//        planting1.setPricePerTon(902.92f); 
-//        planting1.setGrowthTime(6); 
-//        planting1.setIsGrowing(false); 
-//         
-//        Planting planting2 = new Planting(); 
-//        planting2.setType("Peas"); 
-//        planting2.setPricePerTon(109.33f); 
-//        planting2.setGrowthTime(2); 
-//        planting2.setIsGrowing(true); 
-//         
-//        fields.addField(new Field(planting1, new FieldArea(points), harvests)); 
-//        fields.addField(new Field(planting2, new FieldArea(points2), harvests)); 
-//         
-//        farmers.get(0).setFields(fields); 
-//         
-//        users.addUser( 
-//                new ProductLineManager( 
-//                        "trkirk", 
-//                        "thomas", 
-//                        "kirk", 
-//                        "sheffield", 
-//                        "0114 2483710", 
-//                        "password",
-//                        "EvilCorp"
-//                ) 
-//        ); 
-//         
-//        users.addUser( 
-//                new ProductLineManager( 
-//                        "kevison", 
-//                        "kae", 
-//                        "evison", 
-//                        "sheffield", 
-//                        "0114 2456712", 
-//                        "password",
-//                        "GoodCorp"
-//                ) 
-//        ); 
-//         
-//        users.addUser( 
-//                new ProductLineManager( 
-//                        "sgeorge", 
-//                        "sam", 
-//                        "george", 
-//                        "manchester", 
-//                        "07734737348", 
-//                        "password",
-//                        "BigCorp"
-//                ) 
-//        ); 
-//         
-//        Order order1 = new Order( 
-//                "Peas", 
-//                12.33, 
-//                farmers.get(0), 
-//                users.get(0), 
-//                LocalDateTime.of(2017, Month.MARCH, 27, 17, 28), 
-//                LocalDateTime.now(), 
-//                "active" 
-//        ); 
-//         
-//        Order order2 = new Order( 
-//                "Carrots", 
-//                10.76, 
-//                farmers.get(0), 
-//                users.get(0), 
-//                LocalDateTime.of(2017, Month.MARCH, 26, 12, 21), 
-//                LocalDateTime.now(), 
-//                "complete" 
-//        ); 
-//         
-//        orders.add(order1); 
-//        orders.add(order2); 
-//       getFarmerOrders(farmers.get(0)); 
-//        getUserOrders(users.get(0)); 
-//    } 
+    private void testData_initialiseUsers() 
+    {   
+        farmers.addFarmer( 
+                new Farmer( 
+                        "admin", 
+                        "John", 
+                        "Smith", 
+                        "Hull", 
+                        "phoneno", 
+                        "password" 
+                ) 
+        ); 
+         
+        SetOfFields fields = new SetOfFields(new ArrayList<Field>()); 
+         
+        ArrayList<Harvest> harvests = new ArrayList<Harvest>(); 
+         
+        Location points[] = new Location[4]; 
+        points[0] = new Location(0, 0); 
+        points[1] = new Location(1, 0); 
+        points[2] = new Location(1, 1); 
+        points[3] = new Location(0, 1); 
+         
+        Location points2[] = new Location[4]; 
+        points2[0] = new Location(2, 4); 
+        points2[1] = new Location(4, 2); 
+        points2[2] = new Location(4, 4); 
+        points2[3] = new Location(2, 4); 
+        
+        Planting planting1 = new Planting(); 
+        planting1.setType("Bananas"); 
+        planting1.setPricePerTon(902.92f); 
+        planting1.setGrowthTime(6); 
+        planting1.setIsGrowing(false); 
+         
+        Planting planting2 = new Planting(); 
+        planting2.setType("Peas"); 
+        planting2.setPricePerTon(109.33f); 
+        planting2.setGrowthTime(2); 
+        planting2.setIsGrowing(true); 
+         
+        fields.addField(new Field(planting1, new FieldArea(points), harvests)); 
+        fields.addField(new Field(planting2, new FieldArea(points2), harvests)); 
+         
+        farmers.get(0).setFields(fields); 
+         
+        users.addUser( 
+                new ProductLineManager( 
+                        "trkirk", 
+                        "thomas", 
+                        "kirk", 
+                        "sheffield", 
+                        "0114 2483710", 
+                        "password",
+                        "EvilCorp"
+                ) 
+        ); 
+         
+        users.addUser( 
+                new ProductLineManager( 
+                        "kevison", 
+                        "kae", 
+                        "evison", 
+                        "sheffield", 
+                        "0114 2456712", 
+                        "password",
+                        "GoodCorp"
+                ) 
+        ); 
+         
+        users.addUser( 
+                new ProductLineManager( 
+                        "sgeorge", 
+                        "sam", 
+                        "george", 
+                        "manchester", 
+                        "07734737348", 
+                        "password",
+                        "BigCorp"
+                ) 
+        ); 
+         
+        Order order1 = new Order( 
+                "Peas", 
+                12.33, 
+                farmers.get(0), 
+                users.get(0), 
+                LocalDateTime.of(2017, Month.MARCH, 27, 17, 28), 
+                LocalDateTime.now(), 
+                "active" 
+        ); 
+         
+        Order order2 = new Order( 
+                "Carrots", 
+                10.76, 
+                farmers.get(0), 
+                users.get(0), 
+                LocalDateTime.of(2017, Month.MARCH, 26, 12, 21), 
+                LocalDateTime.now(), 
+                "complete" 
+        ); 
+         
+        orders.add(order1); 
+        orders.add(order2); 
+        getFarmerOrders(farmers.get(0)); 
+        getUserOrders(users.get(0)); 
+    } 
 
     
     public static void serializeAll(SetOfFarmers farmerData, SetOfUsers userData, SetOfOrders orderData)
