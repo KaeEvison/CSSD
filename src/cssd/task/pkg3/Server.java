@@ -69,7 +69,7 @@ public class Server extends javax.swing.JFrame {
         orders = new SetOfOrders();
         deserializeAll();
         availableCrops = new ArrayList<Planting>();
-//        setCrops();
+        setCrops();
          
         File dataExists = new File("users.ser");
         if (dataExists.exists() == false)
@@ -286,7 +286,7 @@ public class Server extends javax.swing.JFrame {
     });
     }
     
-    private void addCrops() 
+    private void setCrops() 
     { 
        Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli; 
          
