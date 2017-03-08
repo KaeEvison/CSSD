@@ -65,6 +65,9 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         btnRemoveSensor3 = new javax.swing.JButton();
         btnRemoveSensor4 = new javax.swing.JButton();
         btnRemoveSensor5 = new javax.swing.JButton();
+        btnPreviousPage = new javax.swing.JButton();
+        btnNextPage = new javax.swing.JButton();
+        lblPageNumber = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,7 +109,7 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
 
         jbl_title.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
         jbl_title.setText("View Fields - Check Crops");
-        add(jbl_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+        add(jbl_title, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, -1));
 
         jbtn_back.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_back.setText("Back");
@@ -119,13 +122,13 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
                 btnGetReadingsActionPerformed(evt);
             }
         });
-        add(btnGetReadings, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
+        add(btnGetReadings, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
         cmbSensorSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Air humidity", "Air temperature", "Light level", "Soil acidity", "Soil moisture", "Soil temperature" }));
-        add(cmbSensorSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 130, 30));
+        add(cmbSensorSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 130, 30));
 
         btnAddSensor.setText("Add Sensor");
-        add(btnAddSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 100, -1));
+        add(btnAddSensor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 100, -1));
 
         btnRemoveSensor1.setText("Remove sensor");
         add(btnRemoveSensor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
@@ -141,6 +144,15 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
 
         btnRemoveSensor5.setText("Remove sensor");
         add(btnRemoveSensor5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, -1));
+
+        btnPreviousPage.setText("Previous page");
+        btnPreviousPage.setEnabled(false);
+        add(btnPreviousPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 100, -1));
+
+        btnNextPage.setText("Next page");
+        btnNextPage.setEnabled(false);
+        add(btnNextPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 100, -1));
+        add(lblPageNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 20, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGetReadingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetReadingsActionPerformed
@@ -151,6 +163,8 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAddSensor;
     public javax.swing.JButton btnGetReadings;
+    public javax.swing.JButton btnNextPage;
+    public javax.swing.JButton btnPreviousPage;
     public javax.swing.JButton btnRemoveSensor1;
     public javax.swing.JButton btnRemoveSensor2;
     public javax.swing.JButton btnRemoveSensor3;
@@ -159,6 +173,7 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
     public javax.swing.JComboBox<String> cmbSensorSelect;
     public javax.swing.JLabel jbl_title;
     public javax.swing.JButton jbtn_back;
+    public javax.swing.JLabel lblPageNumber;
     public javax.swing.JLabel lblType1;
     public javax.swing.JLabel lblType2;
     public javax.swing.JLabel lblType3;

@@ -68,6 +68,21 @@ public class Server extends javax.swing.JFrame {
         farmers = new SetOfFarmers();
         orders = new SetOfOrders();
         deserializeAll();
+//        System.out.println("\n\n\nfarmers.ser\n\n\n");
+//        try
+//            {
+//                System.out.println(Deserialize("users.ser").toString());
+//            }
+//            catch (IOException e)
+//            {
+//                System.out.println(e);
+//            }
+//            catch (ClassNotFoundException e)
+//            {
+//                System.out.println(e);
+//            }
+//        System.out.println("\n\n\nfarmers array\n\n\n");
+//        System.out.println(farmers.toString());
         availableCrops = new ArrayList<Planting>();
         setCrops();
          

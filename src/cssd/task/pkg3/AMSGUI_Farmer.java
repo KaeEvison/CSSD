@@ -26,6 +26,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     private Field currentField;
     private SetOfSensorReadings currentSensorReadings;
     private SetOfFields fields;
+    private int page = 0;
 
     private MenuPanel_Farmer menu;
     private OrdersPanel1_Farmer_Selection op1;
@@ -140,7 +141,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         fp1.model.clear();
         
         for (int i = 0; i < currentFarmer.getFields().size(); ++i) {
-            fp1.model.addElement("Field " + (i + 1));
+            fp1.model.addElement("Field " + (i + 1) + " (" + currentFarmer.getFields().getFieldByIndex(i).getPlanting().getType() + ")");
         }
     }
     
@@ -204,8 +205,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     }
 
     private void displayCrops() {
-        fp3.jbl_title.setText("View Fields - " + fp1.jlPickField.
-                getSelectedValue() + " (Check Crops)");
+        fp3.jbl_title.setText("Sensor readings - " + fp1.jlPickField.
+                getSelectedValue());
         fp3.txtValue4.setText(currentField.currentPlanting.
                 getPreferredAirTemperatureLevel() + "");
         fp3.txtValue5.setText(currentField.currentPlanting.
@@ -234,7 +235,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
     private void clickRecordPlanting() {
         if (currentField != null
-                && (currentField.currentPlanting == null || currentField.currentPlanting.getType() == null)) {
+                && (currentField.currentPlanting == null || currentField.currentPlanting.getType() == "Empty")) {
             fp5.jlbl_title.setText(fp1.jlPickField.getSelectedValue() + " (Record Planting)");
             layout.show(contentPane, "fp5");
         } else {
@@ -248,6 +249,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     private void clickSaveHarvestDetails() {
         if (currentField != null
                 && currentField.currentPlanting != null
+                && currentField.currentPlanting.getType() != "Empty"
                 && fp4.jdccRecordHarvest.getSelectedDate() != null
                 && fp4.jspnYield.getValue() != null) {
 
@@ -274,7 +276,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
     private void clickSavePlantingDetails() {
         if (currentField != null
-                && currentField.currentPlanting == null
+                && (currentField.currentPlanting == null || currentField.currentPlanting.getType() == "Empty")
                 && fp5.jtf_type.getText() != null
                 && fp5.jns_pricePerTon.getValue() != null
                 && fp5.jns_growthTime.getValue() != null
@@ -334,45 +336,46 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     private void updateSensorValues()
     {
         clearSensorScreen();
-        fp3.btnAddSensor.setEnabled(true);
-        fp3.cmbSensorSelect.setEnabled(true);
-        if (currentField.activeMonitors.size() > 0)
+        fp3.lblPageNumber.setText((page+1)+"");
+        if (currentField.activeMonitors.size() > page*5)
         {
-            fp3.lblType1.setText(currentField.getMonitors().get(0).getNewReading().getType());
-            fp3.txtValue1.setText(currentField.getMonitors().get(0).getNewReading().getValue() + "");
+            fp3.lblType1.setText(currentField.getMonitors().get(page*5).getNewReading().getType());
+            fp3.txtValue1.setText(currentField.getMonitors().get(page*5).getNewReading().getValue() + "");
             fp3.lblType1.setVisible(true);
             fp3.txtValue1.setVisible(true);
             fp3.btnRemoveSensor1.setVisible(true);
-            if (currentField.activeMonitors.size() > 1)
+            if (currentField.activeMonitors.size() > (page*5)+1)
             {
-                fp3.lblType2.setText(currentField.getMonitors().get(1).getNewReading().getType());
-                fp3.txtValue2.setText(currentField.getMonitors().get(1).getNewReading().getValue() + "");
+                fp3.lblType2.setText(currentField.getMonitors().get((page*5)+1).getNewReading().getType());
+                fp3.txtValue2.setText(currentField.getMonitors().get((page*5)+1).getNewReading().getValue() + "");
                 fp3.lblType2.setVisible(true);
                 fp3.txtValue2.setVisible(true);
                 fp3.btnRemoveSensor2.setVisible(true);
-                if (currentField.activeMonitors.size() > 2)
+                if (currentField.activeMonitors.size() > (page*5)+2)
                 {
-                    fp3.lblType3.setText(currentField.getMonitors().get(2).getNewReading().getType());
-                    fp3.txtValue3.setText(currentField.getMonitors().get(2).getNewReading().getValue() + "");
+                    fp3.lblType3.setText(currentField.getMonitors().get((page*5)+2).getNewReading().getType());
+                    fp3.txtValue3.setText(currentField.getMonitors().get((page*5)+2).getNewReading().getValue() + "");
                     fp3.lblType3.setVisible(true);
                     fp3.txtValue3.setVisible(true);
                     fp3.btnRemoveSensor3.setVisible(true);
-                    if (currentField.activeMonitors.size() > 3)
+                    if (currentField.activeMonitors.size() > (page*5)+3)
                     {
-                        fp3.lblType4.setText(currentField.getMonitors().get(3).getNewReading().getType());
-                        fp3.txtValue4.setText(currentField.getMonitors().get(3).getNewReading().getValue() + "");
+                        fp3.lblType4.setText(currentField.getMonitors().get((page*5)+3).getNewReading().getType());
+                        fp3.txtValue4.setText(currentField.getMonitors().get((page*5)+3).getNewReading().getValue() + "");
                         fp3.lblType4.setVisible(true);
                         fp3.txtValue4.setVisible(true);
                         fp3.btnRemoveSensor4.setVisible(true);
-                        if (currentField.activeMonitors.size() > 4)
+                        if (currentField.activeMonitors.size() > (page*5)+4)
                         {
-                            fp3.lblType5.setText(currentField.getMonitors().get(4).getNewReading().getType());
-                            fp3.txtValue5.setText(currentField.getMonitors().get(4).getNewReading().getValue() + "");
+                            fp3.lblType5.setText(currentField.getMonitors().get((page*5)+4).getNewReading().getType());
+                            fp3.txtValue5.setText(currentField.getMonitors().get((page*5)+4).getNewReading().getValue() + "");
                             fp3.lblType5.setVisible(true);
                             fp3.txtValue5.setVisible(true);
                             fp3.btnRemoveSensor5.setVisible(true);
-                            fp3.btnAddSensor.setEnabled(false);
-                            fp3.cmbSensorSelect.setEnabled(false);
+                            if (currentField.activeMonitors.size() > ((page+1)*5))
+                            {
+                                fp3.btnNextPage.setEnabled(true);
+                            }
                         }
                     }
                 }
@@ -628,7 +631,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         {
             public void actionPerformed(ActionEvent e)
             {
-                currentField.activeMonitors.remove(0);
+                currentField.activeMonitors.remove(page*5);
                 updateSensorValues();
             }
         });
@@ -637,7 +640,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         {
             public void actionPerformed(ActionEvent e)
             {
-                currentField.activeMonitors.remove(1);
+                currentField.activeMonitors.remove((page*5)+1);
                 updateSensorValues();
             }
         });
@@ -646,7 +649,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         {
             public void actionPerformed(ActionEvent e)
             {
-                currentField.activeMonitors.remove(2);
+                currentField.activeMonitors.remove((page*5)+2);
                 updateSensorValues();
             }
         });
@@ -655,7 +658,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         {
             public void actionPerformed(ActionEvent e)
             {
-                currentField.activeMonitors.remove(3);
+                currentField.activeMonitors.remove((page*5)+3);
                 updateSensorValues();
             }
         });
@@ -664,7 +667,31 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         {
             public void actionPerformed(ActionEvent e)
             {
-                currentField.activeMonitors.remove(4);
+                currentField.activeMonitors.remove((page*5)+4);
+                updateSensorValues();
+            }
+        });
+        
+        fp3.btnNextPage.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                page++;
+                if (currentField.activeMonitors.size() <= (page+1)*5)
+                    fp3.btnNextPage.setEnabled(false);
+                fp3.btnPreviousPage.setEnabled(true);
+                updateSensorValues();
+            }
+        });
+        
+        fp3.btnPreviousPage.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                page--;
+                if (page == 0)
+                    fp3.btnPreviousPage.setEnabled(false);
+                fp3.btnNextPage.setEnabled(true);
                 updateSensorValues();
             }
         });
@@ -678,6 +705,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         fp4.jbtn_submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 clickSaveHarvestDetails();
+                resetFieldJLists();
             }
         });
 
@@ -690,6 +718,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         fp5.jbtn_submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 clickSavePlantingDetails();
+                resetFieldJLists();
             }
         });
     }
