@@ -58,6 +58,15 @@ public class SetOfFarmers extends ArrayList<Farmer> implements Serializable
     {
         super.remove(afarmer);
         noOfFarmers--;
-        
+    }
+    
+    public String toString()
+    {
+        String holder = "";
+        for (int i = 0; i < this.size(); i++)
+        {
+            holder += this.get(i).toString();
+        }
+        return holder;
     }
 }

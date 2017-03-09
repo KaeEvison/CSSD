@@ -35,16 +35,38 @@ public class SensorTest
     @Test
     public void testTakeReading()
     {
-//        System.out.println("se")
-        System.out.print("\nMoisture:\t\t");
+        System.out.println("First reading:\n");
+        System.out.print("Moisture:\t\t");
         System.out.println(testMonitorMoist.getNewReading().getValue());
-        System.out.print("\nAcidity:\t\t");
+        System.out.print("Acidity:\t\t");
         System.out.println(testMonitorAcid.getNewReading().getValue());
-        System.out.print("\nTemperature:\t\t");
+        System.out.print("Temperature:\t\t");
         System.out.println(testMonitorTemp.getNewReading().getValue());
-        System.out.print("\nHumidity:\t\t");
+        System.out.print("Humidity:\t\t");
         System.out.println(testMonitorHumid.getNewReading().getValue());
-        System.out.print("\nLight:\t\t\t");
+        System.out.print("Light:\t\t\t");
+        System.out.println(testMonitorLight.getNewReading().getValue());
+        System.out.println("\n\nSecond reading:\n");
+        System.out.print("Moisture:\t\t");
+        System.out.println(testMonitorMoist.getNewReading().getValue());
+        System.out.print("Acidity:\t\t");
+        System.out.println(testMonitorAcid.getNewReading().getValue());
+        System.out.print("Temperature:\t\t");
+        System.out.println(testMonitorTemp.getNewReading().getValue());
+        System.out.print("Humidity:\t\t");
+        System.out.println(testMonitorHumid.getNewReading().getValue());
+        System.out.print("Light:\t\t\t");
+        System.out.println(testMonitorLight.getNewReading().getValue());
+        System.out.println("\n\nThird reading:\n");
+        System.out.print("Moisture:\t\t");
+        System.out.println(testMonitorMoist.getNewReading().getValue());
+        System.out.print("Acidity:\t\t");
+        System.out.println(testMonitorAcid.getNewReading().getValue());
+        System.out.print("Temperature:\t\t");
+        System.out.println(testMonitorTemp.getNewReading().getValue());
+        System.out.print("Humidity:\t\t");
+        System.out.println(testMonitorHumid.getNewReading().getValue());
+        System.out.print("Light:\t\t\t");
         System.out.println(testMonitorLight.getNewReading().getValue());
     }
 }

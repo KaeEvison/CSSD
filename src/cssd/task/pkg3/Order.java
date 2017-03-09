@@ -96,5 +96,10 @@ public class Order implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-   
+    
+    public String toString()
+    {
+        String holder = "\n\nCrop: " + crop + "\nCost: " + cost + "\nSupplier: " + supplier.getFirstName() + "\nBuyer: " + buyer.getFirstName() + "\nEstimated delivery date: " + estimatedDeliveryDate + "\nDate created: " + dateCreated + "\nStatus: " + status;
+        return holder;
+    }
 }

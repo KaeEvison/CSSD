@@ -29,8 +29,6 @@ public class Server extends javax.swing.JFrame {
   
     Location testData = new Location(2,3);
     private SetOfSensorReadings sensorReadings;
-    private static String FILENAME = "readingsLog.ser";
-    File outputFile = new File(FILENAME);
     private SetOfSensorMonitors allSensors = new SetOfSensorMonitors();
     public ArrayList<Planting> availableCrops;
     
@@ -52,7 +50,7 @@ public class Server extends javax.swing.JFrame {
         setSize(353, 276);
         setTitle("AMS Login");
         
-//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter()
         {
             public void windowClosing(WindowEvent e)
@@ -70,21 +68,6 @@ public class Server extends javax.swing.JFrame {
         farmers = new SetOfFarmers();
         orders = new SetOfOrders();
         deserializeAll();
-//        System.out.println("\n\n\nfarmers.ser\n\n\n");
-//        try
-//            {
-//                System.out.println(Deserialize("users.ser").toString());
-//            }
-//            catch (IOException e)
-//            {
-//                System.out.println(e);
-//            }
-//            catch (ClassNotFoundException e)
-//            {
-//                System.out.println(e);
-//            }
-//        System.out.println("\n\n\nfarmers array\n\n\n");
-//        System.out.println(farmers.toString());
         availableCrops = new ArrayList<Planting>();
         setCrops();
          
@@ -93,8 +76,6 @@ public class Server extends javax.swing.JFrame {
         {
             testData_initialiseUsers();
         }
-        
-        //testData_initialiseUsers();
     }
     
     protected void initManualComponents(){
@@ -673,6 +654,14 @@ public class Server extends javax.swing.JFrame {
                 }
             }
         }
+    }
+    
+    public String getData()
+    {
+        String holder = "";
+        holder = farmers.toString();
+        holder += orders.toString();
+        return holder;
     }
     
     /**

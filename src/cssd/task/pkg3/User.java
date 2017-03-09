@@ -96,6 +96,12 @@ public class User implements Serializable{
     {
         orders.addOrder(newOrder);
     }
+    
+    public String toString()
+    {
+        String holder = "\n\nUsername: " + username + "\nName: " + firstName + " " + surname + "\nLocation: " + location + "\nPhone number: " + phoneNumber + "\nPassword: " + password;
+        return holder;
+    }
 }
 
 

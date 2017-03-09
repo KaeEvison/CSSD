@@ -63,5 +63,4 @@ public class Farmer extends User implements Serializable{
     {
         return "Farmer";
     }
-    
 }

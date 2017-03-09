@@ -5,14 +5,18 @@
  */
 package subTask3Tests;
 
-import cssd.task.pkg3.Location;
-import cssd.task.pkg3.SensorReading;
+import cssd.task.pkg3.Farmer;
+import cssd.task.pkg3.Field;
+import cssd.task.pkg3.Order;
 import cssd.task.pkg3.Server;
+import static cssd.task.pkg3.Server.serializeAll;
+import cssd.task.pkg3.SetOfFarmers;
+import cssd.task.pkg3.SetOfOrders;
 import cssd.task.pkg3.SetOfSensorMonitors;
-import cssd.task.pkg3.SetOfSensorReadings;
+import cssd.task.pkg3.SetOfUsers;
+import cssd.task.pkg3.User;
 import java.time.LocalDateTime;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -20,15 +24,33 @@ import static org.junit.Assert.*;
  */
 public class ServerTest
 {
-    SensorReading test1 = new SensorReading(21, "degrees celcius", "Soil temperature", new Location(12, 20));
-    SensorReading test2 = new SensorReading(23, "degrees celcius", "Soil temperature", new Location(14, 6));
-    SensorReading test3 = new SensorReading(16, "degrees celcius", "Soil temperature", new Location(7, 14));
-    SetOfSensorReadings instance = new SetOfSensorReadings(test1, test2, test3);
-    SetOfSensorMonitors testMonitors = new SetOfSensorMonitors();
-    Server testServer = new Server(testMonitors);
+    SetOfFarmers testFarmers = new SetOfFarmers();
+    SetOfUsers testUsers = new SetOfUsers();
+    SetOfOrders testOrders = new SetOfOrders();
+    Farmer testFarmer1;
+    Farmer testFarmer2;
+    User testUser1 = new User("","James","","","","");
+    Order testOrder1;
+    Order testOrder2;
+    Order testOrder3;
     
     @Test
-    public void testAddReadings()
+    public void testSerialization()
     {
+        testFarmer1 = new Farmer("Testman1", "John", "Testman", "Harrogate", "01234567890", "Pass1");
+        testFarmer2 = new Farmer("Testguy1", "Billy", "Testman", "Barnsley", "09876543210", "Pass2");
+        testOrder1 = new Order("Apples", 100.00, testFarmer1, testUser1, LocalDateTime.now(), LocalDateTime.now(), "pending");
+        testOrder2 = new Order("Oranges", 120.00, testFarmer1, testUser1, LocalDateTime.now(), LocalDateTime.now(), "complete");
+        testOrder3 = new Order("Pears", 140.00, testFarmer2, testUser1, LocalDateTime.now(), LocalDateTime.now(), "pending");
+        testFarmers.add(testFarmer1);
+        testFarmers.add(testFarmer2);
+        testOrders.add(testOrder1);
+        testOrders.add(testOrder2);
+        testOrders.add(testOrder3);
         
-    }}
+        serializeAll(testFarmers, testUsers, testOrders);
+        
+        Server testServer = new Server(new SetOfSensorMonitors());
+        System.out.println(testServer.getData());
+    }
+}

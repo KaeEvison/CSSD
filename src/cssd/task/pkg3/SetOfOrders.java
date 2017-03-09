@@ -24,4 +24,14 @@ public class SetOfOrders extends ArrayList<Order> implements Serializable
     {
         return this.get(index);
     }
+    
+    public String toString()
+    {
+        String holder = "";
+        for (int i = 0; i < this.size(); i++)
+        {
+            holder += this.get(i).toString();
+        }
+        return holder;
+    }
 }
