@@ -35,15 +35,16 @@ public class SensorTest
     @Test
     public void testTakeReading()
     {
-        System.out.print("\n\nMoisture:\t\t");
+//        System.out.println("se")
+        System.out.print("\nMoisture:\t\t");
         System.out.println(testMonitorMoist.getNewReading().getValue());
-        System.out.print("\n\nAcidity:\t\t");
+        System.out.print("\nAcidity:\t\t");
         System.out.println(testMonitorAcid.getNewReading().getValue());
-        System.out.print("\n\nTemperature:\t\t");
+        System.out.print("\nTemperature:\t\t");
         System.out.println(testMonitorTemp.getNewReading().getValue());
-        System.out.print("\n\nHumidity:\t\t");
+        System.out.print("\nHumidity:\t\t");
         System.out.println(testMonitorHumid.getNewReading().getValue());
-        System.out.print("\n\nLight:\t\t\t");
+        System.out.print("\nLight:\t\t\t");
         System.out.println(testMonitorLight.getNewReading().getValue());
     }
 }
