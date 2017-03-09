@@ -5,13 +5,14 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author trkirk
  */
-public class Harvest {
+public class Harvest implements Serializable{
     
     private double yield = 0.0d;
     private Planting planting;

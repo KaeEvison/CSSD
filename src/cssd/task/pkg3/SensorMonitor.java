@@ -5,6 +5,7 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Date;
  * 
  * @author trkirk
  */
-public class SensorMonitor {
+public class SensorMonitor implements Serializable{
     
     private Sensor sensor;
     private int interval = 0;

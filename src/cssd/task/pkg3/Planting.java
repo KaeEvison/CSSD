@@ -25,7 +25,7 @@ public class Planting implements Serializable{
     
     public Planting()
     {
-        
+        type = "Empty";
     }
     
     public Planting( String type, float pricePerTon){

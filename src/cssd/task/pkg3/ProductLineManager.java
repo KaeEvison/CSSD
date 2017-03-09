@@ -5,13 +5,17 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  *
  * @author b3014277
  */
-public class ProductLineManager extends User
+public class ProductLineManager extends User implements Serializable
 {
-    String company = "";
+    public String company = "";
+    public ArrayList<Farmer> blockList;
     
     public ProductLineManager( String username, String firstName, String surname, 
             String location, String phoneNumber, String password, String companyName)
@@ -19,6 +23,7 @@ public class ProductLineManager extends User
         super(username, firstName, surname, location, phoneNumber, password);
         company = companyName;
         isFarmer = false;
+        blockList = new ArrayList<Farmer>();
     }
     
     public String getUserType()
