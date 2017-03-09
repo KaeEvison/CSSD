@@ -52,11 +52,13 @@ public class Server extends javax.swing.JFrame {
         setSize(353, 276);
         setTitle("AMS Login");
         
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter()
         {
             public void windowClosing(WindowEvent e)
             {
+                //harvesthistory is recording planting as type empty regardless of actual type
+                //harvest is being allowed with empty fields
                 serializeAll(farmers, users, orders);
             }
         });

@@ -5,6 +5,7 @@
  */
 package cssd.task.pkg3;
 
+import java.io.Serializable;
 import java.util.Random;
 import static jdk.nashorn.internal.objects.NativeMath.round;
 
@@ -12,7 +13,7 @@ import static jdk.nashorn.internal.objects.NativeMath.round;
  *
  * @author thoma
  */
-public class Sensor {
+public class Sensor implements Serializable{
     
     protected String sensorType = "";
     protected String dataUnit = "";
