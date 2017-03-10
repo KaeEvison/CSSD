@@ -14,10 +14,10 @@ import java.util.Arrays;
  * @author b4027320
  */
 public class Field implements Serializable{
-    Planting currentPlanting;
-    FieldArea fieldArea;
-    ArrayList<Harvest> harvestHistory;
-    SetOfSensorMonitors activeMonitors;
+    public Planting currentPlanting;
+    private FieldArea fieldArea;
+    public ArrayList<Harvest> harvestHistory;
+    public SetOfSensorMonitors activeMonitors;
     //ArrayList<AutomatedMachineryMonitor> automatedMachineryMonitor;
     
     public Field(Planting a, FieldArea b, ArrayList<Harvest> c) {
@@ -29,7 +29,7 @@ public class Field implements Serializable{
     
     public Field()
     {
-        currentPlanting = new Planting();
+        currentPlanting = new Planting("Empy", 0.00f);
         fieldArea = new FieldArea();
         harvestHistory = new ArrayList<Harvest>();
         activeMonitors = new SetOfSensorMonitors();

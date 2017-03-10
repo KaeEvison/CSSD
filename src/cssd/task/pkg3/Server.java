@@ -332,15 +332,11 @@ public class Server extends javax.swing.JFrame {
         points2[2] = new Location(4, 4); 
         points2[3] = new Location(2, 4); 
         
-        Planting planting1 = new Planting(); 
-        planting1.setType("Bananas"); 
-        planting1.setPricePerTon(902.92f); 
+        Planting planting1 = new Planting("Broccoli", 109.33f); 
         planting1.setGrowthTime(6); 
         planting1.setIsGrowing(false); 
          
-        Planting planting2 = new Planting(); 
-        planting2.setType("Peas"); 
-        planting2.setPricePerTon(109.33f); 
+        Planting planting2 = new Planting("Peas", 109.33f); 
         planting2.setGrowthTime(2); 
         planting2.setIsGrowing(true); 
          

@@ -32,6 +32,7 @@ public class FieldsPanel2_Options extends javax.swing.JPanel {
         jbtn_recordPlanting = new javax.swing.JButton();
         jbtn_back = new javax.swing.JButton();
         jbl_fieldname = new javax.swing.JLabel();
+        jbtn_harvestHistory = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -39,15 +40,15 @@ public class FieldsPanel2_Options extends javax.swing.JPanel {
         jbtn_checkCrops.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_checkCrops.setText("Check Crops");
         jbtn_checkCrops.setName(""); // NOI18N
-        add(jbtn_checkCrops, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 358, 57));
+        add(jbtn_checkCrops, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 358, 40));
 
         jbtn_recordHarvest.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_recordHarvest.setText("Record Harvest");
-        add(jbtn_recordHarvest, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 358, 57));
+        add(jbtn_recordHarvest, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 358, -1));
 
         jbtn_recordPlanting.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_recordPlanting.setText("Record Planting");
-        add(jbtn_recordPlanting, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 358, 57));
+        add(jbtn_recordPlanting, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 358, -1));
 
         jbtn_back.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_back.setText("Back");
@@ -56,6 +57,10 @@ public class FieldsPanel2_Options extends javax.swing.JPanel {
         jbl_fieldname.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jbl_fieldname.setText("View Fields - Field");
         add(jbl_fieldname, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+
+        jbtn_harvestHistory.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jbtn_harvestHistory.setText("Harvest History");
+        add(jbtn_harvestHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 358, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -63,6 +68,7 @@ public class FieldsPanel2_Options extends javax.swing.JPanel {
     public javax.swing.JLabel jbl_fieldname;
     public javax.swing.JButton jbtn_back;
     public javax.swing.JButton jbtn_checkCrops;
+    public javax.swing.JButton jbtn_harvestHistory;
     public javax.swing.JButton jbtn_recordHarvest;
     public javax.swing.JButton jbtn_recordPlanting;
     // End of variables declaration//GEN-END:variables

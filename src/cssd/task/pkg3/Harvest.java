@@ -17,11 +17,13 @@ public class Harvest implements Serializable{
     private double yield = 0.0d;
     private Planting planting;
     private Date timeHarvested;
+    public int field;
     
-    public Harvest(Planting planting, Date timeHarvested, double yield){
+    public Harvest(Planting planting, Date timeHarvested, double yield, int field){
         this.planting = planting;
         this.timeHarvested = timeHarvested;
         this.yield = yield;
+        this.field = field;
     }
 
     public double getYield() {
