@@ -29,7 +29,7 @@ public class Field implements Serializable{
     
     public Field()
     {
-        currentPlanting = new Planting("Empy", 0.00f);
+        currentPlanting = new Planting("Empty", 0.00f);
         fieldArea = new FieldArea();
         harvestHistory = new ArrayList<Harvest>();
         activeMonitors = new SetOfSensorMonitors();

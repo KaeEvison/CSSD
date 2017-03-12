@@ -196,7 +196,14 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     }
 
     private void viewField() {
-        layout.show(contentPane, "fp2");
+        if (fp1.jlPickField.getSelectedIndex() != -1)
+        {
+            layout.show(contentPane, "fp2");
+        } else
+        {
+            JOptionPane.showMessageDialog(getContentPane(),
+                    "No field selected");
+        }
     }
 
     private void displayRecordHarvest() {
@@ -226,10 +233,17 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     }
 
     private void clickRecordHarvest() {
-        fp4.jlbl_title.setText("View Fields - "
+        if (!currentField.currentPlanting.getType().equals("Empty"))
+        {
+            fp4.jlbl_title.setText("View Fields - "
                 + fp1.jlPickField.getSelectedValue()
                 + " (Record Harvest)");
-        displayRecordHarvest();
+            displayRecordHarvest();
+        } else
+        {
+            JOptionPane.showMessageDialog(getContentPane(),
+                    "No current planting");
+        }
     }
 
     private void clickRecordPlanting() {
@@ -567,13 +581,20 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp1.btnRemoveField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int confirmDelete = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to delete the selected field?");
-                if (confirmDelete == 0) {
-                    int pos = fp1.jlPickField.getSelectedIndex();
-                    currentFarmer.getFields().removeField(pos);
-                    //currentServer.updateFarmer(currentFarmer);
-                    resetFieldJLists();
-                    JOptionPane.showMessageDialog(getContentPane(), "Field removed");
+                if (fp1.jlPickField.getSelectedIndex() != -1)
+                {
+                    int confirmDelete = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to delete the selected field?");
+                    if (confirmDelete == 0) {
+                        int pos = fp1.jlPickField.getSelectedIndex();
+                        currentFarmer.getFields().removeField(pos);
+                        //currentServer.updateFarmer(currentFarmer);
+                        resetFieldJLists();
+                        JOptionPane.showMessageDialog(getContentPane(), "Field removed");
+                    }
+                } else
+                {
+                    JOptionPane.showMessageDialog(getContentPane(),
+                        "No field selected");
                 }
             }
         });
