@@ -215,10 +215,11 @@ public class AMSGUI_User extends javax.swing.JFrame {
                         + ".       Supplier: " + currentUser.orders.get(i).
                         getSupplier().getFirstName()
                         + currentUser.orders.get(i).getSupplier().getSurname()
-                        + "        Delivery Date: " + currentUser.orders.get(i).getEstimatedDeliveryDate().toLocalDate()
-                        + "        Crop: " + currentUser.orders.get(i).getCrop()
-                        + "        Total: " + df.format(currentUser.orders.get(i).getCost())
-                        + "        Status: " + currentUser.orders.get(i).getStatus()
+                        + "   " + currentUser.orders.get(i).getSupplier().getPhoneNumber()
+                        + "   Delivery Date: " + currentUser.orders.get(i).getEstimatedDeliveryDate().toLocalDate()
+                        + "   Crop: " + currentUser.orders.get(i).getCrop()
+                        + "   Total: " + df.format(currentUser.orders.get(i).getCost())
+                        + "   Status: " + currentUser.orders.get(i).getStatus()
                 );
             }
 
@@ -238,7 +239,9 @@ public class AMSGUI_User extends javax.swing.JFrame {
         
         //Removes all farmers on the user's blocklist
         for(int i=0; i<currentUser.blockList.size(); ++i){
+            
             for(int j=0; j<suitableFarmers.size(); ++j){
+                
                 if( currentUser.blockList.get(i).getUsername().toLowerCase().
                     equals(suitableFarmers.get(j).getUsername().toLowerCase())){
                     suitableFarmers.remove(j);
@@ -256,6 +259,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
             //Fetches and displays the details of all relevant plantings
             for (int i = 0; i < suitableFarmers.size(); ++i) {
+                
                 for (int j = 0; j < (suitableFarmers.get(i).getFields()).size(); ++j) {
 
                     planting = suitableFarmers.get(i).getFields().getFieldByIndex(j).currentPlanting;
@@ -266,7 +270,8 @@ public class AMSGUI_User extends javax.swing.JFrame {
                     }
                 }
 
-                op5.model.addElement("Name: " + suitableFarmers.get(i).getFirstName() + " "
+                op5.model.addElement(
+                        "Name: " + suitableFarmers.get(i).getFirstName() + " "
                         + suitableFarmers.get(i).getSurname()
                         + "           Location: " + suitableFarmers.get(i).getLocation()
                         + "           Price: " + price);
@@ -286,6 +291,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         Planting aPlanting = null;
 
         for (int i = 0; i < aFarmer.getFields().size(); ++i) {
+            
             if (aFarmer.getFields().getFieldByIndex(i).currentPlanting.getType().
                     toLowerCase().equals(requiredPlanting.getType().toLowerCase())) {
                 aPlanting = aFarmer.getFields().getFieldByIndex(i).currentPlanting;
@@ -296,24 +302,30 @@ public class AMSGUI_User extends javax.swing.JFrame {
                 && aPlanting != null) {
             displayOrderDetails(aFarmer, aPlanting);
         } else {
-            JOptionPane.showMessageDialog(getContentPane(), "There was an error with the requested farmer or planting");
+            JOptionPane.showMessageDialog(getContentPane(), 
+                "There was an error with the requested farmer or planting");
         }
     }
-
-    //Allows a user to add a farmer to their blocklist
+    
+    // This function will enable product line managers to remove troublesome
+    // suppliers from their suitable farmers results for product queries
+    
     private void addFarmerToBlockList() {
 
         if (mfp.jlPickFarmer.getSelectedValue() != null) {
-            Farmer aFarmer = currentServer.getFarmers().get(mfp.jlPickFarmer.getSelectedIndex());
+            Farmer aFarmer = currentServer.getFarmers().
+                get(mfp.jlPickFarmer.getSelectedIndex());
 
             if (!currentUser.blockList.contains(aFarmer)) {
                 currentUser.blockList.add(aFarmer);
                 displayManageFarmers();
-                JOptionPane.showMessageDialog(getContentPane(), "Farmer successfully added to block list.");
+                JOptionPane.showMessageDialog(getContentPane(), 
+                    "Farmer successfully added to block list.");
                
                 
             } else {
-                JOptionPane.showMessageDialog(getContentPane(), "Error: Farmer is already on block list");
+                JOptionPane.showMessageDialog(getContentPane(), 
+                    "Error: Farmer is already on block list");
             }
         } else {
             JOptionPane.showMessageDialog(getContentPane(), "No farmer selected.");
@@ -324,15 +336,19 @@ public class AMSGUI_User extends javax.swing.JFrame {
     private void removeFarmerFromBlockList() {
 
         if (mfp.jlPickFarmer.getSelectedValue() != null) {
-            Farmer aFarmer = currentServer.getFarmers().get(mfp.jlPickFarmer.getSelectedIndex());
+            Farmer aFarmer = currentServer.getFarmers().
+                get(mfp.jlPickFarmer.getSelectedIndex());
 
             if (currentUser.blockList.contains(aFarmer)) {
+                
                 currentUser.blockList.remove(aFarmer);
                 displayManageFarmers();
-                JOptionPane.showMessageDialog(getContentPane(), "Farmer successfully removed from block list.");
+                JOptionPane.showMessageDialog(getContentPane(), 
+                    "Farmer successfully removed from block list.");
                 
             } else {
-                JOptionPane.showMessageDialog(getContentPane(), "Error: Farmer not found on block list.");
+                JOptionPane.showMessageDialog(getContentPane(), 
+                    "Error: Farmer not found on block list.");
             }
         } else {
             JOptionPane.showMessageDialog(getContentPane(), "No farmer selected.");
@@ -351,15 +367,20 @@ public class AMSGUI_User extends javax.swing.JFrame {
             blocked = "Block";
 
             for (int j = 0; j < currentUser.blockList.size(); ++j) {
+                
                 if (suitableFarmers.get(i).getUsername().toLowerCase().
-                        equals(currentUser.blockList.get(j).getUsername().toLowerCase())) {
+                        equals(currentUser.blockList.
+                            get(j).getUsername().toLowerCase())) {
                     blocked = "Unblock";
                 }
             }
 
-            mfp.model.addElement("Name: " + suitableFarmers.get(i).getFirstName() + " "
-                    + suitableFarmers.get(i).getSurname()
-                    + "             Location: " + suitableFarmers.get(i).getLocation() + "           "
+            mfp.model.addElement("Name: " + suitableFarmers.get(i).
+                    getFirstName() + " "
+                    + suitableFarmers.get(i).
+                    getSurname()
+                    + "             Location: " + suitableFarmers.
+                    get(i).getLocation() + "           "
                     + blocked);
         }
     }
@@ -374,13 +395,14 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
         //The order is generated using current values from the user's selections
         currentOrder = new Order(
-                aPlanting.getType(),
-                aPlanting.getPricePerTon(),
-                aFarmer,
-                currentUser,
-                LocalDateTime.now().plusDays(aPlanting.getGrowthTime()),
-                LocalDateTime.now(),
-                "active"
+                
+            aPlanting.getType(),
+            aPlanting.getPricePerTon(),
+            aFarmer,
+            currentUser,
+            LocalDateTime.now().plusDays(aPlanting.getGrowthTime()),
+            LocalDateTime.now(),
+            "active"
         );
 
         if (currentOrder != null) {
@@ -394,21 +416,26 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
             layout.show(contentPane, "op6");
         } else {
-            JOptionPane.showMessageDialog(getContentPane(), "Sorry, There was an issue with the order.");
+            JOptionPane.showMessageDialog(getContentPane(), 
+                "Sorry, There was an issue with the order.");
         }
     }
 
     //Adds an order to the list of orders and updates the relevant objects
     public void clickSendOrder() {
         if (currentOrder != null) {
+            
             currentUser.orders.add(currentOrder);
             currentOrder = null;
-            JOptionPane.showMessageDialog(getContentPane(), "Order Successfully created.");
+            JOptionPane.showMessageDialog(getContentPane(), 
+                "Order Successfully created.");
+            
             layout.show(contentPane, "menu");
             currentServer.updateUser(currentUser);
             currentServer.updateOrders(currentUser.orders);
         } else {
-            JOptionPane.showMessageDialog(getContentPane(), "Error: Order could not be saved.");
+            JOptionPane.showMessageDialog(getContentPane(), 
+               "Error: Order could not be saved.");
         }
     }
 
@@ -472,7 +499,8 @@ public class AMSGUI_User extends javax.swing.JFrame {
                 } else if (op4.jrb_sweetcorn.isSelected()) {
                     clickSelectCrop(1);
                 } else {
-                    JOptionPane.showMessageDialog(getContentPane(), "Please select a crop");
+                    JOptionPane.showMessageDialog(getContentPane(), 
+                        "Please select a crop");
                 }
             }
         });
@@ -495,7 +523,8 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
                     clickSelectFarmer();
                 } else {
-                    JOptionPane.showMessageDialog(getContentPane(), "No suitable farmers available");
+                    JOptionPane.showMessageDialog(getContentPane(), 
+                        "No suitable farmers available");
                 }
             }
         });

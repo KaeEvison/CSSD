@@ -91,6 +91,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         op2.model.clear();
         op3.model.clear();
 
+        // Append the status of order(s) to order listings
         String orderStatus = "";
 
         for (int i = 0; i < currentFarmer.orders.size(); ++i) {
@@ -108,17 +109,19 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                             getEstimatedDeliveryDate().toLocalDate();
                 }
 
+                // Retrieve and display order details
                 op2.model.addElement("#" + (i + 1)
-                        + ".       Customer: " + currentFarmer.orders.get(i).
+                        + ".   Customer: " + currentFarmer.orders.get(i).
                         getBuyer().getUsername()
-                        + "        Date: " + currentFarmer.orders.get(i).
+                        + "    Date: " + currentFarmer.orders.get(i).
                         getDateCreated().toLocalDate()
                         + "        " + orderStatus
-                        + "        Crop: " + currentFarmer.orders.get(i).getCrop()
-                        + "        Total: " + currentFarmer.orders.get(i).getCost()
+                        + "    Crop: " + currentFarmer.orders.get(i).getCrop()
+                        + "    Total: " + currentFarmer.orders.get(i).getCost()
                 );
             }
 
+            // Only display active orders on the current orders view
             if (currentFarmer.orders.get(i).
                     getStatus().toLowerCase().equals("active")) {
                 op3.model.addElement("#" + (i + 1)
@@ -140,7 +143,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         fp1.model.clear();
 
         for (int i = 0; i < currentFarmer.getFields().size(); ++i) {
-            fp1.model.addElement("Field " + (i + 1) + " (" + currentFarmer.getFields().getFieldByIndex(i).getPlanting().getType() + ")");
+            fp1.model.addElement("Field " + (i + 1) + " (" + currentFarmer.getFields().
+                    getFieldByIndex(i).getPlanting().getType() + ")");
         }
     }
 
@@ -200,11 +204,9 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
     //If a field is selected, shows the field options screen for that field, else alerts the user that no field is selected
     private void viewField() {
-        if (fp1.jlPickField.getSelectedIndex() != -1)
-        {
+        if (fp1.jlPickField.getSelectedIndex() != -1) {
             layout.show(contentPane, "fp2");
-        } else
-        {
+        } else {
             JOptionPane.showMessageDialog(getContentPane(),
                     "No field selected");
         }
@@ -231,14 +233,12 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
     //If there is a valid planting, displays the record harvest screen, else informs the user that there is no current planting
     private void clickRecordHarvest() {
-        if (!currentField.currentPlanting.getType().equals("Empty"))
-        {
+        if (!currentField.currentPlanting.getType().equals("Empty")) {
             fp4.jlbl_title.setText("View Fields - "
-                + fp1.jlPickField.getSelectedValue()
-                + " (Record Harvest)");
+                    + fp1.jlPickField.getSelectedValue()
+                    + " (Record Harvest)");
             displayRecordHarvest();
-        } else
-        {
+        } else {
             JOptionPane.showMessageDialog(getContentPane(),
                     "No current planting");
         }
@@ -297,7 +297,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     //Checks that all fields have a valid entry then records a new planting
     private void clickSavePlantingDetails() {
         if (currentField != null
-                && (currentField.currentPlanting != null || !currentField.currentPlanting.getType().equals("Empty"))
+                && (currentField.currentPlanting != null
+                || !currentField.currentPlanting.getType().equals("Empty"))
                 && fp5.jtf_type.getSelectedItem().toString() != null
                 && fp5.jns_pricePerTon.getValue() != null
                 && fp5.jns_growthTime.getValue() != null
@@ -331,7 +332,6 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     public void displayOrderHistory() {
         if (currentFarmer != null
                 && currentFarmer.orders.size() > 0) {
-
             op2.model.clear();
 
             for (int i = 0; i < currentFarmer.orders.size(); ++i) {
@@ -356,7 +356,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     //Displays the harvest history for the selected field
     private void displayHarvestHistory() {
         if (fp1.jlPickField.getSelectedIndex() != -1) {
-            
+
             currentField = currentFarmer.fields.getFieldByIndex(fp1.jlPickField.getSelectedIndex());
             fp6.model.clear();
 
@@ -469,7 +469,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         });
     }
 
-    //Listeners added for the UI components
+    // Event handling located here:
     public void addFarmerListeners() {
 
         menu.jbtn_viewFields.addActionListener(new ActionListener() {
@@ -532,14 +532,17 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp1.jlPickField.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                
                 if (fp1.jlPickField.getSelectedValue() != null) {
-                    currentField = fields.getFieldByIndex(fp1.jlPickField.getSelectedIndex());
+                    currentField = fields.
+                            getFieldByIndex(fp1.jlPickField.getSelectedIndex());
                 }
             }
         });
 
         op3.jlPickOrder.addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent listSelectionEvent) {
+                
                 for (int i = 0; i < currentFarmer.orders.size(); ++i) {
                     if (currentFarmer.orders.get(i).
                             getStatus().toLowerCase().equals("active")) {
@@ -604,8 +607,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp1.btnRemoveField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (fp1.jlPickField.getSelectedIndex() != -1)
-                {
+                if (fp1.jlPickField.getSelectedIndex() != -1) {
                     int confirmDelete = JOptionPane.showConfirmDialog(getContentPane(), "Are you sure you want to delete the selected field?");
                     if (confirmDelete == 0) {
                         int pos = fp1.jlPickField.getSelectedIndex();
@@ -614,10 +616,9 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                         resetFieldJLists();
                         JOptionPane.showMessageDialog(getContentPane(), "Field removed");
                     }
-                } else
-                {
+                } else {
                     JOptionPane.showMessageDialog(getContentPane(),
-                        "No field selected");
+                            "No field selected");
                 }
             }
         });
@@ -630,8 +631,12 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp2.jbtn_checkCrops.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                displayCrops();
-                updateSensorValues();
+                if (currentField.currentPlanting != null) {
+                    displayCrops();
+                    updateSensorValues();
+                } else {
+                    JOptionPane.showMessageDialog(getContentPane(), "Please create a field planting first");
+                }
             }
         });
 
@@ -672,7 +677,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             }
         });
 
-        //Creates a new sensor monitor wiht a sensor assigned to it and adds it to the current field, the sensor type is dependant on user input
+        //Creates a new sensor monitor with a sensor assigned to it and adds it to the current field, the sensor type is dependant on user input
         fp3.btnAddSensor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (fp3.cmbSensorSelect.getSelectedIndex() == 0) {
@@ -691,7 +696,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                 updateSensorValues();
             }
         });
-
+        
         fp3.btnRemoveSensor1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 currentField.activeMonitors.remove(page * 5);
@@ -761,6 +766,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         //Attempts to save harvest details then updates the field list on the UI, a variable is used to carry the field selection over the list's reset
         fp4.jbtn_submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                
                 int temp = fp1.jlPickField.getSelectedIndex();
                 clickSaveHarvestDetails();
                 resetFieldJLists();
@@ -778,6 +784,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         //Attempts to save planting details then updates the field list on the UI, a variable is used to carry the field selection over the list's reset
         fp5.jbtn_submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                
                 int temp = fp1.jlPickField.getSelectedIndex();
                 clickSavePlantingDetails();
                 resetFieldJLists();
