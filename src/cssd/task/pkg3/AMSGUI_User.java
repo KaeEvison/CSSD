@@ -522,7 +522,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         ac.deleteAccount_btn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 
-                int result = JOptionPane.showConfirmDialog(getContentPane(), "Deleting you account is permanent. Do you wish to continue?", "DELETING ACCOUNT" ,JOptionPane.YES_NO_OPTION);
+                int result = JOptionPane.showConfirmDialog(getContentPane(), "Deleting your account is permanent. Do you wish to continue?", "DELETING ACCOUNT" ,JOptionPane.YES_NO_OPTION);
                 if(result == JOptionPane.YES_OPTION)
                 {
                     users.removerUser(currentUser);            

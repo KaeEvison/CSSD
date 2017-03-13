@@ -59,7 +59,7 @@ public class SetOfFarmers extends ArrayList<Farmer> implements Serializable
     }
     
     //Removes a farmer from the list
-    private void removeFarmer(Farmer afarmer)
+    void removeFarmer(Farmer afarmer)
     {
         super.remove(afarmer);
         noOfFarmers--;

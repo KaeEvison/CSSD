@@ -39,6 +39,7 @@ public class Farmer extends User implements Serializable{
         isFarmer = true;
     }
     
+    
     private Boolean hasAutomatedMachinery = false;
 
     public Boolean hasAutomatedMachinery() {

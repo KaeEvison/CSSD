@@ -26,6 +26,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     private Field currentField;
     private SetOfSensorReadings currentSensorReadings;
     private SetOfFields fields;
+    private SetOfFarmers farmers;
     private int page = 0;
 
     private MenuPanel_Farmer menu;
@@ -499,7 +500,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         
         ac.updatePass_btn.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                String pass1 = new String(ac.oldPasswordField.getPassword());
+                String pass1 = new String(ac.oldPasswordField1.getPassword());
                 String pass2 = new String(ac.newPasswordField.getPassword());
                 String pass3 = new String(ac.confirmField.getPassword());
         
@@ -518,28 +519,23 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                     JOptionPane.showMessageDialog(getContentPane(), "Password changed!");
                 }
                 
-                ac.oldPasswordField.setText("");
+                ac.oldPasswordField1.setText("");
                 ac.newPasswordField.setText("");
                 ac.confirmField.setText("");
             }
         });
         
-        ac.update_btn.addActionListener(new ActionListener(){
-           public void actionPerformed(ActionEvent e) {
-               if (!ac.firstname_field.getText().equals(currentFarmer.getFirstName())) {
-                   currentFarmer.setFirstName(ac.firstname_field.getText());
-               }
-               if (!ac.surname_field.getText().equals(currentFarmer.getSurname())) {
-                   currentFarmer.setFirstName(ac.firstname_field.getText());
-               }
-               if (!ac.loc_field.getText().equals(currentFarmer.getLocation())) {
-                   currentFarmer.setFirstName(ac.firstname_field.getText());
-               }
-               if (!ac.phone_field.getText().equals(currentFarmer.getPhoneNumber())) {
-                   currentFarmer.setFirstName(ac.firstname_field.getText());
-               }     
-               JOptionPane.showMessageDialog(getContentPane(), "Account information updated!");
-           } 
+        
+        ac.deleteAccount_btn1.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                
+                int result = JOptionPane.showConfirmDialog(getContentPane(), "Deleting your account is permanent. Do you wish to continue?", "DELETING ACCOUNT" ,JOptionPane.YES_NO_OPTION);
+                if(result == JOptionPane.YES_OPTION)
+                {
+                    farmers.removeFarmer(currentFarmer);            
+                }
+ 
+            }
         });
         
         ac.back_btn.addActionListener(new ActionListener(){
@@ -548,28 +544,6 @@ public class AMSGUI_Farmer extends AMSGUI_User {
            } 
         });
         
-        ac.updatePass_btn.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                String pass1 = new String(ac.oldPasswordField.getPassword());
-                String pass2 = new String(ac.newPasswordField.getPassword());
-                String pass3 = new String(ac.confirmField.getPassword());
-        
-                if (ac.oldPasswordField.getText() == "" || ac.newPasswordField.getText() == "" || ac.confirmField.getText() == "") {           
-                    JOptionPane.showMessageDialog(getContentPane(), "Password field(s) missing!");
-                }
-                else if(!pass2.equals(pass3)){
-                    JOptionPane.showMessageDialog(getContentPane(), "New passwords do not match!");
-                }
-                else if(!pass1.equals(currentFarmer.getPassword()))
-                {
-                    JOptionPane.showMessageDialog(getContentPane(), "Old password incorrect!");
-                }
-                else{
-                    currentFarmer.changePassword(pass3, pass1);
-                    JOptionPane.showMessageDialog(getContentPane(), "Password changed!");
-                }
-            }
-        });
 
         op1.jbtn_back.addActionListener(new ActionListener() {
 
