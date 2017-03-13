@@ -15,6 +15,7 @@ public class FieldArea implements Serializable
 {
     ArrayList<Location> points;
     
+    //Constructor allows for any number of coordinates for the fields corners
     public FieldArea(Location... pointsList)
     {
         this.points = new ArrayList();
@@ -24,6 +25,7 @@ public class FieldArea implements Serializable
         }
     }
     
+    //Takes a location and returns true or false on whether that location is within the field
     public boolean isLocationInArea(Location loc)
     {
         int xMin, xMax, yMin, yMax;

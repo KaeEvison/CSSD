@@ -86,6 +86,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Function resets and updates the lists of orders on the UI
     void resetOrderJLists() {
         op2.model.clear();
         op3.model.clear();
@@ -134,6 +135,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
 
+    //Function resets and updates the lists of fields on the UI
     void resetFieldJLists() {
         fp1.model.clear();
 
@@ -191,10 +193,12 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         df = new DecimalFormat("##.##");
     }
 
+    //Shows the manage fields screen
     private void displayFields() {
         layout.show(contentPane, "fp1");
     }
 
+    //If a field is selected, shows the field options screen for that field, else alerts the user that no field is selected
     private void viewField() {
         if (fp1.jlPickField.getSelectedIndex() != -1)
         {
@@ -206,32 +210,26 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
 
+    //Shows the record harvest screen
     private void displayRecordHarvest() {
         layout.show(contentPane, "fp4");
     }
 
+    //Updates the title and shows the manage sensors screen
     private void displayCrops() {
         fp3.jbl_title.setText("Sensor readings - " + fp1.jlPickField.
                 getSelectedValue());
-        fp3.txtValue4.setText(currentField.currentPlanting.
-                getPreferredAirTemperatureLevel() + "");
-        fp3.txtValue5.setText(currentField.currentPlanting.
-                getLight() + "");
-        fp3.txtValue2.setText(currentField.currentPlanting.
-                getPreferredSoilAcidityLevel() + "");
-        fp3.txtValue1.setText(currentField.currentPlanting.
-                getPreferredSoilMoistureLevel() + "");
-        fp3.txtValue3.setText(currentField.currentPlanting.
-                getPreferredSoilTemperatureLevel() + "");
 
         layout.show(contentPane, "fp3");
     }
 
+    //Sets the current field based on user selection then calls viewField
     private void clickSelectField() {
         currentField = fields.getFieldByIndex(fp1.jlPickField.getSelectedIndex());
         viewField();
     }
 
+    //If there is a valid planting, displays the record harvest screen, else informs the user that there is no current planting
     private void clickRecordHarvest() {
         if (!currentField.currentPlanting.getType().equals("Empty"))
         {
@@ -246,6 +244,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
 
+    //As long as there is not currently a valid planting, shows the record planting screen, else informs the user that there is already a planting
     private void clickRecordPlanting() {
         if (currentField != null
                 && (currentField.currentPlanting == null || currentField.currentPlanting.getType().equals("Empty"))) {
@@ -259,6 +258,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
 
+    //As long as all fields have relevant entries, records a narvest, else informs the user that fields are missing
     private void clickSaveHarvestDetails() {
         if (currentField != null
                 && currentField.currentPlanting != null
@@ -294,6 +294,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
 
+    //Checks that all fields have a valid entry then records a new planting
     private void clickSavePlantingDetails() {
         if (currentField != null
                 && (currentField.currentPlanting != null || !currentField.currentPlanting.getType().equals("Empty"))
@@ -325,6 +326,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
 
+    //As long as there is at least one order tied to the current user, displays all orders, else informs the user that there were no orders found
     @Override
     public void displayOrderHistory() {
         if (currentFarmer != null
@@ -351,6 +353,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
 
+    //Displays the harvest history for the selected field
     private void displayHarvestHistory() {
         if (fp1.jlPickField.getSelectedIndex() != -1) {
             
@@ -376,10 +379,13 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
 
+    //Updates the manage sensors screen, each of five sets of components is populated by values from the current field's sensor monitors
+    //based on the current page
     private void updateSensorValues() {
         clearSensorScreen();
         fp3.lblPageNumber.setText((page + 1) + "");
         if (currentField.activeMonitors.size() > page * 5) {
+            //Each element is set using attributes of the latest sensor reading in the relevant monitor's log then made visible
             fp3.lblType1.setText(currentField.getMonitors().get(page * 5).getReadings().mostRecent().getType());
             fp3.txtValue1.setText(currentField.getMonitors().get(page * 5).getReadings().mostRecent().getValue() + "");
             fp3.lblUnit1.setText(currentField.getMonitors().get(page * 5).getReadings().mostRecent().getUnit());
@@ -429,6 +435,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         }
     }
 
+    //Sets the visible atrtibute of all sensor components on the manage sensors screen to false in preparation for updating
     private void clearSensorScreen() {
         fp3.lblType1.setVisible(false);
         fp3.txtValue1.setVisible(false);
@@ -462,6 +469,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         });
     }
 
+    //Listeners added for the UI components
     public void addFarmerListeners() {
 
         menu.jbtn_viewFields.addActionListener(new ActionListener() {
@@ -664,6 +672,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             }
         });
 
+        //Creates a new sensor monitor wiht a sensor assigned to it and adds it to the current field, the sensor type is dependant on user input
         fp3.btnAddSensor.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (fp3.cmbSensorSelect.getSelectedIndex() == 0) {
@@ -718,6 +727,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             }
         });
 
+        //Handles pagination fucntionality for the manage sensors screen, allowing for an unlimited number of sensors to be viewed
         fp3.btnNextPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 page++;
@@ -729,6 +739,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             }
         });
 
+        //Handles pagination fucntionality for the manage sensors screen, allowing for an unlimited number of sensors to be viewed
         fp3.btnPreviousPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 page--;
@@ -740,12 +751,14 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             }
         });
 
+        //Returns to the field options screen
         fp4.jbtn_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 layout.show(contentPane, "fp2");
             }
         });
 
+        //Attempts to save harvest details then updates the field list on the UI, a variable is used to carry the field selection over the list's reset
         fp4.jbtn_submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int temp = fp1.jlPickField.getSelectedIndex();
@@ -755,12 +768,14 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             }
         });
 
+        //Returns to the field options screen
         fp5.jbtn_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 layout.show(contentPane, "fp2");
             }
         });
 
+        //Attempts to save planting details then updates the field list on the UI, a variable is used to carry the field selection over the list's reset
         fp5.jbtn_submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int temp = fp1.jlPickField.getSelectedIndex();
@@ -770,6 +785,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             }
         });
 
+        //Returns to the field options screen
         fp6.jbtn_back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 layout.show(contentPane, "fp2");

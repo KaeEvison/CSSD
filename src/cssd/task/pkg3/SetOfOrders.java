@@ -12,19 +12,28 @@ import java.util.ArrayList;
  */
 public class SetOfOrders extends ArrayList<Order> implements Serializable
 {
+    //Empty constructor creates the list
+    public SetOfOrders(){}
+    
+    //Adds an order from the list
     void addOrder(Order newOrder)
     {
         super.add(newOrder);
     }
+    
+    //Removes an order from the list
     void removeOrder(int index)
     {
         super.remove(this.get(index));
     }
+    
+    //Fetches an order from the list
     Order getOrderByIndex(int index)
     {
         return this.get(index);
     }
     
+    //Overrides the default toString for easier reading
     public String toString()
     {
         String holder = "";

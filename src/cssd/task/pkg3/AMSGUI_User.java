@@ -198,13 +198,12 @@ public class AMSGUI_User extends javax.swing.JFrame {
         layout.show(contentPane, "menu");
     }
 
-    // The following function has been moved to Server
-    //protected void displayLogin(){
-    //}
+    //Shows the view orders screen
     protected void displayOrders() {
         this.layout.show(contentPane, "op1");
     }
 
+    //As long as there is at least one order tied to the current user, displays all orders, else informs the user that there were no orders found
     public void displayOrderHistory() {
         if (currentUser != null
                 && currentUser.orders.size() > 0) {
@@ -230,11 +229,14 @@ public class AMSGUI_User extends javax.swing.JFrame {
         }
     }
 
+    //Handles searching for farmers by crop required
     private void clickSelectCrop(int crop) {
 
+        //Adds all farmers with the required crop
         requiredPlanting = availableCrops.get(crop);
         suitableFarmers = currentServer.getSuitableFarmers(requiredPlanting);
         
+        //Removes all farmers on the user's blocklist
         for(int i=0; i<currentUser.blockList.size(); ++i){
             for(int j=0; j<suitableFarmers.size(); ++j){
                 if( currentUser.blockList.get(i).getUsername().toLowerCase().
@@ -252,6 +254,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
             Planting planting;
             float price = 0.0f;
 
+            //Fetches and displays the details of all relevant plantings
             for (int i = 0; i < suitableFarmers.size(); ++i) {
                 for (int j = 0; j < (suitableFarmers.get(i).getFields()).size(); ++j) {
 
@@ -277,6 +280,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
     }
 
+    //Displays order details based on the selected farmer
     private void clickSelectFarmer() {
         Farmer aFarmer = suitableFarmers.get(op5.jlPickFarmer.getSelectedIndex());
         Planting aPlanting = null;
@@ -296,6 +300,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         }
     }
 
+    //Allows a user to add a farmer to their blocklist
     private void addFarmerToBlockList() {
 
         if (mfp.jlPickFarmer.getSelectedValue() != null) {
@@ -315,6 +320,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         }
     }
     
+    //Allows a user to remove a farmer from their blocklist
     private void removeFarmerFromBlockList() {
 
         if (mfp.jlPickFarmer.getSelectedValue() != null) {
@@ -333,6 +339,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         }
     }
 
+    //Populates the UI with a list of farmers
     private void displayManageFarmers() {
         suitableFarmers = currentServer.getFarmers();
 
@@ -357,12 +364,15 @@ public class AMSGUI_User extends javax.swing.JFrame {
         }
     }
 
+    //Shows the farmer selection screen
     private void displaySuitableFarmers() {
         layout.show(contentPane, "op5");
     }
 
+    //Creates and displays an order
     private void displayOrderDetails(Farmer aFarmer, Planting aPlanting) {
 
+        //The order is generated using current values from the user's selections
         currentOrder = new Order(
                 aPlanting.getType(),
                 aPlanting.getPricePerTon(),
@@ -388,6 +398,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         }
     }
 
+    //Adds an order to the list of orders and updates the relevant objects
     public void clickSendOrder() {
         if (currentOrder != null) {
             currentUser.orders.add(currentOrder);
@@ -401,6 +412,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         }
     }
 
+    //Adds listeners for UI components
     public void addListeners() {
         addWindowListener(new WindowAdapter() {
 

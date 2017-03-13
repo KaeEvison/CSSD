@@ -21,22 +21,29 @@ public class Sensor implements Serializable{
     protected static Random numberGen = new Random();
     protected double minReading, readingRange;
     
+    //No constructor, each type of sensor has its own
+
+    //Returns the data unit
     public String getDataUnit() {
         return dataUnit;
     }
 
+    //Sets the data unit
     public void setDataUnit(String dataUnit) {
         this.dataUnit = dataUnit;
     }
 
+    //Returns the location
     public Location getLocation() {
         return location;
     }
 
+    //Sets the location
     public void setLocation(Location location) {
         this.location = location;
     }
     
+    //Returns a new reading using a random value to simulate actual sensor hardware
     public SensorReading takeReading()
     {
         return new SensorReading(   getRandomValue(),
@@ -45,6 +52,7 @@ public class Sensor implements Serializable{
                                     this.location);
     }
     
+    //Generates a random value based on the sensor's range
     private double getRandomValue()
     {
         double value = numberGen.nextDouble();

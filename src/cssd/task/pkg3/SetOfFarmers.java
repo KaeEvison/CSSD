@@ -16,11 +16,13 @@ public class SetOfFarmers extends ArrayList<Farmer> implements Serializable
 {
     private int noOfFarmers = 0;
     
+    //Constructor creates an empty array of farmers
     public SetOfFarmers()
     {
         super();
     }
     
+    //Checks the entered details against each farmer object to validate a login attempt
     public Farmer login(String username, String password)
     {
         Farmer farmer = null;
@@ -36,6 +38,7 @@ public class SetOfFarmers extends ArrayList<Farmer> implements Serializable
         return farmer;
     }
     
+    //Checks whether there is a farmer under the provided username in the list
     public Boolean availability(String username){
         
         for (int i = 0; i < noOfFarmers; i++) 
@@ -48,18 +51,21 @@ public class SetOfFarmers extends ArrayList<Farmer> implements Serializable
         return false;
     }
     
+    //Adds a farmer to the list
     void addFarmer(Farmer afarmer)
     {
         super.add(afarmer);
         noOfFarmers++;
     }
     
+    //Removes a farmer from the list
     private void removeFarmer(Farmer afarmer)
     {
         super.remove(afarmer);
         noOfFarmers--;
     }
     
+    //Overrides the default toString for easier reading
     public String toString()
     {
         String holder = "";

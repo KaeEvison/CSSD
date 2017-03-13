@@ -16,13 +16,13 @@ public class SetOfUsers extends ArrayList<ProductLineManager> implements Seriali
     
     private int noOfUsers = 0;
     
+    //Constructor sets up an empty list
     public SetOfUsers()
     {
         super();
     }
     
-    
-    
+    //Returns a manager object based on login details
     public ProductLineManager login(String username, String password)
     {
         ProductLineManager user = null;
@@ -38,6 +38,7 @@ public class SetOfUsers extends ArrayList<ProductLineManager> implements Seriali
         return user;
     }
     
+    //Checks whether a manager under the provided username is in the list
     public Boolean availability(String username){
         
         for (int i = 0; i < noOfUsers; i++) 
@@ -50,12 +51,14 @@ public class SetOfUsers extends ArrayList<ProductLineManager> implements Seriali
         return false;
     }
     
+    //Adds a user to the list
     void addUser(ProductLineManager auser)
     {
         super.add(auser);
         noOfUsers++;
     }
     
+    //Removes a user from the list
     private void removerUser(ProductLineManager auser)
     {
         super.remove(auser);
@@ -67,5 +70,4 @@ public class SetOfUsers extends ArrayList<ProductLineManager> implements Seriali
     {
         return null;
     }
-    
 }

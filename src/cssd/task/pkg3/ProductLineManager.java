@@ -17,6 +17,7 @@ public class ProductLineManager extends User implements Serializable
     public String company = "";
     public ArrayList<Farmer> blockList;
     
+    //Contructor calls the parent constructor then sets the variables specific to managers
     public ProductLineManager( String username, String firstName, String surname, 
             String location, String phoneNumber, String password, String companyName)
     {
@@ -26,6 +27,7 @@ public class ProductLineManager extends User implements Serializable
         blockList = new ArrayList<Farmer>();
     }
     
+    //Returns the user type
     public String getUserType()
     {
         return "Manager";

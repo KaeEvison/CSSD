@@ -11,6 +11,7 @@ package cssd.task.pkg3;
  */
 public class SoilTemperatureSensor extends Sensor {
     
+    //Constructor for this type of sensor sets up the relevant values
     public SoilTemperatureSensor(Location loc){
         sensorType = "Soil temperature";
         location = loc;

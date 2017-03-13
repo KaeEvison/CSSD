@@ -11,6 +11,7 @@ package cssd.task.pkg3;
  */
 public class SoilMoistureSensor extends Sensor {
     
+    //Constructor for this type of sensor sets up the relevant values
     public SoilMoistureSensor(Location loc){
         sensorType = "Soil moisture level";
         location = loc;

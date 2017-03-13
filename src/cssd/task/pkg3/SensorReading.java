@@ -21,6 +21,7 @@ public class SensorReading implements Serializable
     private String readingType;
     private Location location;
     
+    //Standard constructor requires most fields, sets the time taken
     public SensorReading(double pValue, String pUnit, String pType, Location pLocation)
     {
         value = pValue;
@@ -30,31 +31,37 @@ public class SensorReading implements Serializable
         location = pLocation;
     }
     
+    //Returns the value of the reading
     public double getValue()
     {
         return value;
     }
     
+    //Returns the time the reading was taken
     public LocalDateTime getTime()
     {
         return timeTaken;
     }
     
+    //Returns the reading's unit
     public String getUnit()
     {
         return readingUnit;
     }
     
+    //Returns the reading's type, this differs from unit as air temperature and soil temperature are different types that will have the same unit
     public String getType()
     {
         return readingType;
     }
     
+    //Returns the location the reading was taken
     public Location getLocation()
     {
         return location;
     }
     
+    //Overrides the default toString for easier reading
     public String toString()
     {
         String outputTime = new String();

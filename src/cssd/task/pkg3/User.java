@@ -22,6 +22,7 @@ public class User implements Serializable{
     protected SetOfOrders orders;
     public boolean isFarmer;
     
+    //Standard constructor
     public User (String username, 
         String firstName, String surname, 
         String location, String 
@@ -40,46 +41,57 @@ public class User implements Serializable{
     
     }
 
+    //Returns first name
     public String getFirstName() {
         return firstName;
     }
 
+    //Sets first name
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    //Returns first name
     public String getSurname() {
         return surname;
     }
 
+    //Sets surname
     public void setSurname(String surname) {
         this.surname = surname;
     }
 
+    //Returns location
     public String getLocation() {
         return location;
     }
 
+    //Sets location
     public void setLocation(String location) {
         this.location = location;
     }
 
+    //Returns phone number
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    //Sets phone number
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     
+    //Returns username
     public String getUsername() {
         return username;
     }
 
+    //Returns password
     public String getPassword() {
         return password;
     }
     
+    //Expects current password and a new password, as long as the current password is correct the password is set to the new value
     public void changePassword(String newPass, String oldPass)
     {
         if (oldPass == this.password)
@@ -92,11 +104,13 @@ public class User implements Serializable{
         }
     }
 
+    //Adds an order to the list of orders
     public void addOrder(Order newOrder)
     {
         orders.addOrder(newOrder);
     }
     
+    //Overrides the default toString for easier reading
     public String toString()
     {
         String holder = "\n\nUsername: " + username + "\nName: " + firstName + " " + surname + "\nLocation: " + location + "\nPhone number: " + phoneNumber + "\nPassword: " + password;

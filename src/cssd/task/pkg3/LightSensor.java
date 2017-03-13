@@ -11,6 +11,7 @@ package cssd.task.pkg3;
  */
 public class LightSensor extends Sensor {
     
+    //Constructor for this type of sensor sets up the relevant values
     public LightSensor(Location loc){
         sensorType = "Light level";
         location = loc;
