@@ -524,7 +524,23 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                 ac.confirmField.setText("");
             }
         });
-        
+        ac.update_btn.addActionListener(new ActionListener(){
+           public void actionPerformed(ActionEvent e) {
+               if (!ac.firstname_field.getText().equals(currentFarmer.getFirstName())) {
+                   currentFarmer.setFirstName(ac.firstname_field.getText());
+               }
+               if (!ac.surname_field.getText().equals(currentFarmer.getSurname())) {
+                   currentFarmer.setSurname(ac.surname_field.getText());
+               }
+               if (!ac.loc_field.getText().equals(currentFarmer.getLocation())) {
+                   currentFarmer.setLocation(ac.loc_field.getText());
+               }
+               if (!ac.phone_field.getText().equals(currentFarmer.getPhoneNumber())) {
+                   currentFarmer.setPhoneNumber(ac.phone_field.getText());
+               }     
+               JOptionPane.showMessageDialog(getContentPane(), "Account information updated!");
+           } 
+        });
         
         ac.deleteAccount_btn1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {

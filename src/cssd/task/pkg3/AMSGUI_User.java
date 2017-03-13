@@ -507,13 +507,13 @@ public class AMSGUI_User extends javax.swing.JFrame {
                    currentUser.setFirstName(ac.firstname_field.getText());
                }
                if (!ac.surname_field.getText().equals(currentUser.getSurname())) {
-                   currentUser.setFirstName(ac.firstname_field.getText());
+                   currentUser.setSurname(ac.surname_field.getText());
                }
                if (!ac.loc_field.getText().equals(currentUser.getLocation())) {
-                   currentUser.setFirstName(ac.firstname_field.getText());
+                   currentUser.setLocation(ac.loc_field.getText());
                }
                if (!ac.phone_field.getText().equals(currentUser.getPhoneNumber())) {
-                   currentUser.setFirstName(ac.firstname_field.getText());
+                   currentUser.setPhoneNumber(ac.phone_field.getText());
                }     
                JOptionPane.showMessageDialog(getContentPane(), "Account information updated!");
            } 
