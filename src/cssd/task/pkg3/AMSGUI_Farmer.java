@@ -804,7 +804,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     // Variables declaration - do not modify                     
     // End of variables declaration                   
 }
-
+/*
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -825,8 +825,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+*/
                      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-}
