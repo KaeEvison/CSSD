@@ -622,8 +622,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp2.jbtn_checkCrops.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                updateSensorValues();
                 displayCrops();
+                updateSensorValues();
             }
         });
 
