@@ -472,7 +472,11 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
         menu.jButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(getContentPane(), "Coming Soon");
+               layout.show(contentPane, "ac");
+                ac.firstname_field.setText(currentUser.getFirstName());
+                ac.surname_field.setText(currentUser.getSurname());
+                ac.loc_field.setText(currentUser.getLocation());
+                ac.phone_field.setText(currentUser.getPhoneNumber());
             }
         });
         

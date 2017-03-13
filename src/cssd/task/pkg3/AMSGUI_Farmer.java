@@ -489,7 +489,11 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         menu.jButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(getContentPane(), "Coming Soon");
+                layout.show(contentPane, "ac");
+                ac.firstname_field.setText(currentFarmer.getFirstName());
+                ac.surname_field.setText(currentFarmer.getSurname());
+                ac.loc_field.setText(currentFarmer.getLocation());
+                ac.phone_field.setText(currentFarmer.getPhoneNumber());
             }
         });
         
