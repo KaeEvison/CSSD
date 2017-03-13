@@ -51,6 +51,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtValue1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="f0" green="f0" red="f0" type="rgb"/>
+        </Property>
         <Property name="name" type="java.lang.String" value="txtSoilMoisture" noResource="true"/>
       </Properties>
       <AuxValues>

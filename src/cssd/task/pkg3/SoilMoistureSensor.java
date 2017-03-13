@@ -17,6 +17,6 @@ public class SoilMoistureSensor extends Sensor {
         location = loc;
         dataUnit = "m3.m-3";
         minReading = 0;
-        readingRange = 0.5;
+        maxReading = 0.5;
     }
 }

@@ -16,7 +16,7 @@ public class LightSensor extends Sensor {
         sensorType = "Light level";
         location = loc;
         dataUnit = "lx";
-        minReading = -0;
-        readingRange = 10752;
+        minReading = 0;
+        maxReading = 10752;
     }
 }
