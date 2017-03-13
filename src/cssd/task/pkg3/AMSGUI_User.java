@@ -31,6 +31,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
     private ArrayList<Planting> availableCrops;
     private SetOfFarmers suitableFarmers = null;
     private Planting requiredPlanting = null;
+    private SetOfUsers users;
 
     private MenuPanel_User menu;
     private OrdersPanel1_User_Selection op1;
@@ -39,6 +40,8 @@ public class AMSGUI_User extends javax.swing.JFrame {
     private OrdersPanel5_SuitableFarmers op5;
     private OrdersPanel6_OrderDetails op6;
     private ManageFarmersPanel mfp;
+    
+    private myAccountPanel_User ac;
 
     protected DecimalFormat df;
     protected CardLayout layout;
@@ -179,6 +182,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         op2.model = new DefaultListModel<Order>();
         op6 = new OrdersPanel6_OrderDetails();
         mfp = new ManageFarmersPanel();
+        ac = new myAccountPanel_User();
         mfp.jlPickFarmer.setModel(mfp.model);
 
         layout = new CardLayout();
@@ -191,6 +195,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         contentPane.add(op5, "op5");
         contentPane.add(op6, "op6");
         contentPane.add(mfp, "mfp");
+        contentPane.add(ac, "ac");
 
         pack();
         setLocationByPlatform(true);
@@ -462,9 +467,77 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
         menu.jButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(getContentPane(), "Coming Soon");
+                layout.show(contentPane, "ac");
+                ac.firstname_field.setText(currentUser.getFirstName());
+                ac.surname_field.setText(currentUser.getSurname());
+                ac.loc_field.setText(currentUser.getLocation());
+                ac.phone_field.setText(currentUser.getPhoneNumber());
             }
         });
+        
+        ac.updatePass_btn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                String pass1 = new String(ac.oldPasswordField.getPassword());
+                String pass2 = new String(ac.newPasswordField.getPassword());
+                String pass3 = new String(ac.confirmField.getPassword());
+        
+                if (ac.oldPasswordField.getText() == "" || ac.newPasswordField.getText() == "" || ac.confirmField.getText() == "") {           
+                    JOptionPane.showMessageDialog(getContentPane(), "Password field(s) missing!");
+                }
+                else if(!pass2.equals(pass3)){
+                    JOptionPane.showMessageDialog(getContentPane(), "New passwords do not match!");
+                }
+                else if(!pass1.equals(currentUser.getPassword()))
+                {
+                    JOptionPane.showMessageDialog(getContentPane(), "Old password incorrect!");
+                }
+                else{
+                    currentUser.changePassword(pass3, pass1);
+                    JOptionPane.showMessageDialog(getContentPane(), "Password changed!");
+                }
+                ac.oldPasswordField.setText("");
+                ac.newPasswordField.setText("");
+                ac.confirmField.setText("");
+            } 
+        });
+        
+        ac.update_btn.addActionListener(new ActionListener(){
+           public void actionPerformed(ActionEvent e) {
+               if (!ac.firstname_field.getText().equals(currentUser.getFirstName())) {
+                   currentUser.setFirstName(ac.firstname_field.getText());
+               }
+               if (!ac.surname_field.getText().equals(currentUser.getSurname())) {
+                   currentUser.setFirstName(ac.firstname_field.getText());
+               }
+               if (!ac.loc_field.getText().equals(currentUser.getLocation())) {
+                   currentUser.setFirstName(ac.firstname_field.getText());
+               }
+               if (!ac.phone_field.getText().equals(currentUser.getPhoneNumber())) {
+                   currentUser.setFirstName(ac.firstname_field.getText());
+               }     
+               JOptionPane.showMessageDialog(getContentPane(), "Account information updated!");
+           } 
+        });
+        
+        ac.deleteAccount_btn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                
+                int result = JOptionPane.showConfirmDialog(getContentPane(), "Deleting you account is permanent. Do you wish to continue?", "DELETING ACCOUNT" ,JOptionPane.YES_NO_OPTION);
+                if(result == JOptionPane.YES_OPTION)
+                {
+                    users.removerUser(currentUser);            
+                }
+ 
+            }
+        });
+        
+        ac.back_btn.addActionListener(new ActionListener(){
+           public void actionPerformed(ActionEvent e) {
+               layout.show(contentPane, "menu");
+           } 
+        });
+        
+        
 
         op1.jbtn_orderHistory.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

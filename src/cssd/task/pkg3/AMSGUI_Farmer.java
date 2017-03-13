@@ -37,7 +37,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     private FieldsPanel4_RecordHarvest fp4;
     private FieldsPanel5_RecordPlanting fp5;
     private FieldsPanel6_HarvestHistory fp6;
-
+    private myAccountPanel_Farmer ac;
     /**
      * Creates new form AMSGUI
      */
@@ -162,6 +162,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         fp4 = new FieldsPanel4_RecordHarvest();
         fp5 = new FieldsPanel5_RecordPlanting(currentServer.availableCrops);
         fp6 = new FieldsPanel6_HarvestHistory();
+        
+        ac = new myAccountPanel_Farmer();
 
         layout = new CardLayout();
 
@@ -188,6 +190,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         contentPane.add(fp4, "fp4");
         contentPane.add(fp5, "fp5");
         contentPane.add(fp6, "fp6");
+        contentPane.add(ac, "ac");
 
         pack();
         setLocationByPlatform(true);
@@ -486,7 +489,85 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         menu.jButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(getContentPane(), "Coming Soon");
+                layout.show(contentPane, "ac");
+                ac.firstname_field.setText(currentFarmer.getFirstName());
+                ac.surname_field.setText(currentFarmer.getSurname());
+                ac.loc_field.setText(currentFarmer.getLocation());
+                ac.phone_field.setText(currentFarmer.getPhoneNumber());
+            }
+        });
+        
+        ac.updatePass_btn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                String pass1 = new String(ac.oldPasswordField.getPassword());
+                String pass2 = new String(ac.newPasswordField.getPassword());
+                String pass3 = new String(ac.confirmField.getPassword());
+        
+                if (ac.oldPasswordField.getText() == "" || ac.newPasswordField.getText() == "" || ac.confirmField.getText() == "") {           
+                    JOptionPane.showMessageDialog(getContentPane(), "Password field(s) missing!");
+                }
+                else if(!pass2.equals(pass3)){
+                    JOptionPane.showMessageDialog(getContentPane(), "New passwords do not match!");
+                }
+                else if(!pass1.equals(currentFarmer.getPassword()))
+                {
+                    JOptionPane.showMessageDialog(getContentPane(), "Old password incorrect!");
+                }
+                else{
+                    currentFarmer.changePassword(pass3, pass1);
+                    JOptionPane.showMessageDialog(getContentPane(), "Password changed!");
+                }
+                
+                ac.oldPasswordField.setText("");
+                ac.newPasswordField.setText("");
+                ac.confirmField.setText("");
+            }
+        });
+        
+        ac.update_btn.addActionListener(new ActionListener(){
+           public void actionPerformed(ActionEvent e) {
+               if (!ac.firstname_field.getText().equals(currentFarmer.getFirstName())) {
+                   currentFarmer.setFirstName(ac.firstname_field.getText());
+               }
+               if (!ac.surname_field.getText().equals(currentFarmer.getSurname())) {
+                   currentFarmer.setFirstName(ac.firstname_field.getText());
+               }
+               if (!ac.loc_field.getText().equals(currentFarmer.getLocation())) {
+                   currentFarmer.setFirstName(ac.firstname_field.getText());
+               }
+               if (!ac.phone_field.getText().equals(currentFarmer.getPhoneNumber())) {
+                   currentFarmer.setFirstName(ac.firstname_field.getText());
+               }     
+               JOptionPane.showMessageDialog(getContentPane(), "Account information updated!");
+           } 
+        });
+        
+        ac.back_btn.addActionListener(new ActionListener(){
+           public void actionPerformed(ActionEvent e) {
+               layout.show(contentPane, "menu");
+           } 
+        });
+        
+        ac.updatePass_btn.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                String pass1 = new String(ac.oldPasswordField.getPassword());
+                String pass2 = new String(ac.newPasswordField.getPassword());
+                String pass3 = new String(ac.confirmField.getPassword());
+        
+                if (ac.oldPasswordField.getText() == "" || ac.newPasswordField.getText() == "" || ac.confirmField.getText() == "") {           
+                    JOptionPane.showMessageDialog(getContentPane(), "Password field(s) missing!");
+                }
+                else if(!pass2.equals(pass3)){
+                    JOptionPane.showMessageDialog(getContentPane(), "New passwords do not match!");
+                }
+                else if(!pass1.equals(currentFarmer.getPassword()))
+                {
+                    JOptionPane.showMessageDialog(getContentPane(), "Old password incorrect!");
+                }
+                else{
+                    currentFarmer.changePassword(pass3, pass1);
+                    JOptionPane.showMessageDialog(getContentPane(), "Password changed!");
+                }
             }
         });
 
