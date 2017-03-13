@@ -546,9 +546,11 @@ public class AMSGUI_Farmer extends AMSGUI_User {
             public void actionPerformed(ActionEvent e) {
                 
                 int result = JOptionPane.showConfirmDialog(getContentPane(), "Deleting your account is permanent. Do you wish to continue?", "DELETING ACCOUNT" ,JOptionPane.YES_NO_OPTION);
+                
                 if(result == JOptionPane.YES_OPTION)
                 {
-                    farmers.removeFarmer(currentFarmer);            
+                   currentServer.removeFarmer(currentFarmer);   
+
                 }
  
             }
