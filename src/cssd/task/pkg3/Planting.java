@@ -22,6 +22,7 @@ public class Planting implements Serializable{
     private int preferredSoilAcidityLevel = 0;
     private int preferredAirTemperatureLevel = 0;
     private int light = 0;
+    public boolean isOrdered = false;
     
     //Empty constructor creates a planting with type empty for creation of new fields or after harvesting
     public Planting()

@@ -9,6 +9,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import static java.awt.image.ImageObserver.ABORT;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -112,6 +113,8 @@ public class Server extends javax.swing.JFrame {
         if( currentUser != null){
             log.jtf_username.setText("");
             log.jtf_password.setText("");
+            
+            currentUser.orders = getUserOrders(currentUser);
 
             new AMSGUI_User(currentUser, currentServer, availableCrops).setVisible(true);
         }
@@ -126,7 +129,11 @@ public class Server extends javax.swing.JFrame {
             {
                 log.jtf_username.setText("");
                 log.jtf_password.setText("");
-
+                
+                // Update supplierOrders
+  
+                currentFarmer.orders = getFarmerOrders(currentFarmer);
+                
                 new AMSGUI_Farmer(currentFarmer, currentServer).setVisible(true);
             }
             else
@@ -284,6 +291,34 @@ public class Server extends javax.swing.JFrame {
     });
     }
     
+    private SetOfOrders getUserOrders(User aUser)
+    {
+       SetOfOrders myOrders = new SetOfOrders();
+       
+       for(int i=0; i<orders.size(); i++){
+           if(orders.get(i).getBuyer().getUsername().toLowerCase().
+               equals(aUser.getUsername().toLowerCase()))
+           {
+               myOrders.add(orders.get(i));
+           }
+       }
+       return myOrders;
+    }
+    
+    private SetOfOrders getFarmerOrders(Farmer aFarmer)
+    {
+       SetOfOrders myOrders = new SetOfOrders();
+       
+       for(int i=0; i<orders.size(); i++){
+           if(orders.get(i).getSupplier().getUsername().toLowerCase().
+               equals(aFarmer.getUsername().toLowerCase()))
+           {
+               myOrders.add(orders.get(i));
+           }
+       }
+       return myOrders;
+    }
+    
     private void setCrops() 
     { 
        Planting carrots, sweetcorn, peas, sprouts, potatoes, broccoli; 
@@ -335,10 +370,12 @@ public class Server extends javax.swing.JFrame {
         Planting planting1 = new Planting("Broccoli", 109.33f); 
         planting1.setGrowthTime(6); 
         planting1.setIsGrowing(false); 
+        planting1.isOrdered = true;
          
         Planting planting2 = new Planting("Peas", 109.33f); 
         planting2.setGrowthTime(2); 
-        planting2.setIsGrowing(true); 
+        planting2.setIsGrowing(true);
+        planting2.isOrdered = true;
          
         fields.addField(new Field(planting1, new FieldArea(points), harvests)); 
         fields.addField(new Field(planting2, new FieldArea(points2), harvests)); 
@@ -388,23 +425,26 @@ public class Server extends javax.swing.JFrame {
                 users.get(0), 
                 LocalDateTime.of(2017, Month.MARCH, 27, 17, 28), 
                 LocalDateTime.now(), 
-                "active" 
-        ); 
+                "active",
+                getNextId()
+        );
+        
+        orders.add(order1); 
          
         Order order2 = new Order( 
-                "Carrots", 
+                "Brocolli", 
                 10.76, 
                 farmers.get(0), 
                 users.get(0), 
                 LocalDateTime.of(2017, Month.MARCH, 26, 12, 21), 
                 LocalDateTime.now(), 
-                "complete" 
+                "complete",
+                getNextId()
         ); 
-         
-        orders.add(order1); 
+ 
         orders.add(order2); 
-        getFarmerOrders(farmers.get(0)); 
-        getUserOrders(users.get(0)); 
+        farmers.get(0).orders = getFarmerOrders(farmers.get(0)); 
+        users.get(0).orders = getUserOrders(users.get(0)); 
     } 
 
     
@@ -479,23 +519,40 @@ public class Server extends javax.swing.JFrame {
         }
     }
     
-    public void updateOrders(SetOfOrders aOrders){
-        for(int i= 0; i< orders.size(); ++i ){
-            for(int j=0; j<aOrders.size(); ++j){
-                
-                if( ( aOrders.get(j).getSupplier().getUsername().toLowerCase().
-                      equals(orders.get(i).getSupplier().getUsername().toLowerCase()) )
-                        && ( aOrders.get(j).getBuyer().getUsername().toLowerCase().
-                                equals(orders.get(i).getBuyer().getUsername().toLowerCase() ))
-                        && (aOrders.get(j).getCrop().toLowerCase().
-                                equals(orders.get(i).getCrop().toLowerCase())  )
-                        && (aOrders.get(j).getEstimatedDeliveryDate() ==
-                                orders.get(i).getEstimatedDeliveryDate()  )   )
-                {
-                    orders.set(i, aOrders.get(j));
-                }
+    public void addAnOrder(Order aOrder){
+        orders.add(aOrder);
+    }
+    
+    public void updateAnOrder(Order aOrder){
+        for( int i=0; i<orders.size(); ++i  ){
+            if( aOrder.orderNo == orders.get(i).orderNo )
+            {
+                orders.set(i, aOrder);
             }
         }
+    }
+    
+    public boolean orderExists(Order aOrder){
+        for(int i=0; i<orders.size(); i++){
+            if( orders.get(i).orderNo == aOrder.orderNo ){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public int getNextId()
+    {
+        int max = 0;
+        
+        if( orders.size() > 0 ){
+        
+            for(int i = 0; i< orders.size(); i++){
+                 if ( orders.get(i).orderNo >= max )
+                     max = orders.get(i).orderNo + 1;
+            }
+        }
+        return max;
     }
     
     public static SetOfUsers readUsers()
@@ -606,9 +663,13 @@ public class Server extends javax.swing.JFrame {
         for(int i=0; i<farmers.size(); ++i){
             for(int j=0; j<(farmers.get(i).getFields()).size(); ++j){
 
-                if(farmers.get(i).getFields().getFieldByIndex(j).
-                        currentPlanting.getType().toLowerCase().
-                        equals(aPlanting.getType().toLowerCase()) ){
+                if( farmers.get(i).getFields().getFieldByIndex(j).
+                    currentPlanting.getType().toLowerCase().
+                    equals(aPlanting.getType().toLowerCase())
+                    
+                     && !farmers.get(i).getFields().
+                        getFieldByIndex(j).currentPlanting.isOrdered     )
+                {
                     suitableFarmers.add(farmers.get(i));
                 }
             }
@@ -622,34 +683,6 @@ public class Server extends javax.swing.JFrame {
     
     public void displayLogin(){
         this.setVisible(true);
-    }
-    
-    void getFarmerOrders(Farmer farmer)
-    {
-        farmer.orders.clear();
-        
-        if(orders.size() >= 0){
-            for(int i=0; i<orders.size(); ++i){
-                if(orders.get(i).getSupplier().getUsername().toLowerCase().
-                        equals(farmer.getUsername().toLowerCase() )){
-                    farmer.addOrder(orders.get(i));
-                }
-            }
-        }
-    }
-    
-    void getUserOrders(ProductLineManager user){
-        
-        user.orders.clear();
-        
-        if(orders.size() > 0){
-            for(int i=0; i<orders.size(); ++i){
-                if(orders.get(i).getBuyer().getUsername().toLowerCase().
-                        equals(user.getUsername().toLowerCase() )){
-                    user.addOrder(orders.get(i));
-                }
-            }
-        }
     }
     
     public String getData()

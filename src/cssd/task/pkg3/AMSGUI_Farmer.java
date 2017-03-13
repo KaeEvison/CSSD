@@ -480,6 +480,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         menu.jbtn_viewOrders.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                resetOrderJLists();
                 displayOrders();
             }
         });
@@ -560,7 +561,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                     JOptionPane.showMessageDialog(getContentPane(), "Order cancelled.");
                     resetOrderJLists();
                     //currentServer.updateFarmer(currentFarmer);
-                    currentServer.updateOrders(currentFarmer.orders);
+                    currentServer.updateAnOrder(currentOrder);
 
                 } else {
                     JOptionPane.showMessageDialog(getContentPane(), "No order selected");
@@ -576,7 +577,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                     JOptionPane.showMessageDialog(getContentPane(), "Order Completed");
                     resetOrderJLists();
                     //currentServer.updateFarmer(currentFarmer);
-                    currentServer.updateOrders(currentFarmer.orders);
+                    currentServer.updateAnOrder(currentOrder);
 
                 } else {
                     JOptionPane.showMessageDialog(getContentPane(), "No order selected");

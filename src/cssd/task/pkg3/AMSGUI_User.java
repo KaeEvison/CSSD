@@ -293,7 +293,8 @@ public class AMSGUI_User extends javax.swing.JFrame {
         for (int i = 0; i < aFarmer.getFields().size(); ++i) {
             
             if (aFarmer.getFields().getFieldByIndex(i).currentPlanting.getType().
-                    toLowerCase().equals(requiredPlanting.getType().toLowerCase())) {
+                    toLowerCase().equals(requiredPlanting.getType().toLowerCase())
+               ) {
                 aPlanting = aFarmer.getFields().getFieldByIndex(i).currentPlanting;
             }
         }
@@ -395,16 +396,18 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
         //The order is generated using current values from the user's selections
         currentOrder = new Order(
-                
+            
             aPlanting.getType(),
             aPlanting.getPricePerTon(),
             aFarmer,
             currentUser,
             LocalDateTime.now().plusDays(aPlanting.getGrowthTime()),
             LocalDateTime.now(),
-            "active"
+            "active",
+            currentServer.getNextId()
         );
-
+       
+        
         if (currentOrder != null) {
             op6.lbl_name.setText(currentOrder.getSupplier().getFirstName() + " "
                     + currentOrder.getSupplier().getSurname());
@@ -413,7 +416,9 @@ public class AMSGUI_User extends javax.swing.JFrame {
             op6.lbl_product.setText(currentOrder.getCrop());
             op6.lbl_delivery.setText(currentOrder.getEstimatedDeliveryDate().toLocalDate() + "");
             op6.lbl_price.setText(df.format(currentOrder.getCost()) + "");
-
+            
+            aPlanting.isOrdered = true;
+            
             layout.show(contentPane, "op6");
         } else {
             JOptionPane.showMessageDialog(getContentPane(), 
@@ -426,13 +431,15 @@ public class AMSGUI_User extends javax.swing.JFrame {
         if (currentOrder != null) {
             
             currentUser.orders.add(currentOrder);
-            currentOrder = null;
+            
             JOptionPane.showMessageDialog(getContentPane(), 
                 "Order Successfully created.");
             
             layout.show(contentPane, "menu");
-            currentServer.updateUser(currentUser);
-            currentServer.updateOrders(currentUser.orders);
+            //currentServer.updateUser(currentUser);
+            currentServer.addAnOrder(currentOrder);
+            
+            currentOrder = null;
         } else {
             JOptionPane.showMessageDialog(getContentPane(), 
                "Error: Order could not be saved.");
@@ -537,7 +544,16 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
         op6.jbtn_sendOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                clickSendOrder();
+                if(currentOrder != null){
+                    if ( currentServer.orderExists(currentOrder) ){
+                        JOptionPane.showMessageDialog(getContentPane(), 
+                        "Error: Order already sent."); 
+                    }
+                    else{
+                       
+                       clickSendOrder();
+                    }
+                }
             }
         });
 
