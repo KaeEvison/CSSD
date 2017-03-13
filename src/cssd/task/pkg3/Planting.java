@@ -23,6 +23,11 @@ public class Planting implements Serializable{
     private int preferredAirTemperatureLevel = 0;
     private int light = 0;
     
+    public Planting()
+    {
+        this.type = "Empty";
+    }
+    
     public Planting( String type, float pricePerTon){
         this.type = type; 
         this.pricePerTon = pricePerTon; 
