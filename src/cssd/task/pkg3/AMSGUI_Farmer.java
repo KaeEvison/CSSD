@@ -154,7 +154,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         fp2 = new FieldsPanel2_Options();
         fp3 = new FieldsPanel3_CheckCrops();
         fp4 = new FieldsPanel4_RecordHarvest();
-        fp5 = new FieldsPanel5_RecordPlanting();
+        fp5 = new FieldsPanel5_RecordPlanting(currentServer.availableCrops);
         fp6 = new FieldsPanel6_HarvestHistory();
 
         layout = new CardLayout();
@@ -297,7 +297,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     private void clickSavePlantingDetails() {
         if (currentField != null
                 && (currentField.currentPlanting != null || !currentField.currentPlanting.getType().equals("Empty"))
-                && fp5.jtf_type.getText() != null
+                && fp5.jtf_type.getSelectedItem().toString() != null
                 && fp5.jns_pricePerTon.getValue() != null
                 && fp5.jns_growthTime.getValue() != null
                 && fp5.jns_growthTime.getValue() != null
@@ -307,7 +307,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                 && fp5.jns_airTemperatureLevel.getValue() != null) {
             currentField.recordNewPlanting(
                     new Planting(
-                            fp5.jtf_type.getText(),
+                            fp5.jtf_type.getSelectedItem().toString(),
                             (float) fp5.jns_pricePerTon.getValue(),
                             (int) fp5.jns_growthTime.getValue(),
                             (int) fp5.jns_growthTime.getValue(),

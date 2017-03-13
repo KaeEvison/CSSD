@@ -54,7 +54,7 @@ public class FieldsPanel6_HarvestHistory extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jlPickHarvest);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 61, 425, 161));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 425, 161));
     }// </editor-fold>//GEN-END:initComponents
 
 
