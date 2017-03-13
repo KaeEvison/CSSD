@@ -68,24 +68,29 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         btnPreviousPage = new javax.swing.JButton();
         btnNextPage = new javax.swing.JButton();
         lblPageNumber = new javax.swing.JLabel();
+        lblUnit1 = new javax.swing.JLabel();
+        lblUnit2 = new javax.swing.JLabel();
+        lblUnit3 = new javax.swing.JLabel();
+        lblUnit4 = new javax.swing.JLabel();
+        lblUnit5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtValue2.setName("txtSoilAcidity"); // NOI18N
-        add(txtValue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 150, -1));
+        add(txtValue2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 80, -1));
 
         txtValue4.setName("txtAirTemperature"); // NOI18N
-        add(txtValue4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 150, -1));
+        add(txtValue4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 80, -1));
 
         txtValue1.setName("txtSoilMoisture"); // NOI18N
-        add(txtValue1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 150, -1));
+        add(txtValue1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 80, -1));
 
         txtValue5.setName("txtLight"); // NOI18N
-        add(txtValue5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 150, -1));
+        add(txtValue5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 230, 80, -1));
 
         txtValue3.setName("txtSoilTemperature"); // NOI18N
-        add(txtValue3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 150, -1));
+        add(txtValue3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 80, -1));
 
         lblType2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblType2.setText("No sensor detected");
@@ -153,6 +158,11 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         btnNextPage.setEnabled(false);
         add(btnNextPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 100, -1));
         add(lblPageNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 20, 20));
+        add(lblUnit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 40, 20));
+        add(lblUnit2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 40, 20));
+        add(lblUnit3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 40, 20));
+        add(lblUnit4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 40, 20));
+        add(lblUnit5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 40, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGetReadingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetReadingsActionPerformed
@@ -179,6 +189,11 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
     public javax.swing.JLabel lblType3;
     public javax.swing.JLabel lblType4;
     public javax.swing.JLabel lblType5;
+    public javax.swing.JLabel lblUnit1;
+    public javax.swing.JLabel lblUnit2;
+    public javax.swing.JLabel lblUnit3;
+    public javax.swing.JLabel lblUnit4;
+    public javax.swing.JLabel lblUnit5;
     public javax.swing.JTextField txtValue1;
     public javax.swing.JTextField txtValue2;
     public javax.swing.JTextField txtValue3;

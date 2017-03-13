@@ -352,7 +352,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     }
 
     private void displayHarvestHistory() {
-        if (fp1.jlPickField.getSelectedValue() != null) {
+        if (fp1.jlPickField.getSelectedIndex() != -1) {
             
             currentField = currentFarmer.fields.getFieldByIndex(fp1.jlPickField.getSelectedIndex());
             fp6.model.clear();
@@ -382,12 +382,14 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         if (currentField.activeMonitors.size() > page * 5) {
             fp3.lblType1.setText(currentField.getMonitors().get(page * 5).getNewReading().getType());
             fp3.txtValue1.setText(currentField.getMonitors().get(page * 5).getNewReading().getValue() + "");
+            fp3.lblUnit1.setText(currentField.getMonitors().get(page * 5).getNewReading().getUnit());
             fp3.lblType1.setVisible(true);
             fp3.txtValue1.setVisible(true);
             fp3.btnRemoveSensor1.setVisible(true);
             if (currentField.activeMonitors.size() > (page * 5) + 1) {
                 fp3.lblType2.setText(currentField.getMonitors().get((page * 5) + 1).getNewReading().getType());
                 fp3.txtValue2.setText(currentField.getMonitors().get((page * 5) + 1).getNewReading().getValue() + "");
+            fp3.lblUnit1.setText(currentField.getMonitors().get((page * 5) + 1).getNewReading().getUnit());
                 fp3.lblType2.setVisible(true);
                 fp3.txtValue2.setVisible(true);
                 fp3.btnRemoveSensor2.setVisible(true);
@@ -732,8 +734,10 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp4.jbtn_submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                int temp = fp1.jlPickField.getSelectedIndex();
                 clickSaveHarvestDetails();
                 resetFieldJLists();
+                fp1.jlPickField.setSelectedIndex(temp);
             }
         });
 
@@ -745,8 +749,10 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp5.jbtn_submit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                int temp = fp1.jlPickField.getSelectedIndex();
                 clickSavePlantingDetails();
                 resetFieldJLists();
+                fp1.jlPickField.setSelectedIndex(temp);
             }
         });
 

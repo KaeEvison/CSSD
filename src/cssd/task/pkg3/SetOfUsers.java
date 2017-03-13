@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package cssd.task.pkg3;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * @author b3014277
  */
 
-public class SetOfUsers extends ArrayList<ProductLineManager>{
+public class SetOfUsers extends ArrayList<ProductLineManager> implements Serializable{
     
     private int noOfUsers = 0;
     

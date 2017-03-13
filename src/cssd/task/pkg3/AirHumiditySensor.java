@@ -11,6 +11,7 @@ package cssd.task.pkg3;
  */
 public class AirHumiditySensor extends Sensor {
     
+    //Constructor for this type of sensor sets up the relevant values
     public AirHumiditySensor(Location loc){
         sensorType = "Air humidity";
         location = loc;

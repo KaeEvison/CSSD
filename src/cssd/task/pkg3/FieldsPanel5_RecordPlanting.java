@@ -46,6 +46,8 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
         jns_airTemperatureLevel = new javax.swing.JSpinner();
         jns_pricePerTon = new javax.swing.JSpinner();
         jns_soilMoistureLevel = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,14 +80,14 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
         jbtn_back.setText("Back");
         add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
 
-        jns_growthTime.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-        add(jns_growthTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 90, -1));
+        jns_growthTime.setModel(new javax.swing.SpinnerNumberModel());
+        add(jns_growthTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 70, -1));
 
-        jns_soilTemperatureLevel.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-        add(jns_soilTemperatureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 90, -1));
+        jns_soilTemperatureLevel.setModel(new javax.swing.SpinnerNumberModel());
+        add(jns_soilTemperatureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 70, -1));
 
-        jns_soilAcidityLevel.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-        add(jns_soilAcidityLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 90, -1));
+        jns_soilAcidityLevel.setModel(new javax.swing.SpinnerNumberModel());
+        add(jns_soilAcidityLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 70, -1));
 
         jbtn_submit.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_submit.setText("Submit");
@@ -100,14 +102,23 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
         jLabel8.setText("Pref. Air Temp. Level:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
 
-        jns_airTemperatureLevel.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-        add(jns_airTemperatureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 90, -1));
+        jns_airTemperatureLevel.setModel(new javax.swing.SpinnerNumberModel());
+        add(jns_airTemperatureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 70, -1));
 
-        jns_pricePerTon.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, 100.0f, 0.1f));
-        add(jns_pricePerTon, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 90, -1));
+        jns_pricePerTon.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 1.0f));
+        jns_pricePerTon.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        add(jns_pricePerTon, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 70, -1));
 
-        jns_soilMoistureLevel.setModel(new SpinnerNumberModel(0, 0, 100, 1));
-        add(jns_soilMoistureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 90, -1));
+        jns_soilMoistureLevel.setModel(new javax.swing.SpinnerNumberModel());
+        add(jns_soilMoistureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 70, -1));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("£");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Days");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -117,8 +128,10 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public javax.swing.JButton jbtn_back;
     public javax.swing.JButton jbtn_submit;
     public javax.swing.JLabel jlbl_title;
