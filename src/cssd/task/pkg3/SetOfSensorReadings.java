@@ -55,4 +55,10 @@ public class SetOfSensorReadings extends ArrayList<SensorReading> implements Ser
         }
         return holder;
     }
+    
+    public SensorReading mostRecent()
+    {
+        int temp =  this.getSize();
+        return this.get(temp-1);
+    }
 }

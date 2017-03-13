@@ -158,11 +158,11 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         btnNextPage.setEnabled(false);
         add(btnNextPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 100, -1));
         add(lblPageNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 20, 20));
-        add(lblUnit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 40, 20));
-        add(lblUnit2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 40, 20));
-        add(lblUnit3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 150, 40, 20));
-        add(lblUnit4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 40, 20));
-        add(lblUnit5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, 40, 20));
+        add(lblUnit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 60, 20));
+        add(lblUnit2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 60, 20));
+        add(lblUnit3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 60, 20));
+        add(lblUnit4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 60, 20));
+        add(lblUnit5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 60, 20));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGetReadingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetReadingsActionPerformed

@@ -380,36 +380,44 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         clearSensorScreen();
         fp3.lblPageNumber.setText((page + 1) + "");
         if (currentField.activeMonitors.size() > page * 5) {
-            fp3.lblType1.setText(currentField.getMonitors().get(page * 5).getNewReading().getType());
-            fp3.txtValue1.setText(currentField.getMonitors().get(page * 5).getNewReading().getValue() + "");
-            fp3.lblUnit1.setText(currentField.getMonitors().get(page * 5).getNewReading().getUnit());
+            fp3.lblType1.setText(currentField.getMonitors().get(page * 5).getReadings().mostRecent().getType());
+            fp3.txtValue1.setText(currentField.getMonitors().get(page * 5).getReadings().mostRecent().getValue() + "");
+            fp3.lblUnit1.setText(currentField.getMonitors().get(page * 5).getReadings().mostRecent().getUnit());
             fp3.lblType1.setVisible(true);
             fp3.txtValue1.setVisible(true);
+            fp3.lblUnit1.setVisible(true);
             fp3.btnRemoveSensor1.setVisible(true);
             if (currentField.activeMonitors.size() > (page * 5) + 1) {
-                fp3.lblType2.setText(currentField.getMonitors().get((page * 5) + 1).getNewReading().getType());
-                fp3.txtValue2.setText(currentField.getMonitors().get((page * 5) + 1).getNewReading().getValue() + "");
-            fp3.lblUnit1.setText(currentField.getMonitors().get((page * 5) + 1).getNewReading().getUnit());
+                fp3.lblType2.setText(currentField.getMonitors().get((page * 5) + 1).getReadings().mostRecent().getType());
+                fp3.txtValue2.setText(currentField.getMonitors().get((page * 5) + 1).getReadings().mostRecent().getValue() + "");
+                fp3.lblUnit2.setText(currentField.getMonitors().get((page * 5) + 1).getReadings().mostRecent().getUnit());
                 fp3.lblType2.setVisible(true);
                 fp3.txtValue2.setVisible(true);
+                fp3.lblUnit2.setVisible(true);
                 fp3.btnRemoveSensor2.setVisible(true);
                 if (currentField.activeMonitors.size() > (page * 5) + 2) {
-                    fp3.lblType3.setText(currentField.getMonitors().get((page * 5) + 2).getNewReading().getType());
-                    fp3.txtValue3.setText(currentField.getMonitors().get((page * 5) + 2).getNewReading().getValue() + "");
+                    fp3.lblType3.setText(currentField.getMonitors().get((page * 5) + 2).getReadings().mostRecent().getType());
+                    fp3.txtValue3.setText(currentField.getMonitors().get((page * 5) + 2).getReadings().mostRecent().getValue() + "");
+                    fp3.lblUnit3.setText(currentField.getMonitors().get((page * 5) + 2).getReadings().mostRecent().getUnit());
                     fp3.lblType3.setVisible(true);
                     fp3.txtValue3.setVisible(true);
+                    fp3.lblUnit3.setVisible(true);
                     fp3.btnRemoveSensor3.setVisible(true);
                     if (currentField.activeMonitors.size() > (page * 5) + 3) {
-                        fp3.lblType4.setText(currentField.getMonitors().get((page * 5) + 3).getNewReading().getType());
-                        fp3.txtValue4.setText(currentField.getMonitors().get((page * 5) + 3).getNewReading().getValue() + "");
+                        fp3.lblType4.setText(currentField.getMonitors().get((page * 5) + 3).getReadings().mostRecent().getType());
+                        fp3.txtValue4.setText(currentField.getMonitors().get((page * 5) + 3).getReadings().mostRecent().getValue() + "");
+                        fp3.lblUnit4.setText(currentField.getMonitors().get((page * 5) + 3).getReadings().mostRecent().getUnit());
                         fp3.lblType4.setVisible(true);
                         fp3.txtValue4.setVisible(true);
+                        fp3.lblUnit4.setVisible(true);
                         fp3.btnRemoveSensor4.setVisible(true);
                         if (currentField.activeMonitors.size() > (page * 5) + 4) {
-                            fp3.lblType5.setText(currentField.getMonitors().get((page * 5) + 4).getNewReading().getType());
-                            fp3.txtValue5.setText(currentField.getMonitors().get((page * 5) + 4).getNewReading().getValue() + "");
+                            fp3.lblType5.setText(currentField.getMonitors().get((page * 5) + 4).getReadings().mostRecent().getType());
+                            fp3.txtValue5.setText(currentField.getMonitors().get((page * 5) + 4).getReadings().mostRecent().getValue() + "");
+                            fp3.lblUnit5.setText(currentField.getMonitors().get((page * 5) + 4).getReadings().mostRecent().getUnit());
                             fp3.lblType5.setVisible(true);
                             fp3.txtValue5.setVisible(true);
+                            fp3.lblUnit5.setVisible(true);
                             fp3.btnRemoveSensor5.setVisible(true);
                             if (currentField.activeMonitors.size() > ((page + 1) * 5)) {
                                 fp3.btnNextPage.setEnabled(true);
@@ -424,18 +432,23 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     private void clearSensorScreen() {
         fp3.lblType1.setVisible(false);
         fp3.txtValue1.setVisible(false);
+        fp3.lblUnit1.setVisible(false);
         fp3.btnRemoveSensor1.setVisible(false);
         fp3.lblType2.setVisible(false);
         fp3.txtValue2.setVisible(false);
+        fp3.lblUnit2.setVisible(false);
         fp3.btnRemoveSensor2.setVisible(false);
         fp3.lblType3.setVisible(false);
         fp3.txtValue3.setVisible(false);
+        fp3.lblUnit3.setVisible(false);
         fp3.btnRemoveSensor3.setVisible(false);
         fp3.lblType4.setVisible(false);
         fp3.txtValue4.setVisible(false);
+        fp3.lblUnit4.setVisible(false);
         fp3.btnRemoveSensor4.setVisible(false);
         fp3.lblType5.setVisible(false);
         fp3.txtValue5.setVisible(false);
+        fp3.lblUnit5.setVisible(false);
         fp3.btnRemoveSensor5.setVisible(false);
     }
 
@@ -609,8 +622,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp2.jbtn_checkCrops.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                updateSensorValues();
                 displayCrops();
+                updateSensorValues();
             }
         });
 
@@ -646,6 +659,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
 
         fp3.btnGetReadings.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                currentField.activeMonitors.getNewReadings();
                 updateSensorValues();
             }
         });

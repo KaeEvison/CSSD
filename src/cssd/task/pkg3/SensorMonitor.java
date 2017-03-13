@@ -25,6 +25,7 @@ public class SensorMonitor implements Serializable{
     public SensorMonitor(Sensor newSensor)
     {
         sensor = newSensor;
+        this.getNewReading();
     }
 
     public Sensor getSensor() {

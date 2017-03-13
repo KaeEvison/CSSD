@@ -14,7 +14,7 @@ public class AirTemperatureSensor extends Sensor {
     public AirTemperatureSensor(Location loc){
         sensorType = "Air temperature";
         location = loc;
-        dataUnit = "Degrees celcius";
+        dataUnit = "°C";
         minReading = -5;
         readingRange = 30;
     }
