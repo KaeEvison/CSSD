@@ -17,6 +17,6 @@ public class SoilAciditySensor extends Sensor
         location = loc;
         dataUnit = "pH";
         minReading = 0;
-        readingRange = 14;
+        maxReading = 14;
     }
 }

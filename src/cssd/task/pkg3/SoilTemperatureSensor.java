@@ -17,6 +17,6 @@ public class SoilTemperatureSensor extends Sensor {
         location = loc;
         dataUnit = "°C";
         minReading = -10;
-        readingRange = 15;
+        maxReading = 15;
     }
 }

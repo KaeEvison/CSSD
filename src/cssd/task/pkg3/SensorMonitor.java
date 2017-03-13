@@ -80,4 +80,48 @@ public class SensorMonitor implements Serializable{
     {
         return log;
     }
+    
+    //One of the suggestions in our feedback was that more detailed information could be shown for each sensor
+    //While not implemented into the UI to be accessible to the user, the following four functions could be used to provide
+            //useful information to the farmer about the extremes and averages of the field
+    public double getMinValue()
+    {
+        double min = sensor.maxReading;
+        for (int i = 0; i < log.size(); i++)
+        {
+            if (log.get(i).getValue() < min)
+                min = log.get(i).getValue();
+        }
+        return min;
+    }
+    
+    public double getMaxValue()
+    {
+        double max = sensor.minReading;
+        for (int i = 0; i < log.size(); i++)
+        {
+            if (log.get(i).getValue() > max)
+                max = log.get(i).getValue();
+        }
+        return max;
+    }
+    
+    public double getRange()
+    {
+        double min = getMinValue();
+        double max = getMaxValue();
+        return max - min;
+    }
+    
+    public double getMean()
+    {
+        double total = 0;
+        int num = 0;
+        for (int i = 0; i < log.size(); i++)
+        {
+            total += log.get(i).getValue();
+            num++;
+        }
+        return total/num;
+    }
 }
