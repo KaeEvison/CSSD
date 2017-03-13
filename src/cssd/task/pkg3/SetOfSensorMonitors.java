@@ -25,4 +25,12 @@ public class SetOfSensorMonitors extends ArrayList<SensorMonitor> implements Ser
     public void removeSensorMonitor(int index){
         super.remove(index);
     }
+    
+    public void getNewReadings()
+    {
+        for (int i = 0; i < this.size(); i++)
+        {
+            this.get(i).getNewReading();
+        }
+    }
 }
