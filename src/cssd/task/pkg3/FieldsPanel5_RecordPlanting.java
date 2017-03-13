@@ -5,6 +5,8 @@
  */
 package cssd.task.pkg3;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -12,12 +14,19 @@ import javax.swing.SpinnerNumberModel;
  * @author trkirk
  */
 public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
-
+    
+    ArrayList<String> crops = new ArrayList<String>();
+    
     /**
      * Creates new form AMSGUI_FieldsPanel5_RecordPlanting
      */
-    public FieldsPanel5_RecordPlanting() {
+    public FieldsPanel5_RecordPlanting(ArrayList<Planting> crops) {
+        
+        for(int i=0; i< crops.size(); ++i){
+            this.crops.add(crops.get(i).getType());
+        }
         initComponents();
+        
     }
 
     /**
@@ -40,7 +49,6 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
         jns_soilTemperatureLevel = new javax.swing.JSpinner();
         jns_soilAcidityLevel = new javax.swing.JSpinner();
         jbtn_submit = new javax.swing.JButton();
-        jtf_type = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jns_airTemperatureLevel = new javax.swing.JSpinner();
@@ -48,6 +56,7 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
         jns_soilMoistureLevel = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jtf_type = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -92,7 +101,6 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
         jbtn_submit.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_submit.setText("Submit");
         add(jbtn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 278, -1));
-        add(jtf_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 150, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel7.setText("Type:");
@@ -119,6 +127,9 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Days");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, -1, -1));
+
+        jtf_type.setModel(new DefaultComboBoxModel(crops.toArray()));
+        add(jtf_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 120, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -141,6 +152,6 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
     public javax.swing.JSpinner jns_soilAcidityLevel;
     public javax.swing.JSpinner jns_soilMoistureLevel;
     public javax.swing.JSpinner jns_soilTemperatureLevel;
-    public javax.swing.JTextField jtf_type;
+    public javax.swing.JComboBox<String> jtf_type;
     // End of variables declaration//GEN-END:variables
 }
