@@ -83,6 +83,7 @@ public class FieldsPanel3_CheckCrops extends javax.swing.JPanel {
         txtValue4.setName("txtAirTemperature"); // NOI18N
         add(txtValue4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 80, -1));
 
+        txtValue1.setBackground(new java.awt.Color(240, 240, 240));
         txtValue1.setName("txtSoilMoisture"); // NOI18N
         add(txtValue1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 80, -1));
 

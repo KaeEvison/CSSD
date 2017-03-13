@@ -94,7 +94,7 @@ public class User implements Serializable{
     //Expects current password and a new password, as long as the current password is correct the password is set to the new value
     public void changePassword(String newPass, String oldPass)
     {
-        if (oldPass == this.password)
+        if (this.password.equals(oldPass))
         {
             this.password = newPass;
         }

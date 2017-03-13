@@ -17,6 +17,6 @@ public class AirHumiditySensor extends Sensor {
         location = loc;
         dataUnit = "%";
         minReading = 0;
-        readingRange = 100;
+        maxReading = 100;
     }
 }

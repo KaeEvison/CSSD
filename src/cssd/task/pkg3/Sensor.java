@@ -19,7 +19,7 @@ public class Sensor implements Serializable{
     protected String dataUnit = "";
     protected Location location;
     protected static Random numberGen = new Random();
-    protected double minReading, readingRange;
+    protected double minReading, maxReading;
     
     //No constructor, each type of sensor has its own
 
@@ -56,7 +56,7 @@ public class Sensor implements Serializable{
     private double getRandomValue()
     {
         double value = numberGen.nextDouble();
-        value *= readingRange;
+        value *= maxReading;
         value += minReading;
         value *= 100;
         value = Math.round(value);

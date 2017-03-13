@@ -59,7 +59,7 @@ public class SetOfUsers extends ArrayList<ProductLineManager> implements Seriali
     }
     
     //Removes a user from the list
-    private void removerUser(ProductLineManager auser)
+    void removerUser(ProductLineManager auser)
     {
         super.remove(auser);
         noOfUsers--;
