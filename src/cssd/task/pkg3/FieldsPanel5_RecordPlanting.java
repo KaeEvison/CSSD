@@ -57,29 +57,33 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jtf_type = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 153, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Growth Time:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Pref. Soil Moisture Lvl:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Price (per Ton):");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, 20));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Pref. Soil Acidity Lvl:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 200, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Pref. Soil Temp. Level:");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         jlbl_title.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jlbl_title.setText("View Fields - Record Planting");
@@ -87,54 +91,74 @@ public class FieldsPanel5_RecordPlanting extends javax.swing.JPanel {
 
         jbtn_back.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_back.setText("Back");
-        add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
+        add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
 
         jns_growthTime.setModel(new javax.swing.SpinnerNumberModel());
-        add(jns_growthTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 70, -1));
+        add(jns_growthTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 70, -1));
 
         jns_soilTemperatureLevel.setModel(new javax.swing.SpinnerNumberModel());
-        add(jns_soilTemperatureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 70, -1));
+        add(jns_soilTemperatureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 70, -1));
 
         jns_soilAcidityLevel.setModel(new javax.swing.SpinnerNumberModel());
-        add(jns_soilAcidityLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 70, -1));
+        add(jns_soilAcidityLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, 70, -1));
 
         jbtn_submit.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jbtn_submit.setText("Submit");
-        add(jbtn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 278, -1));
+        add(jbtn_submit, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 278, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("Type:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Pref. Air Temp. Level:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, -1, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         jns_airTemperatureLevel.setModel(new javax.swing.SpinnerNumberModel());
-        add(jns_airTemperatureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 70, -1));
+        add(jns_airTemperatureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 70, -1));
 
         jns_pricePerTon.setModel(new javax.swing.SpinnerNumberModel(0.0f, null, null, 1.0f));
         jns_pricePerTon.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        add(jns_pricePerTon, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 70, -1));
+        add(jns_pricePerTon, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 70, 30));
 
         jns_soilMoistureLevel.setModel(new javax.swing.SpinnerNumberModel());
-        add(jns_soilMoistureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 70, -1));
+        add(jns_soilMoistureLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 70, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("£");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, -1, 20));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Days");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, -1, -1));
+        jLabel9.setText("Degrees");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, -1));
 
         jtf_type.setModel(new DefaultComboBoxModel(crops.toArray()));
-        add(jtf_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 120, -1));
+        add(jtf_type, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 120, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Days");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("pH");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 200, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Degrees");
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("m3.m-3");
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

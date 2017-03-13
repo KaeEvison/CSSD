@@ -42,7 +42,7 @@ public class FieldsPanel6_HarvestHistory extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("View Field - Harvest History");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 37, 304, 18));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 260, 18));
 
         jbtn_back.setText("Back");
         add(jbtn_back, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 240, 89, 44));
@@ -54,7 +54,7 @@ public class FieldsPanel6_HarvestHistory extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jlPickHarvest);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 425, 161));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 590, 161));
     }// </editor-fold>//GEN-END:initComponents
 
 

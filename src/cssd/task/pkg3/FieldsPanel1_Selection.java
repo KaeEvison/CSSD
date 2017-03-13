@@ -60,13 +60,13 @@ public class FieldsPanel1_Selection extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jlPickField);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 278, 114));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 40, 380, 114));
 
         btnAddField.setText("Add new field");
-        add(btnAddField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 140, -1));
+        add(btnAddField, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 60, 140, 30));
 
         btnRemoveField.setText("Remove field");
-        add(btnRemoveField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 130, 140, -1));
+        add(btnRemoveField, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 140, 30));
     }// </editor-fold>//GEN-END:initComponents
 
 
