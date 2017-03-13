@@ -20,9 +20,10 @@ public class Order implements Serializable {
     private LocalDateTime estimatedDeliveryDate;
     private LocalDateTime dateCreated;
     private String status;
+    public int orderNo;
     
     //empty constructor allows for easy access to an empty order
-    public Order(){}
+    //public Order(){}
     
     //Standard constructor, requires all fields
     public Order(
@@ -32,7 +33,8 @@ public class Order implements Serializable {
             User buyer,
             LocalDateTime estimatedDeliveryDate,
             LocalDateTime dateCreated,
-            String status )
+            String status,
+            int orderNo)
     {
         this.crop = crop;
         this.cost = cost;
@@ -41,6 +43,7 @@ public class Order implements Serializable {
         this.estimatedDeliveryDate = estimatedDeliveryDate;
         this.dateCreated = dateCreated;
         this.status = status;
+        this.orderNo = orderNo;
     }
 
     //Returns the current crop

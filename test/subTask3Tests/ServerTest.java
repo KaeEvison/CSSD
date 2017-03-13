@@ -39,9 +39,9 @@ public class ServerTest
     {
         testFarmer1 = new Farmer("Testman1", "John", "Testman", "Harrogate", "01234567890", "Pass1");
         testFarmer2 = new Farmer("Testguy1", "Billy", "Testman", "Barnsley", "09876543210", "Pass2");
-        testOrder1 = new Order("Apples", 100.00, testFarmer1, testUser1, LocalDateTime.now(), LocalDateTime.now(), "pending");
-        testOrder2 = new Order("Oranges", 120.00, testFarmer1, testUser1, LocalDateTime.now(), LocalDateTime.now(), "complete");
-        testOrder3 = new Order("Pears", 140.00, testFarmer2, testUser1, LocalDateTime.now(), LocalDateTime.now(), "pending");
+        testOrder1 = new Order("Apples", 100.00, testFarmer1, testUser1, LocalDateTime.now(), LocalDateTime.now(), "pending", 1);
+        testOrder2 = new Order("Oranges", 120.00, testFarmer1, testUser1, LocalDateTime.now(), LocalDateTime.now(), "complete", 2);
+        testOrder3 = new Order("Pears", 140.00, testFarmer2, testUser1, LocalDateTime.now(), LocalDateTime.now(), "pending", 3);
         testFarmers.add(testFarmer1);
         testFarmers.add(testFarmer2);
         testOrders.add(testOrder1);

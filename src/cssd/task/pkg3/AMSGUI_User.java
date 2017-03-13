@@ -31,7 +31,6 @@ public class AMSGUI_User extends javax.swing.JFrame {
     private ArrayList<Planting> availableCrops;
     private SetOfFarmers suitableFarmers = null;
     private Planting requiredPlanting = null;
-    private SetOfUsers users;
 
     private MenuPanel_User menu;
     private OrdersPanel1_User_Selection op1;
@@ -40,7 +39,6 @@ public class AMSGUI_User extends javax.swing.JFrame {
     private OrdersPanel5_SuitableFarmers op5;
     private OrdersPanel6_OrderDetails op6;
     private ManageFarmersPanel mfp;
-    
     private myAccountPanel_User ac;
 
     protected DecimalFormat df;
@@ -182,8 +180,8 @@ public class AMSGUI_User extends javax.swing.JFrame {
         op2.model = new DefaultListModel<Order>();
         op6 = new OrdersPanel6_OrderDetails();
         mfp = new ManageFarmersPanel();
-        ac = new myAccountPanel_User();
         mfp.jlPickFarmer.setModel(mfp.model);
+        ac = new myAccountPanel_User();
 
         layout = new CardLayout();
 
@@ -298,7 +296,8 @@ public class AMSGUI_User extends javax.swing.JFrame {
         for (int i = 0; i < aFarmer.getFields().size(); ++i) {
             
             if (aFarmer.getFields().getFieldByIndex(i).currentPlanting.getType().
-                    toLowerCase().equals(requiredPlanting.getType().toLowerCase())) {
+                    toLowerCase().equals(requiredPlanting.getType().toLowerCase())
+               ) {
                 aPlanting = aFarmer.getFields().getFieldByIndex(i).currentPlanting;
             }
         }
@@ -400,16 +399,18 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
         //The order is generated using current values from the user's selections
         currentOrder = new Order(
-                
+            
             aPlanting.getType(),
             aPlanting.getPricePerTon(),
             aFarmer,
             currentUser,
             LocalDateTime.now().plusDays(aPlanting.getGrowthTime()),
             LocalDateTime.now(),
-            "active"
+            "active",
+            currentServer.getNextId()
         );
-
+       
+        
         if (currentOrder != null) {
             op6.lbl_name.setText(currentOrder.getSupplier().getFirstName() + " "
                     + currentOrder.getSupplier().getSurname());
@@ -418,7 +419,9 @@ public class AMSGUI_User extends javax.swing.JFrame {
             op6.lbl_product.setText(currentOrder.getCrop());
             op6.lbl_delivery.setText(currentOrder.getEstimatedDeliveryDate().toLocalDate() + "");
             op6.lbl_price.setText(df.format(currentOrder.getCost()) + "");
-
+            
+            aPlanting.isOrdered = true;
+            
             layout.show(contentPane, "op6");
         } else {
             JOptionPane.showMessageDialog(getContentPane(), 
@@ -431,13 +434,15 @@ public class AMSGUI_User extends javax.swing.JFrame {
         if (currentOrder != null) {
             
             currentUser.orders.add(currentOrder);
-            currentOrder = null;
+            
             JOptionPane.showMessageDialog(getContentPane(), 
                 "Order Successfully created.");
             
             layout.show(contentPane, "menu");
-            currentServer.updateUser(currentUser);
-            currentServer.updateOrders(currentUser.orders);
+            //currentServer.updateUser(currentUser);
+            currentServer.addAnOrder(currentOrder);
+            
+            currentOrder = null;
         } else {
             JOptionPane.showMessageDialog(getContentPane(), 
                "Error: Order could not be saved.");
@@ -467,11 +472,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
         menu.jButton3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                layout.show(contentPane, "ac");
-                ac.firstname_field.setText(currentUser.getFirstName());
-                ac.surname_field.setText(currentUser.getSurname());
-                ac.loc_field.setText(currentUser.getLocation());
-                ac.phone_field.setText(currentUser.getPhoneNumber());
+                JOptionPane.showMessageDialog(getContentPane(), "Coming Soon");
             }
         });
         
@@ -611,7 +612,16 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
         op6.jbtn_sendOrder.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                clickSendOrder();
+                if(currentOrder != null){
+                    if ( currentServer.orderExists(currentOrder) ){
+                        JOptionPane.showMessageDialog(getContentPane(), 
+                        "Error: Order already sent."); 
+                    }
+                    else{
+                       
+                       clickSendOrder();
+                    }
+                }
             }
         });
 
