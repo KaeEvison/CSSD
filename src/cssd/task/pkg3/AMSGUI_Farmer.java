@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.JOptionPane;
+import java.awt.Frame;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
     private FieldsPanel5_RecordPlanting fp5;
     private FieldsPanel6_HarvestHistory fp6;
     private myAccountPanel_Farmer ac;
+    
+    private Frame frame;
 
     /**
      * Creates new form AMSGUI
@@ -53,6 +56,8 @@ public class AMSGUI_Farmer extends AMSGUI_User {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("AMS");
         setSize(660, 550);
+        
+        this.frame = this;
 
         initManualComponents();
 
@@ -548,7 +553,7 @@ public class AMSGUI_Farmer extends AMSGUI_User {
                 if(result == JOptionPane.YES_OPTION)
                 {
                    currentServer.removeFarmer(currentFarmer);   
-
+                   frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                 }
  
             }

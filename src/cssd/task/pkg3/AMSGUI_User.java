@@ -7,6 +7,7 @@ package cssd.task.pkg3;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -43,6 +44,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
 
     protected DecimalFormat df;
     protected CardLayout layout;
+    private Frame frame;
 
     /**
      * Creates new form AMSGUI_User
@@ -54,6 +56,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("AMS");
         setSize(660, 550);
+        this.frame = this;
 
         this.currentServer = server;
         this.currentUser = currentUser;
@@ -531,7 +534,7 @@ public class AMSGUI_User extends javax.swing.JFrame {
                 if(result == JOptionPane.YES_OPTION)
                 {
                     currentServer.removeUser(currentUser);    
-                   // window
+                    frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
                 }
  
             }
