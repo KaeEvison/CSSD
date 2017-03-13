@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class SetOfFarmers extends ArrayList<Farmer> implements Serializable 
 {
-    private int noOfFarmers = 0;
+    public int noOfFarmers = 0;
     
     //Constructor creates an empty array of farmers
     public SetOfFarmers()
@@ -26,6 +26,7 @@ public class SetOfFarmers extends ArrayList<Farmer> implements Serializable
     public Farmer login(String username, String password)
     {
         Farmer farmer = null;
+        
         
         for (int i = 0; i < noOfFarmers; i++)
         {

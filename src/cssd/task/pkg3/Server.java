@@ -660,6 +660,16 @@ public class Server extends javax.swing.JFrame {
         return holder;
     }
     
+    public void removeFarmer(Farmer aFarmer)
+    {
+        farmers.removeFarmer(aFarmer);
+    }
+    
+    public void removeUser(ProductLineManager aUser)
+    {
+        users.removeUser(aUser);
+    }
+    
     /**
      * @param args the command line arguments
      */

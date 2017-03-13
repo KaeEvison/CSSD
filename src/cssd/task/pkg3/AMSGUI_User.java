@@ -525,7 +525,8 @@ public class AMSGUI_User extends javax.swing.JFrame {
                 int result = JOptionPane.showConfirmDialog(getContentPane(), "Deleting your account is permanent. Do you wish to continue?", "DELETING ACCOUNT" ,JOptionPane.YES_NO_OPTION);
                 if(result == JOptionPane.YES_OPTION)
                 {
-                    users.removerUser(currentUser);            
+                    currentServer.removeUser(currentUser);    
+                   // window
                 }
  
             }
